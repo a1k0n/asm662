@@ -5,21 +5,30 @@ use strict;
 my %baseop;
 sub add_instr($$$$$)
 {
-	my ($opc, $args, $instr, $dd, $cond) = @_;
+	my ($opc, $params, $instr, $dd, $actions) = @_;
 	my @opc = @$opc;
-	my @args = @$args;
-	#print("@opc: [$dd$cond] \"$instr\" @args\n");
 	my $op0 = hex($opc[0]);
 	if(!defined $baseop{$op0}) {
 		$baseop{$op0} = [];
 	}
 	my $rec = { 
-			opcodes => \@opc,
+			opcodes => $opc,
 			instr => $instr,
-			args => \@args,
+			params => $params,
 			dd => $dd,
-			cond => $cond};
+			actions => $actions};
 	push @{$baseop{$op0}}, $rec;
+}
+
+sub idx_of($$)
+{
+	my ($aref, $srch) = @_;
+	for(my $i=0;$i<=$#$aref;$i++) {
+		if($aref->[$i] eq $srch) {
+			return $i;
+		}
+	}
+	return 'missing';
 }
 
 sub prettify($)
@@ -34,67 +43,36 @@ sub prettify($)
 sub gen_snippet($)
 {
 	my ($href) = @_;
+	my $opc = $href->{opcodes};
+	my $ins = prettify($href->{instr});
+	my $params = $href->{params};
+	my $actions = $href->{actions};
+
+	# generate 'if' statement
 	if($href->{dd} eq '0' || $href->{dd} eq '1') {
 		print("\tif(D->dd == ".$href->{dd});
 	} else {
 		print("\tif(1");
 	}
-	my $opc = $href->{opcodes};
+
 	for(my $i=1;$i<=$#$opc;$i++) {
 		next if($opc->[$i] !~ '^[0-9A-F][0-9A-F]$');
 		print(" && op[$i]==0x".$opc->[$i]);
 	}
 	print(") {\n");
-	my $ins = prettify($href->{instr});
+
+	# generate printf
 	print("\t\tsprintf(buf, \"".$ins."\"");
-	my $args = $href->{args};
-	my ($reladdr, $n16);
-	for(my $i=0;$i<=$#$args;$i++) {
-		my $type = $opc->[$args->[$i]];
-		if($type eq 'rel8') {
-			$reladdr = "D->pc+((signed char)op[".$args->[$i]."])".
-				"+".($#$opc+1);
-			print(", get_label($reladdr)");
-		} elsif($type eq 'addrl' || $type eq 'NL' || $type eq "N'L") {
-			$n16 = "(op[".($args->[$i]+1)."]<<8)|op[".$args->[$i]."]";
-			if($type eq 'addrl') {
-				print(", get_label($n16)");
-			} else {
-				print(", $n16");
-			}
-		} elsif($type eq 'S8') {
-			print(', ((signed char)op['.$args->[$i].']) < 0 ? "-":"", '.
-				'_abs((signed char)op['.$args->[$i].'])');
-		} else {
-			print(", op[".$args->[$i]."]");
-		}
+	for(my $i=0;$i<=$#$params;$i++) {
+		print(", ".$params->[$i]);
 	}
 	print(");\n");
 
-	# track DD changes
-	if($href->{dd} eq 'S') { print("\t\tD->dd = 1;\n"); }
-	elsif($href->{dd} eq 'R') { print("\t\tD->dd = 0;\n"); }
-
-	# track LRB usage using MOV LRB, #N16
-	if($href->{instr} =~ /MOV LRB, #/) {
-		print("\t\tD->lrb = $n16;\n");
+	# generate actions
+	for(my $i=0;$i<=$#$actions;$i++) {
+		print("\t\t".$actions->[$i]."\n");
 	}
-
-	# track VCALs
-	if($href->{instr} =~ /VCAL ([0-9])/) {
-		printf("\t\tdo_vcal($1);\n");
-	}
-
-	# decide whether or not to update the program counter
-	if($href->{cond} eq 'I' || $href->{cond} eq 'J') {
-		# indirect jump.. we have no idea what to do here, so leave PC
-		# alone and allow the front end to figure it out
-		# for direct jumps, we already created a label, so follow it later.
-	} else {
-		# everything else - increment PC as normal
-		print("\t\tD->pc += ".($#$opc+1).";\n");
-	}
-
+	
 	print("\t\treturn ".($#$opc+1).";\n\t}\n");
 }
 
@@ -195,40 +173,75 @@ sub process
 		elsif($instr eq 'SB PSWH.4') { $dd = 'S'; }
 		# replace NL, NH, N'L, N'H, N8, address with %s.. hmm, we need to
 		# know what order they're in in the final instruction...
-		my @args;
-		while($instr =~ /([SN]'?8|N'?16|rel8|addr16).*/) {
+		my @param;
+		my @actions;
+		my $n16;
+		while($instr =~ /(off N'?8|[SN]'?8|N'?16|rel8|addr16).*/) {
 			my $arg = $1;
-			if($arg =~ /N'?8/) {
-				push @args, $arg;
+			if($arg =~ /off (N'?8)/) {
+				my $idx = idx_of(\@opc, $1);
+				$instr =~ s/off N'?8(.*)/off(%05xh)$1/;
+				push @param, "((D->lrb>>5)<<8)|op[$idx]";
+			} elsif($arg =~ /(N'?8)/) {
+				my $idx = idx_of(\@opc, $1);
 				$instr =~ s/N'?8(.*)/%03xh$1/;
-			} elsif($arg =~ /S8/) {
-				push @args, $arg;
+				push @param, "op[$idx]";
+			} elsif($arg =~ /(S8)/) {
+				my $idx = idx_of(\@opc, $1);
 				$instr =~ s/S8(.*)/%s%03xh$1/;
+				push @param, '((signed char)op['.$idx.']) < 0 ? "-":"", '.
+					'_abs((signed char)op['.$idx.'])';
 			} elsif($arg =~ /N16/) {
-				push @args, "NL";
+				my $idx = idx_of(\@opc, "NL");
+				$n16 = "(op[".($idx+1)."]<<8)|op[".$idx."]";
 				$instr =~ s/N16(.*)/%05xh$1/;
+				push @param, $n16;
 			} elsif($arg =~ /N'16/) {
-				push @args, "N'L";
+				my $idx = idx_of(\@opc, "N'L");
+				$n16 = "(op[".($idx+1)."]<<8)|op[".$idx."]";
 				$instr =~ s/N'16(.*)/%05xh$1/;
-			} elsif($arg =~ /rel8/) {
-				push @args, "rel8";
+				push @param, $n16;
+			} elsif($arg =~ /(rel8)/) {
+				my $idx = idx_of(\@opc, $1);
+				my $reladdr = "D->pc+((signed char)op[".$idx."])".
+					"+".($#opc+1);
 				$instr =~ s/rel8(.*)/%s$1/;
+				push @param, "get_label($reladdr)";
 			} elsif($arg =~ /addr16/) {
-				push @args, "addrl";
+				my $idx = idx_of(\@opc, "addrl");
+				$n16 = "(op[".($idx+1)."]<<8)|op[".$idx."]";
 				$instr =~ s/addr16(.*)/%s$1/;
+				push @param, "get_label($n16)";
 			} else {
 				die "what the fuck?";
 			}
 		}
-		# translate args into the indices in the opcode they appear
-		for(my $i=1;$i<=$#opc;$i++) {
-			for(my $j=0;$j<=$#args;$j++) {
-				if($args[$j] eq $opc[$i]) {
-					$args[$j] = $i;
-				}
-			}
+
+		# track DD changes
+		if($dd eq 'S') { push @actions, "D->dd = 1;"; }
+		elsif($dd eq 'R') { push @actions, "D->dd = 0;"; }
+
+		# track LRB usage using MOV LRB, #N16
+		if($instr =~ /MOV LRB, #/) {
+			push @actions, "D->lrb = $n16;";
 		}
-		add_instr(\@opc, \@args, $instr, $dd, $cond);
+
+		# track VCALs
+		if($instr =~ /VCAL ([0-9])/) {
+			push @actions, "do_vcal($1);\n";
+		}
+
+		# decide whether or not to update the program counter
+		if($cond eq 'I' || $cond eq 'J') {
+			# indirect jump.. we have no idea what to do here, so leave PC
+			# alone and allow the front end to figure it out
+			# for direct jumps, we already created a label, so follow it later.
+		} else {
+			# everything else - increment PC as normal
+			push @actions, "D->pc += ".($#opc+1).";";
+		}
+
+		add_instr(\@opc, \@param, $instr, $dd, \@actions);
 	}
 }
 
