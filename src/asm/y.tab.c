@@ -1,8 +1,11 @@
-#ifndef lint
-static char const 
-yyrcsid[] = "$FreeBSD: src/usr.bin/yacc/skeleton.c,v 1.28 2000/01/17 02:04:06 bde Exp $";
-#endif
 #include <stdlib.h>
+#ifndef lint
+#ifdef __unused
+__unused
+#endif
+static char const 
+yyrcsid[] = "$FreeBSD: src/usr.bin/yacc/skeleton.c,v 1.37 2003/02/12 18:03:55 davidc Exp $";
+#endif
 #define YYBYACC 1
 #define YYMAJOR 1
 #define YYMINOR 9
@@ -11,7 +14,11 @@ yyrcsid[] = "$FreeBSD: src/usr.bin/yacc/skeleton.c,v 1.28 2000/01/17 02:04:06 bd
 #define yyclearin (yychar=(YYEMPTY))
 #define yyerrok (yyerrflag=0)
 #define YYRECOVERING() (yyerrflag!=0)
+#if defined(__cplusplus) || __STDC__
+static int yygrowstack(void);
+#else
 static int yygrowstack();
+#endif
 #define YYPREFIX "yy"
 #line 2 "asm662.y"
 /* build with yacc -d */
@@ -39,7 +46,7 @@ typedef union {
 	struct symbol *sym;
 	char *string;
 } YYSTYPE;
-#line 43 "y.tab.c"
+#line 50 "y.tab.c"
 #define YYERRCODE 256
 #define SHIFTL 257
 #define SHIFTR 258
@@ -10705,9 +10712,9 @@ int
 yyparse (YYPARSE_PARAM_ARG)
     YYPARSE_PARAM_DECL
 {
-    register int yym, yyn, yystate;
+    int yym, yyn, yystate;
 #if YYDEBUG
-    register const char *yys;
+    const char *yys;
 
     if ((yys = getenv("YYDEBUG")))
     {
@@ -21326,7 +21333,7 @@ case 2631:
 #line 2809 "asm662.y"
 { u8 instr[5] = {0xC1,0,0,0xF0,0}; _SET16(instr,1,yyvsp[-7].value); instr[4] = yyvsp[-1].value; emit(instr,5); }
 break;
-#line 21330 "y.tab.c"
+#line 21337 "y.tab.c"
     }
     yyssp -= yym;
     yystate = *yyssp;

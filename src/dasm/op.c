@@ -14057,7 +14057,7 @@ int dasmfunc_e6(dasm_state *D, char *buf) {
 
 int dasmfunc_e7(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
-	if(D->dd == 0) {
+	if(1) {
 		sprintf(buf, "ORB     A, off(%s)", get_ram_label(((D->lrb>>5)<<8)|op[1], 4));
 		D->pc += 2;
 		return 2;

@@ -63,7 +63,7 @@ void dasm(dasm_state *D, DASMQueue *dqueue, DASMOutput *out)
 	dasmfunc f;
 	int d,i=0;
 	char linebuf[1024];
-	char lrb[12];
+	char lrb[64], usp[64];
 
 	_D = D;
 	_dqueue = dqueue;
@@ -80,12 +80,16 @@ void dasm(dasm_state *D, DASMQueue *dqueue, DASMOutput *out)
 						"", D->pc);
 			} else {
 				if(D->lrb == 0xffff)
-					strcpy(lrb, "P??,B??");
+					strcpy(lrb, "???");
 				else
-					sprintf(lrb, "P%02X,B%02X", 
+					sprintf(lrb, "%01X%02X", 
 							D->lrb>>5, (D->lrb&0x1f)<<3);
+				if(D->usp == 0xffff)
+					strcpy(usp, "???");
+				else
+					sprintf(usp, "%03X", D->usp);
 				sprintf(linebuf, "%-30s ; %04X from %04X "
-						"(DD%d,%s)", "", D->pc, f, D->dd, lrb);
+						"(DD%d,%s,%s)", "", D->pc, f, D->dd, lrb, usp);
 			}
 			out->add_ref(D->pc, linebuf);
 		}
@@ -115,12 +119,17 @@ void dasm(dasm_state *D, DASMQueue *dqueue, DASMOutput *out)
 				}
 			}
 			if(D->lrb == 0xffff)
-				strcpy(lrb, "?? ??");
+				strcpy(lrb, "???");
 			else
-				sprintf(lrb, "%02X %02X", D->lrb>>5, (D->lrb&0x1f)<<3);
+				sprintf(lrb, "%01X%02X", 
+						D->lrb>>5, (D->lrb&0x1f)<<3);
+			if(D->usp == 0xffff)
+				strcpy(usp, "???");
+			else
+				sprintf(usp, "%03X", D->usp);
 
-			sprintf(linebuf, "%-30s ; %04X %d %s ", buf, pc, 
-					D->dd, lrb);
+			sprintf(linebuf, "%-30s ; %04X %d %s %s ", buf, pc, 
+					D->dd, lrb, usp);
 			for(i=0;i<d;i++) {
 				sprintf(buf, "%02X", D->rom[pc+i]);
 				strcat(linebuf, buf);
@@ -136,7 +145,7 @@ void init_66207(dasm_state *D, DASMQueue *q, DASMOutput *out)
 	int i=0;
 #define makeentry(x) { \
 			unsigned a = (D->rom[i+1]<<8) | D->rom[i];\
-			if(a < 0x8000) { q->add(a, i, x, 0, 0xffff, 0x0000); \
+			if(a < 0x8000) { q->add(a, i, x, 0, 0xffff, 0xffff); \
 			out->add_label(a, x); } out->add_label(i, x"_vec"); i+=2; }
 	makeentry("int_start");
 	makeentry("int_break");
