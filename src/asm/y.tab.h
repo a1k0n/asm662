@@ -129,6 +129,7 @@
 #define XNBL 381
 #define XOR 382
 #define XORB 383
+#define nop76 384
 typedef union {
 	int value;
 	struct symbol *sym;

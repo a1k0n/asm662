@@ -24,7 +24,9 @@ extern "C" const char *get_rom_label(unsigned addr)
 
 extern "C" const char *get_romtable_label(unsigned addr)
 {
-	static char lbuf[64];
+	static char lbuf1[64], lbuf2[64];
+	static char *lbuf=lbuf2;
+	lbuf = (lbuf == lbuf1) ? lbuf2 : lbuf1;
 	if(!_dout->ignore(addr) && 
 			(addr >= tbladdr_lo && addr < tbladdr_hi)) {
 		const char *l = _dout->get_label(addr);

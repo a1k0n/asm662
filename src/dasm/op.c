@@ -5575,6 +5575,16 @@ int dasmfunc_73(dasm_state *D, char *buf) {
 	return -1;
 }
 
+int dasmfunc_76(dasm_state *D, char *buf) {
+	unsigned char *op = D->rom+D->pc;
+	if(1) {
+		sprintf(buf, "nop76");
+		D->pc += 1;
+		return 1;
+	}
+	return -1;
+}
+
 int dasmfunc_77(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
@@ -14422,7 +14432,7 @@ dasmfunc dasmtable[256] = {
 	dasmfunc_73,
 	NULL, /* nothing for 74 */
 	NULL, /* nothing for 75 */
-	NULL, /* nothing for 76 */
+	dasmfunc_76,
 	dasmfunc_77,
 	dasmfunc_78,
 	dasmfunc_79,
