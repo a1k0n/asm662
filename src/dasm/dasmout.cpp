@@ -21,6 +21,16 @@ const char *DASMOutput::get_label(unsigned addr)
 	return (*i).second.c_str();
 }
 
+unsigned DASMOutput::get_next(unsigned addr)
+{
+	multimap<unsigned,string>::iterator i;
+	i = lines.find(addr*4+1);
+	if(i == lines.end()) return 0xffff;
+	++i;
+	if(i == lines.end()) return 0xffff;
+	return (*i).first/4;
+}
+
 void DASMOutput::add_ref(unsigned addr, const string &l) 
 {
 	lines.insert(pair<unsigned,string>(addr*4,l));
@@ -40,6 +50,7 @@ static int output_unmasked_data(FILE *out, DASMOutput *dout, dasm_state *D,
 		unsigned a, unsigned z, const char *label)
 {
 	int started_line=-1;
+	int linelen = 8, linepos = 0;
 	unsigned i;
 	char ihateC[64];
 	int skipped_data = 0;
@@ -72,31 +83,32 @@ static int output_unmasked_data(FILE *out, DASMOutput *dout, dasm_state *D,
 		if(D->mask[a]) break;
 		const char *l = dout->get_label(a);
 		if(l) {
+			unsigned next = dout->get_next(a);
+			unsigned len = next-a;
+			//fprintf(out, "; table size %d\n", len);
+			if(len > 8 && len%10 == 0)
+				linelen = 10;
 			strcpy(ihateC, l);
 			strcat(ihateC, ":");
 			started_line = -1;
 		}
 		if(started_line != -1) {
-			if((a&0x7) == 0x7) {
+			++linepos;
+			if(linepos == linelen) {
 				fprintf(out, ",0%02Xh ; %04X\n", D->rom[a], started_line);
 				started_line = -1;
 			} else {
 				fprintf(out, ",0%02Xh", D->rom[a]);
 			}
 		} else {
+			linepos = 1;
 			fprintf(out, "%-15s DB  ", ihateC);
-			for(i=0;i<(a&0x7);i++) fprintf(out, "     ");
-			if((a&0x7) == 0x7) {
-				fprintf(out, "0%02Xh ; %04X\n", D->rom[a], a);
-			} else {
-				fprintf(out, "0%02Xh", D->rom[a]);
-				started_line = a;
-			}
+			fprintf(out, "0%02Xh", D->rom[a]);
+			started_line = a;
 			ihateC[0] = 0;
 		}
 	}
 	if(started_line != -1) {
-		for(i=(a&0x7);i<8;i++) fprintf(out, "     ");
 		fprintf(out, " ; %04X\n", started_line);
 	}
 	return z;

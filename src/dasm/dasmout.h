@@ -9,6 +9,7 @@ public:
 	// everything else can have multiple lines per address.
 	void add_label(unsigned addr, const string &labelline);
 	const char *get_label(unsigned addr);
+	unsigned get_next(unsigned addr);
 	void add_ref(unsigned addr, const string &line);
 	void add_warn(unsigned addr, const string &line);
 	void add_line(unsigned addr, const string &line);
