@@ -192,6 +192,13 @@ void init_66207(dasm_state *D, DASMQueue *q, DASMOutput *out)
 	out->add_ref(0, "org 0000h");
 }
 
+unsigned hextoi(const char *s)
+{
+	unsigned addr=0;
+	sscanf(s, "%x", &addr);
+	return addr;
+}
+
 int main(int argc, char **argv)
 {
 	dasm_state ds;
@@ -229,13 +236,14 @@ int main(int argc, char **argv)
 	// init 66207 entry vectors
 	init_66207(&ds, &dq, &dout);
 
+	if(argv[3]) tbladdr_lo = hextoi(argv[3]);
+	if(argv[4]) tbladdr_hi = hextoi(argv[4]);
+
 	// add user table exclusion addresses
-	for(int i=3;i<argc;i++) {
-		unsigned addr;
-		sscanf(argv[i], "%x", &addr);
+	for(int i=5;i<argc;i++) {
 //		dq.add(addr, 0xffff, string("user_")+argv[i], 0, 0xffff);
 		// treat these as table exclusions instead
-		dout.add_ignore(addr);
+		dout.add_ignore(hextoi(argv[i]));
 	}
 
 	// perform disassembly

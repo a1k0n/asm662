@@ -36,6 +36,16 @@ int dasmfunc_03(dasm_state *D, char *buf) {
 	return -1;
 }
 
+int dasmfunc_04(dasm_state *D, char *buf) {
+	unsigned char *op = D->rom+D->pc;
+	if(1) {
+		sprintf(buf, "SMOVI");
+		D->pc += 1;
+		return 1;
+	}
+	return -1;
+}
+
 int dasmfunc_08(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 1) {
@@ -3999,6 +4009,11 @@ int dasmfunc_43(dasm_state *D, char *buf) {
 
 int dasmfunc_44(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
+	if(1 && op[1]==0x91) {
+		sprintf(buf, "ADC     er0, A");
+		D->pc += 2;
+		return 2;
+	}
 	if(1 && op[1]==0x93) {
 		sprintf(buf, "ADC     er0, off(%s)", get_ram_label(((D->lrb>>5)<<8)|op[2], 4));
 		D->pc += 3;
@@ -4269,6 +4284,11 @@ int dasmfunc_44(dasm_state *D, char *buf) {
 
 int dasmfunc_45(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
+	if(1 && op[1]==0x91) {
+		sprintf(buf, "ADC     er1, A");
+		D->pc += 2;
+		return 2;
+	}
 	if(1 && op[1]==0x93) {
 		sprintf(buf, "ADC     er1, off(%s)", get_ram_label(((D->lrb>>5)<<8)|op[2], 4));
 		D->pc += 3;
@@ -4539,6 +4559,11 @@ int dasmfunc_45(dasm_state *D, char *buf) {
 
 int dasmfunc_46(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
+	if(1 && op[1]==0x91) {
+		sprintf(buf, "ADC     er2, A");
+		D->pc += 2;
+		return 2;
+	}
 	if(1 && op[1]==0x93) {
 		sprintf(buf, "ADC     er2, off(%s)", get_ram_label(((D->lrb>>5)<<8)|op[2], 4));
 		D->pc += 3;
@@ -4809,6 +4834,11 @@ int dasmfunc_46(dasm_state *D, char *buf) {
 
 int dasmfunc_47(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
+	if(1 && op[1]==0x91) {
+		sprintf(buf, "ADC     er3, A");
+		D->pc += 2;
+		return 2;
+	}
 	if(1 && op[1]==0x93) {
 		sprintf(buf, "ADC     er3, off(%s)", get_ram_label(((D->lrb>>5)<<8)|op[2], 4));
 		D->pc += 3;
@@ -5887,6 +5917,11 @@ int dasmfunc_90(dasm_state *D, char *buf) {
 		D->pc += 2;
 		return 2;
 	}
+	if(1 && op[1]==0x91) {
+		sprintf(buf, "ADC     X1, A");
+		D->pc += 2;
+		return 2;
+	}
 	if(1 && op[1]==0x93) {
 		sprintf(buf, "ADC     X1, off(%s)", get_ram_label(((D->lrb>>5)<<8)|op[2], 4));
 		D->pc += 3;
@@ -6227,6 +6262,11 @@ int dasmfunc_91(dasm_state *D, char *buf) {
 		D->pc += 2;
 		return 2;
 	}
+	if(1 && op[1]==0x91) {
+		sprintf(buf, "ADC     X2, A");
+		D->pc += 2;
+		return 2;
+	}
 	if(1 && op[1]==0x93) {
 		sprintf(buf, "ADC     X2, off(%s)", get_ram_label(((D->lrb>>5)<<8)|op[2], 4));
 		D->pc += 3;
@@ -6534,6 +6574,11 @@ int dasmfunc_92(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 1 && op[1]==0x92) {
 		sprintf(buf, "ADC     A, DP");
+		D->pc += 2;
+		return 2;
+	}
+	if(1 && op[1]==0x91) {
+		sprintf(buf, "ADC     DP, A");
 		D->pc += 2;
 		return 2;
 	}
@@ -6987,6 +7032,11 @@ int dasmfunc_a0(dasm_state *D, char *buf) {
 		D->pc += 2;
 		return 2;
 	}
+	if(1 && op[1]==0x91) {
+		sprintf(buf, "ADC     SSP, A");
+		D->pc += 2;
+		return 2;
+	}
 	if(1 && op[1]==0x93) {
 		sprintf(buf, "ADC     SSP, off(%s)", get_ram_label(((D->lrb>>5)<<8)|op[2], 4));
 		D->pc += 3;
@@ -7294,6 +7344,11 @@ int dasmfunc_a1(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 1 && op[1]==0x92) {
 		sprintf(buf, "ADC     A, USP");
+		D->pc += 2;
+		return 2;
+	}
+	if(1 && op[1]==0x91) {
+		sprintf(buf, "ADC     USP, A");
 		D->pc += 2;
 		return 2;
 	}
@@ -8574,6 +8629,11 @@ int dasmfunc_a4(dasm_state *D, char *buf) {
 		D->pc += 2;
 		return 2;
 	}
+	if(1 && op[1]==0x91) {
+		sprintf(buf, "ADC     LRB, A");
+		D->pc += 2;
+		return 2;
+	}
 	if(1 && op[1]==0x90) {
 		sprintf(buf, "ADC     LRB, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
@@ -8964,6 +9024,11 @@ int dasmfunc_b0(dasm_state *D, char *buf) {
 		D->pc += 4;
 		return 4;
 	}
+	if(1 && op[3]==0x91) {
+		sprintf(buf, "ADC     %s[X1], A", get_romtable_label((op[2]<<8)|op[1]));
+		D->pc += 4;
+		return 4;
+	}
 	if(1 && op[3]==0x93) {
 		sprintf(buf, "ADC     %s[X1], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
@@ -9271,6 +9336,11 @@ int dasmfunc_b1(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 1 && op[3]==0x92) {
 		sprintf(buf, "ADC     A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
+		D->pc += 4;
+		return 4;
+	}
+	if(1 && op[3]==0x91) {
+		sprintf(buf, "ADC     %s[X2], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
@@ -9584,6 +9654,11 @@ int dasmfunc_b2(dasm_state *D, char *buf) {
 		D->pc += 2;
 		return 2;
 	}
+	if(1 && op[1]==0x91) {
+		sprintf(buf, "ADC     [DP], A");
+		D->pc += 2;
+		return 2;
+	}
 	if(1 && op[1]==0x93) {
 		sprintf(buf, "ADC     [DP], off(%s)", get_ram_label(((D->lrb>>5)<<8)|op[2], 4));
 		D->pc += 3;
@@ -9894,6 +9969,11 @@ int dasmfunc_b3(dasm_state *D, char *buf) {
 		D->pc += 3;
 		return 3;
 	}
+	if(1 && op[2]==0x91) {
+		sprintf(buf, "ADC     (%s-0%04xh)[USP], A", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
+		D->pc += 3;
+		return 3;
+	}
 	if(1 && op[2]==0x93) {
 		sprintf(buf, "ADC     (%s-0%04xh)[USP], off(%s)", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
 		D->pc += 4;
@@ -10199,6 +10279,11 @@ int dasmfunc_b3(dasm_state *D, char *buf) {
 
 int dasmfunc_b4(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
+	if(1 && op[2]==0x91) {
+		sprintf(buf, "ADC     off(%s), A", get_ram_label(((D->lrb>>5)<<8)|op[1], 4));
+		D->pc += 3;
+		return 3;
+	}
 	if(1 && op[2]==0x93) {
 		sprintf(buf, "ADC     off(%s), off(%s)", get_ram_label(((D->lrb>>5)<<8)|op[1], 4), get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
 		D->pc += 4;
@@ -10496,6 +10581,11 @@ int dasmfunc_b5(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 1 && op[2]==0x92) {
 		sprintf(buf, "ADC     A, %s", get_ram_label(op[1], 2));
+		D->pc += 3;
+		return 3;
+	}
+	if(1 && op[2]==0x91) {
+		sprintf(buf, "ADC     %s, A", get_ram_label(op[1], 2));
 		D->pc += 3;
 		return 3;
 	}
@@ -14321,7 +14411,7 @@ dasmfunc dasmtable[256] = {
 	dasmfunc_01,
 	dasmfunc_02,
 	dasmfunc_03,
-	NULL, /* nothing for 04 */
+	dasmfunc_04,
 	NULL, /* nothing for 05 */
 	NULL, /* nothing for 06 */
 	NULL, /* nothing for 07 */
