@@ -89,6 +89,19 @@ void emit_error(const char *str, ...)
 	}
 }
 
+void preload_bin(const char *fname)
+{
+	if(finalpass) {
+		FILE *fp = fopen(fname, "rb");
+		if(!fp) {
+			emit_error("preload: can't open %s", fname);
+		} else {
+			fread(binfile, 32768, 1, fp);
+			fclose(fp);
+		}
+	}
+}
+
 extern FILE *yyin;
 int main(int argc, char **argv)
 {

@@ -31,17 +31,18 @@ static int _val_n;
 %union {
 	int value;
 	struct symbol *sym;
+	char *string;
 }
-
-%type <value> expr
 
 /* primitives */
 %token <value> NUMBER
+%token <sym> SYMBOL
+%token <string> STRING
+%type <value> expr
 %token NL /* newline */
 
 /* assembler directives */
 %token ORG DB DW EQU ROMSIZE PRELOAD
-%token <sym> SYMBOL
 
 /* instruction tokens */
 %token OFFSET   /* "off" */

@@ -13,9 +13,17 @@ origin:
 	ORG NUMBER   { set_pc($2); }
 	;
 
-statement: label
-	| equate
+preload:
+	PRELOAD STRING	{ preload_bin($2); }
+
+directive:
+	equate
 	| origin
+	| preload
+	;
+
+statement: label
+	| directive
 	| instruction
 	;
 

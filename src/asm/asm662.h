@@ -27,3 +27,5 @@ extern void emit_words(const unsigned short *words, int nwords);
 extern void emit_warning(const char *str, ...);
 extern void emit_error(const char *str, ...);
 
+extern void preload_bin(const char *fname);
+

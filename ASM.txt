@@ -23,7 +23,7 @@ powerful, although it has a few limitations:
       (although you can do RB byte_loc.3)
     - No macro facility.
 	- Syntax is different from the official 66k dev tools, but similar to
-	  x86 dev tools.
+	  x86 assemblers such as Borland Turbo Assembler.
 
 Full source is provided under the BSD license.  Feel free to make
 derivative projects.
@@ -146,9 +146,11 @@ definition -- if we had used npasses above its definition, it would be 1!).
 
 In short, the currently supported directives are:
 
-label:          - assign the current location ($) to 'label'
-label equ expr  - evaluate expr and assign its value to 'label'
-      org expr  - evaluate expr and assign its value to $
+label:              - assign the current location ($) to 'label'
+label equ expr      - evaluate expr and assign its value to 'label'
+      org expr      - evaluate expr and assign its value to $
+preload "filename"  - overwrite the current ROM with the contents of
+                      the file "filename".  useful creating patches.
 
 More directives are planned for future versions.
 
@@ -158,5 +160,5 @@ CHANGELOG
 Changes from 0.9:
 	- Fixed only known bigendian bug.  Should hopefully compile and run
 	  correctly on MacOS X, Solaris/sparc, etc.
-
+	- Added preload directive.
 
