@@ -36,7 +36,7 @@ void DASMOutput::add_line(unsigned addr, const string &l)
 	lines.insert(pair<unsigned,string>(addr*4+3,l));
 }
 
-static int output_unmasked_data(FILE *out, dasm_state *D, 
+static int output_unmasked_data(FILE *out, DASMOutput *dout, dasm_state *D,
 		unsigned a, unsigned z, const char *label)
 {
 	int started_line=-1;
@@ -53,8 +53,13 @@ static int output_unmasked_data(FILE *out, dasm_state *D,
 	while(D->mask[a] && a<z) a++;
 	if(!D->mask[a] && (D->mask[a+2] || (a+2 == z)) && !D->mask[a+1]) {
 		// special case: only two bytes
-		fprintf(out, "%-15s DW  0%04xh%11s; %04X\n", ihateC, 
-				(D->rom[a+1]<<8)|D->rom[a], "", a);
+		unsigned addr = (D->rom[a+1]<<8)|D->rom[a];
+		const char *l = dout->get_label(addr);
+		if(addr > 0x38 && l)
+			fprintf(out, "%-15s DW  %-17s; %04X %02X%02X\n", ihateC, l, a,
+					D->rom[a], D->rom[a+1]);
+		else
+			fprintf(out, "%-15s DW  0%04xh%11s; %04X\n", ihateC, addr, "", a);
 		return z;
 	}
 	for(;a<z;a++) {
@@ -91,7 +96,7 @@ void DASMOutput::dump(FILE *out, dasm_state *D)
 	multimap<unsigned,string>::iterator i;
 	for(i=lines.begin();i!=lines.end();i++) {
 		newaddr = (*i).first/4;
-		a = output_unmasked_data(out, D, a, newaddr, lab);
+		a = output_unmasked_data(out, this, D, a, newaddr, lab);
 		if(newaddr != addr)
 			lab = NULL;
 		addr = newaddr;
@@ -104,6 +109,6 @@ void DASMOutput::dump(FILE *out, dasm_state *D)
 			lab = NULL;
 		}
 	}
-	output_unmasked_data(out, D, a, 0x8000, NULL);
+	output_unmasked_data(out, this, D, a, 0x8000, NULL);
 }
 
