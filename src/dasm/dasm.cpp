@@ -204,6 +204,10 @@ int main(int argc, char **argv)
 		return 0;
 	}
 
+	// mask all ROM as unseen data
+	memset(ds.mask, 0, sizeof(ds.mask));
+	memset(ds.rom, 0xff, sizeof(ds.rom));
+
 	fp = fopen(argv[1], "rb");
 	if(!fp) {
 		printf("unable to open %s\n", argv[1]);
@@ -224,8 +228,6 @@ int main(int argc, char **argv)
 
 	// init 66207 entry vectors
 	init_66207(&ds, &dq, &dout);
-	// mask all ROM as unseen data
-	memset(ds.mask, 0, sizeof(ds.mask));
 
 	// add user table exclusion addresses
 	for(int i=3;i<argc;i++) {
