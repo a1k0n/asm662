@@ -102,6 +102,15 @@ void preload_bin(const char *fname)
 	}
 }
 
+void init_66207()
+{
+	int i=0;
+#define makesfr(name) set_symbol_value(get_symbol(name), i++)
+#include "../66207_regs.h"
+#undef makesfr
+}
+
+
 extern FILE *yyin;
 int main(int argc, char **argv)
 {
@@ -111,6 +120,7 @@ int main(int argc, char **argv)
 		printf("usage: %s infile.asm outfile.bin\n", argv[0]);
 		return 0;
 	}
+	init_66207();
 	memset(binfile, 0xff, sizeof(binfile));
 	filename = argv[1];
 	yyin = fopen(filename, "rt");

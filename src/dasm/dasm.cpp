@@ -21,6 +21,18 @@ extern "C" const char *get_label(unsigned addr)
 	return lbuf;
 }
 
+static map<unsigned, const char *> _SFRs;
+extern "C" const char *get_zp_label(unsigned addr)
+{
+	static char lbuf[64];
+	map<unsigned, const char *>::iterator i =
+		_SFRs.find(addr);
+	if(i != _SFRs.end())
+		return (*i).second;
+	sprintf(lbuf, "0%02xh", addr);
+	return lbuf;
+}
+
 const unsigned vcal_base=0x28;
 extern "C" void do_vcal(unsigned n)
 {
@@ -141,6 +153,11 @@ void init_66207(dasm_state *D, DASMQueue *q, DASMOutput *out)
 	makeentry("vcal_6");
 	makeentry("vcal_7");
 #undef makeentry
+
+#define makesfr(name) _SFRs.insert(pair<unsigned,const char*>(i++,name))
+#include "../66207_regs.h"
+#undef makesfr
+
 	out->add_label(0x38, "code_start");
 	out->add_ref(0, "org 0000h");
 }

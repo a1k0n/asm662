@@ -2,6 +2,7 @@
 /* build with lex -i */
 #include "y.tab.h"
 #include "asm662.h"
+#include <string.h>
 %}
 
 %%

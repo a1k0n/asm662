@@ -10481,327 +10481,327 @@ int dasmfunc_b4(dasm_state *D, char *buf) {
 int dasmfunc_b5(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 1 && op[2]==0x92) {
-		sprintf(buf, "ADC    A, %03xh", op[1]);
+		sprintf(buf, "ADC    A, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x93) {
-		sprintf(buf, "ADC    %03xh, off(%05xh)", op[1], ((D->lrb>>5)<<8)|op[3]);
+		sprintf(buf, "ADC    %s, off(%05xh)", get_zp_label(op[1]), ((D->lrb>>5)<<8)|op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x90) {
-		sprintf(buf, "ADC    %03xh, #%05xh", op[1], (op[4]<<8)|op[3]);
+		sprintf(buf, "ADC    %s, #%05xh", get_zp_label(op[1]), (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
 	if(D->dd == 1 && op[2]==0x82) {
-		sprintf(buf, "ADD    A, %03xh", op[1]);
+		sprintf(buf, "ADD    A, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x81) {
-		sprintf(buf, "ADD    %03xh, A", op[1]);
+		sprintf(buf, "ADD    %s, A", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 1 && op[2]==0x83) {
-		sprintf(buf, "ADD    %03xh, off(%05xh)", op[1], ((D->lrb>>5)<<8)|op[3]);
+		sprintf(buf, "ADD    %s, off(%05xh)", get_zp_label(op[1]), ((D->lrb>>5)<<8)|op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x80) {
-		sprintf(buf, "ADD    %03xh, #%05xh", op[1], (op[4]<<8)|op[3]);
+		sprintf(buf, "ADD    %s, #%05xh", get_zp_label(op[1]), (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[2]==0xD1) {
-		sprintf(buf, "AND    %03xh, A", op[1]);
+		sprintf(buf, "AND    %s, A", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 1 && op[2]==0xD2) {
-		sprintf(buf, "AND    A, %03xh", op[1]);
+		sprintf(buf, "AND    A, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xD3) {
-		sprintf(buf, "AND    %03xh, off(%05xh)", op[1], ((D->lrb>>5)<<8)|op[3]);
+		sprintf(buf, "AND    %s, off(%05xh)", get_zp_label(op[1]), ((D->lrb>>5)<<8)|op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xD0) {
-		sprintf(buf, "AND    %03xh, #%05xh", op[1], (op[4]<<8)|op[3]);
+		sprintf(buf, "AND    %s, #%05xh", get_zp_label(op[1]), (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[2]==0x23) {
-		sprintf(buf, "CAL    [%03xh]", op[1]);
+		sprintf(buf, "CAL    [%s]", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x15) {
-		sprintf(buf, "CLR    %03xh", op[1]);
+		sprintf(buf, "CLR    %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 1 && op[2]==0xC2) {
-		sprintf(buf, "CMP    A, %03xh", op[1]);
+		sprintf(buf, "CMP    A, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xC1) {
-		sprintf(buf, "CMP    %03xh, A", op[1]);
+		sprintf(buf, "CMP    %s, A", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xC3) {
-		sprintf(buf, "CMP    %03xh, off(%05xh)", op[1], ((D->lrb>>5)<<8)|op[3]);
+		sprintf(buf, "CMP    %s, off(%05xh)", get_zp_label(op[1]), ((D->lrb>>5)<<8)|op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xC0) {
-		sprintf(buf, "CMP    %03xh, #%05xh", op[1], (op[4]<<8)|op[3]);
+		sprintf(buf, "CMP    %s, #%05xh", get_zp_label(op[1]), (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[2]==0xAC) {
-		sprintf(buf, "CMPC   A, [%03xh]", op[1]);
+		sprintf(buf, "CMPC   A, [%s]", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xAD) {
-		sprintf(buf, "CMPC   A, %05xh[%03xh]", (op[4]<<8)|op[3], op[1]);
+		sprintf(buf, "CMPC   A, %05xh[%s]", (op[4]<<8)|op[3], get_zp_label(op[1]));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[2]==0xAE) {
-		sprintf(buf, "CMPCB  A, [%03xh]", op[1]);
+		sprintf(buf, "CMPCB  A, [%s]", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xAF) {
-		sprintf(buf, "CMPCB  A, %05xh[%03xh]", (op[4]<<8)|op[3], op[1]);
+		sprintf(buf, "CMPCB  A, %05xh[%s]", (op[4]<<8)|op[3], get_zp_label(op[1]));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[2]==0x17) {
-		sprintf(buf, "DEC    %03xh", op[1]);
+		sprintf(buf, "DEC    %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x16) {
-		sprintf(buf, "INC    %03xh", op[1]);
+		sprintf(buf, "INC    %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x22) {
-		sprintf(buf, "J      [%03xh]", op[1]);
+		sprintf(buf, "J      [%s]", get_zp_label(op[1]));
 		return 3;
 	}
 	if(1 && op[2]==0xA8) {
-		sprintf(buf, "LC     A, [%03xh]", op[1]);
+		sprintf(buf, "LC     A, [%s]", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xA9) {
-		sprintf(buf, "LC     A, %05xh[%03xh]", (op[4]<<8)|op[3], op[1]);
+		sprintf(buf, "LC     A, %05xh[%s]", (op[4]<<8)|op[3], get_zp_label(op[1]));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[2]==0xAA) {
-		sprintf(buf, "LCB    A, [%03xh]", op[1]);
+		sprintf(buf, "LCB    A, [%s]", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xAB) {
-		sprintf(buf, "LCB    A, %05xh[%03xh]", (op[4]<<8)|op[3], op[1]);
+		sprintf(buf, "LCB    A, %05xh[%s]", (op[4]<<8)|op[3], get_zp_label(op[1]));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[2]==0x99) {
-		sprintf(buf, "MOV    A, %03xh", op[1]);
+		sprintf(buf, "MOV    A, %s", get_zp_label(op[1]));
 		D->dd = 1;
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x7A) {
-		sprintf(buf, "MOV    DP, %03xh", op[1]);
+		sprintf(buf, "MOV    DP, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x48) {
-		sprintf(buf, "MOV    er0, %03xh", op[1]);
+		sprintf(buf, "MOV    er0, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x49) {
-		sprintf(buf, "MOV    er1, %03xh", op[1]);
+		sprintf(buf, "MOV    er1, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x4A) {
-		sprintf(buf, "MOV    er2, %03xh", op[1]);
+		sprintf(buf, "MOV    er2, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x4B) {
-		sprintf(buf, "MOV    er3, %03xh", op[1]);
+		sprintf(buf, "MOV    er3, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x7F) {
-		sprintf(buf, "MOV    LRB, %03xh", op[1]);
+		sprintf(buf, "MOV    LRB, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x8A) {
-		sprintf(buf, "MOV    %03xh, A", op[1]);
+		sprintf(buf, "MOV    %s, A", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x98) {
-		sprintf(buf, "MOV    %03xh, #%05xh", op[1], (op[4]<<8)|op[3]);
+		sprintf(buf, "MOV    %s, #%05xh", get_zp_label(op[1]), (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[2]==0x7C) {
-		sprintf(buf, "MOV    off(%05xh), %03xh", ((D->lrb>>5)<<8)|op[3], op[1]);
+		sprintf(buf, "MOV    off(%05xh), %s", ((D->lrb>>5)<<8)|op[3], get_zp_label(op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x7D) {
-		sprintf(buf, "MOV    PSW, %03xh", op[1]);
+		sprintf(buf, "MOV    PSW, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x7E) {
-		sprintf(buf, "MOV    SSP, %03xh", op[1]);
+		sprintf(buf, "MOV    SSP, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x7B) {
-		sprintf(buf, "MOV    USP, %03xh", op[1]);
+		sprintf(buf, "MOV    USP, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x78) {
-		sprintf(buf, "MOV    X1, %03xh", op[1]);
+		sprintf(buf, "MOV    X1, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x79) {
-		sprintf(buf, "MOV    X2, %03xh", op[1]);
+		sprintf(buf, "MOV    X2, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 1 && op[2]==0xE2) {
-		sprintf(buf, "OR     A, %03xh", op[1]);
+		sprintf(buf, "OR     A, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xE1) {
-		sprintf(buf, "OR     %03xh, A", op[1]);
+		sprintf(buf, "OR     %s, A", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xE3) {
-		sprintf(buf, "OR     %03xh, off(%05xh)", op[1], ((D->lrb>>5)<<8)|op[3]);
+		sprintf(buf, "OR     %s, off(%05xh)", get_zp_label(op[1]), ((D->lrb>>5)<<8)|op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xD0) {
-		sprintf(buf, "OR     %03xh, #%05xh", op[1], (op[4]<<8)|op[3]);
+		sprintf(buf, "OR     %s, #%05xh", get_zp_label(op[1]), (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[2]==0xB7) {
-		sprintf(buf, "ROL    %03xh", op[1]);
+		sprintf(buf, "ROL    %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xC7) {
-		sprintf(buf, "ROR    %03xh", op[1]);
+		sprintf(buf, "ROR    %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 1 && op[2]==0xB2) {
-		sprintf(buf, "SBC    A, %03xh", op[1]);
+		sprintf(buf, "SBC    A, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xB1) {
-		sprintf(buf, "SBC    %03xh, A", op[1]);
+		sprintf(buf, "SBC    %s, A", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xB3) {
-		sprintf(buf, "SBC    %03xh, off(%05xh)", op[1], ((D->lrb>>5)<<8)|op[3]);
+		sprintf(buf, "SBC    %s, off(%05xh)", get_zp_label(op[1]), ((D->lrb>>5)<<8)|op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xB0) {
-		sprintf(buf, "SBC    %03xh, #%05xh", op[1], (op[4]<<8)|op[3]);
+		sprintf(buf, "SBC    %s, #%05xh", get_zp_label(op[1]), (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[2]==0xD7) {
-		sprintf(buf, "SLL    %03xh", op[1]);
+		sprintf(buf, "SLL    %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xF7) {
-		sprintf(buf, "SRA    %03xh", op[1]);
+		sprintf(buf, "SRA    %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xE7) {
-		sprintf(buf, "SRL    %03xh", op[1]);
+		sprintf(buf, "SRL    %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 1 && op[2]==0xA2) {
-		sprintf(buf, "SUB    A, %03xh", op[1]);
+		sprintf(buf, "SUB    A, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xA1) {
-		sprintf(buf, "SUB    %03xh, A", op[1]);
+		sprintf(buf, "SUB    %s, A", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 1 && op[2]==0xA3) {
-		sprintf(buf, "SUB    %03xh, off(%05xh)", op[1], ((D->lrb>>5)<<8)|op[3]);
+		sprintf(buf, "SUB    %s, off(%05xh)", get_zp_label(op[1]), ((D->lrb>>5)<<8)|op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xA0) {
-		sprintf(buf, "SUB    %03xh, #%05xh", op[1], (op[4]<<8)|op[3]);
+		sprintf(buf, "SUB    %s, #%05xh", get_zp_label(op[1]), (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
 	if(D->dd == 1 && op[2]==0x10) {
-		sprintf(buf, "XCHG   A, %03xh", op[1]);
+		sprintf(buf, "XCHG   A, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 1 && op[2]==0xF2) {
-		sprintf(buf, "XOR    A, %03xh", op[1]);
+		sprintf(buf, "XOR    A, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xF1) {
-		sprintf(buf, "XOR    %03xh, A", op[1]);
+		sprintf(buf, "XOR    %s, A", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xF3) {
-		sprintf(buf, "XOR    %03xh, off(%05xh)", op[1], ((D->lrb>>5)<<8)|op[3]);
+		sprintf(buf, "XOR    %s, off(%05xh)", get_zp_label(op[1]), ((D->lrb>>5)<<8)|op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xF0) {
-		sprintf(buf, "XOR    %03xh, #%05xh", op[1], (op[4]<<8)|op[3]);
+		sprintf(buf, "XOR    %s, #%05xh", get_zp_label(op[1]), (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
@@ -13206,182 +13206,182 @@ int dasmfunc_c4(dasm_state *D, char *buf) {
 int dasmfunc_c5(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 0 && op[2]==0x92) {
-		sprintf(buf, "ADCB   A, %03xh", op[1]);
+		sprintf(buf, "ADCB   A, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x91) {
-		sprintf(buf, "ADCB   %03xh, A", op[1]);
+		sprintf(buf, "ADCB   %s, A", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x93) {
-		sprintf(buf, "ADCB   %03xh, off(%05xh)", op[1], ((D->lrb>>5)<<8)|op[3]);
+		sprintf(buf, "ADCB   %s, off(%05xh)", get_zp_label(op[1]), ((D->lrb>>5)<<8)|op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x90) {
-		sprintf(buf, "ADCB   %03xh, #%03xh", op[1], op[3]);
+		sprintf(buf, "ADCB   %s, #%03xh", get_zp_label(op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 0 && op[2]==0x82) {
-		sprintf(buf, "ADDB   A, %03xh", op[1]);
+		sprintf(buf, "ADDB   A, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x81) {
-		sprintf(buf, "ADDB   %03xh, A", op[1]);
+		sprintf(buf, "ADDB   %s, A", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x83) {
-		sprintf(buf, "ADDB   %03xh, off(%05xh)", op[1], ((D->lrb>>5)<<8)|op[3]);
+		sprintf(buf, "ADDB   %s, off(%05xh)", get_zp_label(op[1]), ((D->lrb>>5)<<8)|op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x80) {
-		sprintf(buf, "ADDB   %03xh, #%03xh", op[1], op[3]);
+		sprintf(buf, "ADDB   %s, #%03xh", get_zp_label(op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 0 && op[2]==0xD2) {
-		sprintf(buf, "ANDB   A, %03xh", op[1]);
+		sprintf(buf, "ANDB   A, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xD1) {
-		sprintf(buf, "ANDB   %03xh, A", op[1]);
+		sprintf(buf, "ANDB   %s, A", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xD3) {
-		sprintf(buf, "ANDB   %03xh, off(%05xh)", op[1], ((D->lrb>>5)<<8)|op[3]);
+		sprintf(buf, "ANDB   %s, off(%05xh)", get_zp_label(op[1]), ((D->lrb>>5)<<8)|op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xD0) {
-		sprintf(buf, "ANDB   %03xh, #%03xh", op[1], op[3]);
+		sprintf(buf, "ANDB   %s, #%03xh", get_zp_label(op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x15) {
-		sprintf(buf, "CLRB   %03xh", op[1]);
+		sprintf(buf, "CLRB   %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 0 && op[2]==0xC2) {
-		sprintf(buf, "CMPB   A, %03xh", op[1]);
+		sprintf(buf, "CMPB   A, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xC1) {
-		sprintf(buf, "CMPB   %03xh, A", op[1]);
+		sprintf(buf, "CMPB   %s, A", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xC3) {
-		sprintf(buf, "CMPB   %03xh, off(%05xh)", op[1], ((D->lrb>>5)<<8)|op[3]);
+		sprintf(buf, "CMPB   %s, off(%05xh)", get_zp_label(op[1]), ((D->lrb>>5)<<8)|op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xC0) {
-		sprintf(buf, "CMPB   %03xh, #%03xh", op[1], op[3]);
+		sprintf(buf, "CMPB   %s, #%03xh", get_zp_label(op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x17) {
-		sprintf(buf, "DECB   %03xh", op[1]);
+		sprintf(buf, "DECB   %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x16) {
-		sprintf(buf, "INCB   %03xh", op[1]);
+		sprintf(buf, "INCB   %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x28) {
-		sprintf(buf, "MB     C, %03xh.0", op[1]);
+		sprintf(buf, "MB     C, %s.0", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x29) {
-		sprintf(buf, "MB     C, %03xh.1", op[1]);
+		sprintf(buf, "MB     C, %s.1", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x2A) {
-		sprintf(buf, "MB     C, %03xh.2", op[1]);
+		sprintf(buf, "MB     C, %s.2", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x2B) {
-		sprintf(buf, "MB     C, %03xh.3", op[1]);
+		sprintf(buf, "MB     C, %s.3", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x2C) {
-		sprintf(buf, "MB     C, %03xh.4", op[1]);
+		sprintf(buf, "MB     C, %s.4", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x2D) {
-		sprintf(buf, "MB     C, %03xh.5", op[1]);
+		sprintf(buf, "MB     C, %s.5", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x2E) {
-		sprintf(buf, "MB     C, %03xh.6", op[1]);
+		sprintf(buf, "MB     C, %s.6", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x2F) {
-		sprintf(buf, "MB     C, %03xh.7", op[1]);
+		sprintf(buf, "MB     C, %s.7", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x38) {
-		sprintf(buf, "MB     %03xh.0, C", op[1]);
+		sprintf(buf, "MB     %s.0, C", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x39) {
-		sprintf(buf, "MB     %03xh.1, C", op[1]);
+		sprintf(buf, "MB     %s.1, C", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x3A) {
-		sprintf(buf, "MB     %03xh.2, C", op[1]);
+		sprintf(buf, "MB     %s.2, C", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x3B) {
-		sprintf(buf, "MB     %03xh.3, C", op[1]);
+		sprintf(buf, "MB     %s.3, C", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x3C) {
-		sprintf(buf, "MB     %03xh.4, C", op[1]);
+		sprintf(buf, "MB     %s.4, C", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x3D) {
-		sprintf(buf, "MB     %03xh.5, C", op[1]);
+		sprintf(buf, "MB     %s.5, C", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x3E) {
-		sprintf(buf, "MB     %03xh.6, C", op[1]);
+		sprintf(buf, "MB     %s.6, C", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x3F) {
-		sprintf(buf, "MB     %03xh.7, C", op[1]);
+		sprintf(buf, "MB     %s.7, C", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x21) {
-		sprintf(buf, "MBR    C, %03xh", op[1]);
+		sprintf(buf, "MBR    C, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
@@ -13391,283 +13391,283 @@ int dasmfunc_c5(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[2]==0x20) {
-		sprintf(buf, "MBR    %03xh, C", op[1]);
+		sprintf(buf, "MBR    %s, C", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x99) {
-		sprintf(buf, "MOVB   A, %03xh", op[1]);
+		sprintf(buf, "MOVB   A, %s", get_zp_label(op[1]));
 		D->dd = 0;
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x8A) {
-		sprintf(buf, "MOVB   %03xh, A", op[1]);
+		sprintf(buf, "MOVB   %s, A", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x7C) {
-		sprintf(buf, "MOVB   off(%05xh), %03xh", ((D->lrb>>5)<<8)|op[3], op[1]);
+		sprintf(buf, "MOVB   off(%05xh), %s", ((D->lrb>>5)<<8)|op[3], get_zp_label(op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x98) {
-		sprintf(buf, "MOVB   %03xh, #%03xh", op[1], op[3]);
+		sprintf(buf, "MOVB   %s, #%03xh", get_zp_label(op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x89) {
-		sprintf(buf, "MOVB   PSWH, %03xh", op[1]);
+		sprintf(buf, "MOVB   PSWH, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x88) {
-		sprintf(buf, "MOVB   PSWL, %03xh", op[1]);
+		sprintf(buf, "MOVB   PSWL, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x48) {
-		sprintf(buf, "MOVB   r0, %03xh", op[1]);
+		sprintf(buf, "MOVB   r0, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x49) {
-		sprintf(buf, "MOVB   r1, %03xh", op[1]);
+		sprintf(buf, "MOVB   r1, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x4A) {
-		sprintf(buf, "MOVB   r2, %03xh", op[1]);
+		sprintf(buf, "MOVB   r2, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x4B) {
-		sprintf(buf, "MOVB   r3, %03xh", op[1]);
+		sprintf(buf, "MOVB   r3, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x4C) {
-		sprintf(buf, "MOVB   r4, %03xh", op[1]);
+		sprintf(buf, "MOVB   r4, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x4D) {
-		sprintf(buf, "MOVB   r5, %03xh", op[1]);
+		sprintf(buf, "MOVB   r5, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x4E) {
-		sprintf(buf, "MOVB   r6, %03xh", op[1]);
+		sprintf(buf, "MOVB   r6, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x4F) {
-		sprintf(buf, "MOVB   r7, %03xh", op[1]);
+		sprintf(buf, "MOVB   r7, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 0 && op[2]==0xE2) {
-		sprintf(buf, "ORB    A, %03xh", op[1]);
+		sprintf(buf, "ORB    A, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xE1) {
-		sprintf(buf, "ORB    %03xh, A", op[1]);
+		sprintf(buf, "ORB    %s, A", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xE3) {
-		sprintf(buf, "ORB    %03xh, off(%05xh)", op[1], ((D->lrb>>5)<<8)|op[3]);
+		sprintf(buf, "ORB    %s, off(%05xh)", get_zp_label(op[1]), ((D->lrb>>5)<<8)|op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xE0) {
-		sprintf(buf, "ORB    %03xh, #%03xh", op[1], op[3]);
+		sprintf(buf, "ORB    %s, #%03xh", get_zp_label(op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x08) {
-		sprintf(buf, "RB     %03xh.0", op[1]);
+		sprintf(buf, "RB     %s.0", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x09) {
-		sprintf(buf, "RB     %03xh.1", op[1]);
+		sprintf(buf, "RB     %s.1", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x0A) {
-		sprintf(buf, "RB     %03xh.2", op[1]);
+		sprintf(buf, "RB     %s.2", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x0B) {
-		sprintf(buf, "RB     %03xh.3", op[1]);
+		sprintf(buf, "RB     %s.3", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x0C) {
-		sprintf(buf, "RB     %03xh.4", op[1]);
+		sprintf(buf, "RB     %s.4", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x0D) {
-		sprintf(buf, "RB     %03xh.5", op[1]);
+		sprintf(buf, "RB     %s.5", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x0E) {
-		sprintf(buf, "RB     %03xh.6", op[1]);
+		sprintf(buf, "RB     %s.6", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x0F) {
-		sprintf(buf, "RB     %03xh.7", op[1]);
+		sprintf(buf, "RB     %s.7", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x12) {
-		sprintf(buf, "RBR    %03xh", op[1]);
+		sprintf(buf, "RBR    %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xB7) {
-		sprintf(buf, "ROLB   %03xh", op[1]);
+		sprintf(buf, "ROLB   %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xC7) {
-		sprintf(buf, "RORB   %03xh", op[1]);
+		sprintf(buf, "RORB   %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x18) {
-		sprintf(buf, "SB     %03xh.0", op[1]);
+		sprintf(buf, "SB     %s.0", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x19) {
-		sprintf(buf, "SB     %03xh.1", op[1]);
+		sprintf(buf, "SB     %s.1", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x1A) {
-		sprintf(buf, "SB     %03xh.2", op[1]);
+		sprintf(buf, "SB     %s.2", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x1B) {
-		sprintf(buf, "SB     %03xh.3", op[1]);
+		sprintf(buf, "SB     %s.3", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x1C) {
-		sprintf(buf, "SB     %03xh.4", op[1]);
+		sprintf(buf, "SB     %s.4", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x1D) {
-		sprintf(buf, "SB     %03xh.5", op[1]);
+		sprintf(buf, "SB     %s.5", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x1E) {
-		sprintf(buf, "SB     %03xh.6", op[1]);
+		sprintf(buf, "SB     %s.6", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x1F) {
-		sprintf(buf, "SB     %03xh.7", op[1]);
+		sprintf(buf, "SB     %s.7", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 0 && op[2]==0xB2) {
-		sprintf(buf, "SBCB   A, %03xh", op[1]);
+		sprintf(buf, "SBCB   A, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xB1) {
-		sprintf(buf, "SBCB   %03xh, A", op[1]);
+		sprintf(buf, "SBCB   %s, A", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xB3) {
-		sprintf(buf, "SBCB   %03xh, off(%05xh)", op[1], ((D->lrb>>5)<<8)|op[3]);
+		sprintf(buf, "SBCB   %s, off(%05xh)", get_zp_label(op[1]), ((D->lrb>>5)<<8)|op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xB0) {
-		sprintf(buf, "SBCB   %03xh, #%03xh", op[1], op[3]);
+		sprintf(buf, "SBCB   %s, #%03xh", get_zp_label(op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x11) {
-		sprintf(buf, "SBR    %03xh", op[1]);
+		sprintf(buf, "SBR    %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xD7) {
-		sprintf(buf, "SLLB   %03xh", op[1]);
+		sprintf(buf, "SLLB   %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xF7) {
-		sprintf(buf, "SRAB   %03xh", op[1]);
+		sprintf(buf, "SRAB   %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xE7) {
-		sprintf(buf, "SRLB   %03xh", op[1]);
+		sprintf(buf, "SRLB   %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 0 && op[2]==0xA2) {
-		sprintf(buf, "SUBB   A, %03xh", op[1]);
+		sprintf(buf, "SUBB   A, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xA1) {
-		sprintf(buf, "SUBB   %03xh, A", op[1]);
+		sprintf(buf, "SUBB   %s, A", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xA3) {
-		sprintf(buf, "SUBB   %03xh, off(%05xh)", op[1], ((D->lrb>>5)<<8)|op[3]);
+		sprintf(buf, "SUBB   %s, off(%05xh)", get_zp_label(op[1]), ((D->lrb>>5)<<8)|op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xA0) {
-		sprintf(buf, "SUBB   %03xh, #%03xh", op[1], op[3]);
+		sprintf(buf, "SUBB   %s, #%03xh", get_zp_label(op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x13) {
-		sprintf(buf, "TRB    %03xh", op[1]);
+		sprintf(buf, "TRB    %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 0 && op[2]==0x10) {
-		sprintf(buf, "XCHGB  A, %03xh", op[1]);
+		sprintf(buf, "XCHGB  A, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 0 && op[2]==0xF2) {
-		sprintf(buf, "XORB   A, %03xh", op[1]);
+		sprintf(buf, "XORB   A, %s", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xF1) {
-		sprintf(buf, "XORB   %03xh, A", op[1]);
+		sprintf(buf, "XORB   %s, A", get_zp_label(op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xF3) {
-		sprintf(buf, "XORB   %03xh, off(%05xh)", op[1], ((D->lrb>>5)<<8)|op[3]);
+		sprintf(buf, "XORB   %s, off(%05xh)", get_zp_label(op[1]), ((D->lrb>>5)<<8)|op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xF0) {
-		sprintf(buf, "XORB   %03xh, #%03xh", op[1], op[3]);
+		sprintf(buf, "XORB   %s, #%03xh", get_zp_label(op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
@@ -13851,12 +13851,12 @@ int dasmfunc_d4(dasm_state *D, char *buf) {
 int dasmfunc_d5(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 1) {
-		sprintf(buf, "ST     A, %03xh", op[1]);
+		sprintf(buf, "ST     A, %s", get_zp_label(op[1]));
 		D->pc += 2;
 		return 2;
 	}
 	if(D->dd == 0) {
-		sprintf(buf, "STB    A, %03xh", op[1]);
+		sprintf(buf, "STB    A, %s", get_zp_label(op[1]));
 		D->pc += 2;
 		return 2;
 	}
@@ -14031,7 +14031,7 @@ int dasmfunc_e4(dasm_state *D, char *buf) {
 int dasmfunc_e5(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
-		sprintf(buf, "L      A, %03xh", op[1]);
+		sprintf(buf, "L      A, %s", get_zp_label(op[1]));
 		D->dd = 1;
 		D->pc += 2;
 		return 2;
@@ -14202,7 +14202,7 @@ int dasmfunc_f4(dasm_state *D, char *buf) {
 int dasmfunc_f5(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
-		sprintf(buf, "LB     A, %03xh", op[1]);
+		sprintf(buf, "LB     A, %s", get_zp_label(op[1]));
 		D->dd = 0;
 		D->pc += 2;
 		return 2;

@@ -176,43 +176,56 @@ sub process
 		my @param;
 		my @actions;
 		my $n16;
-		while($instr =~ /(off N'?8|[SN]'?8|N'?16|rel8|addr16).*/) {
+		while($instr =~ /(off N'?8|#N'?8|[SN]'?8|N'?16|rel8|addr16).*/) {
 			my $arg = $1;
 			if($arg =~ /off (N'?8)/) {
+				# offset address: off N8
 				my $idx = idx_of(\@opc, $1);
 				$instr =~ s/off N'?8(.*)/off(%05xh)$1/;
 				push @param, "((D->lrb>>5)<<8)|op[$idx]";
-			} elsif($arg =~ /(N'?8)/) {
+			} elsif($arg =~ /#(N'?8)/) {
+				# immediate: #N8
 				my $idx = idx_of(\@opc, $1);
 				$instr =~ s/N'?8(.*)/%03xh$1/;
 				push @param, "op[$idx]";
+			} elsif($arg =~ /(N'?8)/) {
+				# zero-page: N8
+				my $idx = idx_of(\@opc, $1);
+				$instr =~ s/N'?8(.*)/%s$1/;
+				push @param, "get_zp_label(op[$idx])";
 			} elsif($arg =~ /(S8)/) {
+				# USP-relative: N8[USP]
 				my $idx = idx_of(\@opc, $1);
 				$instr =~ s/S8(.*)/%s%03xh$1/;
 				push @param, '((signed char)op['.$idx.']) < 0 ? "-":"", '.
 					'_abs((signed char)op['.$idx.'])';
 			} elsif($arg =~ /N16/) {
+				# 16-bit immediates and offsets
 				my $idx = idx_of(\@opc, "NL");
 				$n16 = "(op[".($idx+1)."]<<8)|op[".$idx."]";
 				$instr =~ s/N16(.*)/%05xh$1/;
 				push @param, $n16;
 			} elsif($arg =~ /N'16/) {
+				# 16-bit immediates and offsets
 				my $idx = idx_of(\@opc, "N'L");
 				$n16 = "(op[".($idx+1)."]<<8)|op[".$idx."]";
 				$instr =~ s/N'16(.*)/%05xh$1/;
 				push @param, $n16;
 			} elsif($arg =~ /(rel8)/) {
+				# relative branches and calls
 				my $idx = idx_of(\@opc, $1);
 				my $reladdr = "D->pc+((signed char)op[".$idx."])".
 					"+".($#opc+1);
 				$instr =~ s/rel8(.*)/%s$1/;
 				push @param, "get_label($reladdr)";
 			} elsif($arg =~ /addr16/) {
+				# absolute branches and calls
 				my $idx = idx_of(\@opc, "addrl");
 				$n16 = "(op[".($idx+1)."]<<8)|op[".$idx."]";
 				$instr =~ s/addr16(.*)/%s$1/;
 				push @param, "get_label($n16)";
 			} else {
+				# what the fuck?
 				die "what the fuck?";
 			}
 		}

@@ -161,4 +161,6 @@ Changes from 0.9:
 	- Fixed only known bigendian bug.  Should hopefully compile and run
 	  correctly on MacOS X, Solaris/sparc, etc.
 	- Added preload directive.
+	- Predefined symbols for the 66201/66207 zero-page special function
+	  registers.
 
