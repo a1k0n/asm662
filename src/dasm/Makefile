@@ -2,7 +2,7 @@ CXX     = c++
 CC      = cc
 PERL    = perl
 LDFLAGS = -g
-CFLAGS  = -g -O2
+CFLAGS  = -g
 
 OBJS    = dasm.o dasmout.o op.o
 

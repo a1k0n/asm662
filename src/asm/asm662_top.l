@@ -9,7 +9,7 @@
 [0-9][0-9a-f]*h		{ sscanf(yytext, "%xh", &yylval.value);  return NUMBER; }
 0x[0-9a-f]+			{ sscanf(yytext+2, "%x", &yylval.value); return NUMBER; }
 [0-9]+				{ yylval.value = atoi(yytext); return NUMBER; }
-"[^"]*"				{ yylval.string = strdup(yytext+1); yylval.string[strlen(yylval.string)-1] = 0; return STRING; }
+\"[^"]*\"				{ yylval.string = strdup(yytext+1); yylval.string[strlen(yylval.string)-1] = 0; return STRING; }
 preload	return PRELOAD;
 romsize return ROMSIZE;
 [<][<]	return SHIFTL;

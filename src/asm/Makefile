@@ -4,7 +4,7 @@ PERL = perl
 LEX  = flex
 YACC = yacc
 OBJS = main.o lex.yy.o y.tab.o sym.o
-CFLAGS = -g -O2 -Wall
+CFLAGS = -g -Wall
 LDFLAGS = -g
 
 asm662: $(OBJS)
