@@ -35,7 +35,7 @@ sub prettify($)
 {
 	my ($ins) = @_;
 	if($ins =~ /^([^ ]*) (.*)$/) {
-		$ins = sprintf("%-6s %s", $1, $2);
+		$ins = sprintf("%-7s %s", $1, $2);
 	}
 	return $ins;
 }
