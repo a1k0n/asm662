@@ -4,7 +4,7 @@
 typedef struct {
 	unsigned char rom[32768];
 	char mask[32768];         /* mask[addr]=0 means data, 1 means code. */
-	unsigned pc, lrb;
+	unsigned pc, lrb, usp;
 	unsigned char dd;
 } dasm_state;
 

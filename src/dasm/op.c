@@ -7458,6 +7458,7 @@ int dasmfunc_a1(dasm_state *D, char *buf) {
 	}
 	if(1 && op[1]==0x98) {
 		sprintf(buf, "MOV    USP, #0%04xh", (op[3]<<8)|op[2]);
+		D->usp = (op[3]<<8)|op[2];
 		D->pc += 4;
 		return 4;
 	}
@@ -9876,307 +9877,307 @@ int dasmfunc_b2(dasm_state *D, char *buf) {
 int dasmfunc_b3(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 1 && op[2]==0x92) {
-		sprintf(buf, "ADC    A, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "ADC    A, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x93) {
-		sprintf(buf, "ADC    %s0%02xh[USP], off(%s)", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
+		sprintf(buf, "ADC    (%s-0%04xh)[USP], off(%s)", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x90) {
-		sprintf(buf, "ADC    %s0%02xh[USP], #0%04xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), (op[4]<<8)|op[3]);
+		sprintf(buf, "ADC    (%s-0%04xh)[USP], #0%04xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
 	if(D->dd == 1 && op[2]==0x82) {
-		sprintf(buf, "ADD    A, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "ADD    A, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x81) {
-		sprintf(buf, "ADD    %s0%02xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "ADD    (%s-0%04xh)[USP], A", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 1 && op[2]==0x83) {
-		sprintf(buf, "ADD    %s0%02xh[USP], off(%s)", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
+		sprintf(buf, "ADD    (%s-0%04xh)[USP], off(%s)", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x80) {
-		sprintf(buf, "ADD    %s0%02xh[USP], #0%04xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), (op[4]<<8)|op[3]);
+		sprintf(buf, "ADD    (%s-0%04xh)[USP], #0%04xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[2]==0xD1) {
-		sprintf(buf, "AND    %s0%02xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "AND    (%s-0%04xh)[USP], A", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 1 && op[2]==0xD2) {
-		sprintf(buf, "AND    A, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "AND    A, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xD3) {
-		sprintf(buf, "AND    %s0%02xh[USP], off(%s)", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
+		sprintf(buf, "AND    (%s-0%04xh)[USP], off(%s)", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xD0) {
-		sprintf(buf, "AND    %s0%02xh[USP], #0%04xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), (op[4]<<8)|op[3]);
+		sprintf(buf, "AND    (%s-0%04xh)[USP], #0%04xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[2]==0x23) {
-		sprintf(buf, "CAL    [%s0%02xh[USP]]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "CAL    [(%s-0%04xh)[USP]]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x15) {
-		sprintf(buf, "CLR    %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "CLR    (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 1 && op[2]==0xC2) {
-		sprintf(buf, "CMP    A, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "CMP    A, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xC1) {
-		sprintf(buf, "CMP    %s0%02xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "CMP    (%s-0%04xh)[USP], A", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xC3) {
-		sprintf(buf, "CMP    %s0%02xh[USP], off(%s)", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
+		sprintf(buf, "CMP    (%s-0%04xh)[USP], off(%s)", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xC0) {
-		sprintf(buf, "CMP    %s0%02xh[USP], #0%04xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), (op[4]<<8)|op[3]);
+		sprintf(buf, "CMP    (%s-0%04xh)[USP], #0%04xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[2]==0xAC) {
-		sprintf(buf, "CMPC   A, [%s0%02xh[USP]]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "CMPC   A, [(%s-0%04xh)[USP]]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xAE) {
-		sprintf(buf, "CMPCB  A, [%s0%02xh[USP]]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "CMPCB  A, [(%s-0%04xh)[USP]]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x17) {
-		sprintf(buf, "DEC    %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "DEC    (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x16) {
-		sprintf(buf, "INC    %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "INC    (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x22) {
-		sprintf(buf, "J      [%s0%02xh[USP]]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "J      [(%s-0%04xh)[USP]]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		return 3;
 	}
 	if(1 && op[2]==0xA8) {
-		sprintf(buf, "LC     A, [%s0%02xh[USP]]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "LC     A, [(%s-0%04xh)[USP]]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xAA) {
-		sprintf(buf, "LCB    A, [%s0%02xh[USP]]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "LCB    A, [(%s-0%04xh)[USP]]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x99) {
-		sprintf(buf, "MOV    A, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOV    A, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->dd = 1;
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x7A) {
-		sprintf(buf, "MOV    DP, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOV    DP, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x48) {
-		sprintf(buf, "MOV    er0, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOV    er0, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x49) {
-		sprintf(buf, "MOV    er1, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOV    er1, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x4A) {
-		sprintf(buf, "MOV    er2, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOV    er2, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x4B) {
-		sprintf(buf, "MOV    er3, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOV    er3, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x7F) {
-		sprintf(buf, "MOV    LRB, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOV    LRB, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x8A) {
-		sprintf(buf, "MOV    %s0%02xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOV    (%s-0%04xh)[USP], A", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x98) {
-		sprintf(buf, "MOV    %s0%02xh[USP], #0%04xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), (op[4]<<8)|op[3]);
+		sprintf(buf, "MOV    (%s-0%04xh)[USP], #0%04xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[2]==0x7C) {
-		sprintf(buf, "MOV    off(%s), %s0%02xh[USP]", get_ram_label(((D->lrb>>5)<<8)|op[3], 4), ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOV    off(%s), (%s-0%04xh)[USP]", get_ram_label(((D->lrb>>5)<<8)|op[3], 4), get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x7D) {
-		sprintf(buf, "MOV    PSW, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOV    PSW, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x7E) {
-		sprintf(buf, "MOV    SSP, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOV    SSP, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x7B) {
-		sprintf(buf, "MOV    USP, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOV    USP, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x78) {
-		sprintf(buf, "MOV    X1, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOV    X1, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x79) {
-		sprintf(buf, "MOV    X2, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOV    X2, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 1 && op[2]==0xE2) {
-		sprintf(buf, "OR     A, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "OR     A, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xE1) {
-		sprintf(buf, "OR     %s0%02xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "OR     (%s-0%04xh)[USP], A", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xE3) {
-		sprintf(buf, "OR     %s0%02xh[USP], off(%s)", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
+		sprintf(buf, "OR     (%s-0%04xh)[USP], off(%s)", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xD0) {
-		sprintf(buf, "OR     %s0%02xh[USP], #0%04xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), (op[4]<<8)|op[3]);
+		sprintf(buf, "OR     (%s-0%04xh)[USP], #0%04xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[2]==0xB7) {
-		sprintf(buf, "ROL    %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "ROL    (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xC7) {
-		sprintf(buf, "ROR    %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "ROR    (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 1 && op[2]==0xB2) {
-		sprintf(buf, "SBC    A, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "SBC    A, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xB1) {
-		sprintf(buf, "SBC    %s0%02xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "SBC    (%s-0%04xh)[USP], A", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xB3) {
-		sprintf(buf, "SBC    %s0%02xh[USP], off(%s)", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
+		sprintf(buf, "SBC    (%s-0%04xh)[USP], off(%s)", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xB0) {
-		sprintf(buf, "SBC    %s0%02xh[USP], #0%04xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), (op[4]<<8)|op[3]);
+		sprintf(buf, "SBC    (%s-0%04xh)[USP], #0%04xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[2]==0xD7) {
-		sprintf(buf, "SLL    %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "SLL    (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xF7) {
-		sprintf(buf, "SRA    %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "SRA    (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xE7) {
-		sprintf(buf, "SRL    %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "SRL    (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 1 && op[2]==0xA2) {
-		sprintf(buf, "SUB    A, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "SUB    A, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xA1) {
-		sprintf(buf, "SUB    %s0%02xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "SUB    (%s-0%04xh)[USP], A", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 1 && op[2]==0xA3) {
-		sprintf(buf, "SUB    %s0%02xh[USP], off(%s)", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
+		sprintf(buf, "SUB    (%s-0%04xh)[USP], off(%s)", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xA0) {
-		sprintf(buf, "SUB    %s0%02xh[USP], #0%04xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), (op[4]<<8)|op[3]);
+		sprintf(buf, "SUB    (%s-0%04xh)[USP], #0%04xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
 	if(D->dd == 1 && op[2]==0x10) {
-		sprintf(buf, "XCHG   A, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "XCHG   A, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 1 && op[2]==0xF2) {
-		sprintf(buf, "XOR    A, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "XOR    A, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xF1) {
-		sprintf(buf, "XOR    %s0%02xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "XOR    (%s-0%04xh)[USP], A", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xF3) {
-		sprintf(buf, "XOR    %s0%02xh[USP], off(%s)", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
+		sprintf(buf, "XOR    (%s-0%04xh)[USP], off(%s)", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xF0) {
-		sprintf(buf, "XOR    %s0%02xh[USP], #0%04xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), (op[4]<<8)|op[3]);
+		sprintf(buf, "XOR    (%s-0%04xh)[USP], #0%04xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
@@ -12319,463 +12320,463 @@ int dasmfunc_c2(dasm_state *D, char *buf) {
 int dasmfunc_c3(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 0 && op[2]==0x92) {
-		sprintf(buf, "ADCB   A, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "ADCB   A, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x91) {
-		sprintf(buf, "ADCB   %s0%02xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "ADCB   (%s-0%04xh)[USP], A", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x93) {
-		sprintf(buf, "ADCB   %s0%02xh[USP], off(%s)", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
+		sprintf(buf, "ADCB   (%s-0%04xh)[USP], off(%s)", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x90) {
-		sprintf(buf, "ADCB   %s0%02xh[USP], #0%02xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
+		sprintf(buf, "ADCB   (%s-0%04xh)[USP], #0%02xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 0 && op[2]==0x82) {
-		sprintf(buf, "ADDB   A, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "ADDB   A, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x81) {
-		sprintf(buf, "ADDB   %s0%02xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "ADDB   (%s-0%04xh)[USP], A", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x83) {
-		sprintf(buf, "ADDB   %s0%02xh[USP], off(%s)", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
+		sprintf(buf, "ADDB   (%s-0%04xh)[USP], off(%s)", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x80) {
-		sprintf(buf, "ADDB   %s0%02xh[USP], #0%02xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
+		sprintf(buf, "ADDB   (%s-0%04xh)[USP], #0%02xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 0 && op[2]==0xD2) {
-		sprintf(buf, "ANDB   A, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "ANDB   A, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xD1) {
-		sprintf(buf, "ANDB   %s0%02xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "ANDB   (%s-0%04xh)[USP], A", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xD3) {
-		sprintf(buf, "ANDB   %s0%02xh[USP], off(%s)", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
+		sprintf(buf, "ANDB   (%s-0%04xh)[USP], off(%s)", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xD0) {
-		sprintf(buf, "ANDB   %s0%02xh[USP], #0%02xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
+		sprintf(buf, "ANDB   (%s-0%04xh)[USP], #0%02xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x15) {
-		sprintf(buf, "CLRB   %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "CLRB   (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 0 && op[2]==0xC2) {
-		sprintf(buf, "CMPB   A, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "CMPB   A, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xC1) {
-		sprintf(buf, "CMPB   %s0%02xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "CMPB   (%s-0%04xh)[USP], A", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xC3) {
-		sprintf(buf, "CMPB   %s0%02xh[USP], off(%s)", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
+		sprintf(buf, "CMPB   (%s-0%04xh)[USP], off(%s)", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xC0) {
-		sprintf(buf, "CMPB   %s0%02xh[USP], #0%02xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
+		sprintf(buf, "CMPB   (%s-0%04xh)[USP], #0%02xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x17) {
-		sprintf(buf, "DECB   %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "DECB   (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x16) {
-		sprintf(buf, "INCB   %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "INCB   (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x28) {
-		sprintf(buf, "MB     C, %s0%02xh[USP].0", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MB     C, (%s-0%04xh)[USP].0", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x29) {
-		sprintf(buf, "MB     C, %s0%02xh[USP].1", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MB     C, (%s-0%04xh)[USP].1", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x2A) {
-		sprintf(buf, "MB     C, %s0%02xh[USP].2", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MB     C, (%s-0%04xh)[USP].2", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x2B) {
-		sprintf(buf, "MB     C, %s0%02xh[USP].3", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MB     C, (%s-0%04xh)[USP].3", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x2C) {
-		sprintf(buf, "MB     C, %s0%02xh[USP].4", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MB     C, (%s-0%04xh)[USP].4", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x2D) {
-		sprintf(buf, "MB     C, %s0%02xh[USP].5", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MB     C, (%s-0%04xh)[USP].5", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x2E) {
-		sprintf(buf, "MB     C, %s0%02xh[USP].6", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MB     C, (%s-0%04xh)[USP].6", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x2F) {
-		sprintf(buf, "MB     C, %s0%02xh[USP].7", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MB     C, (%s-0%04xh)[USP].7", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x38) {
-		sprintf(buf, "MB     %s0%02xh[USP].0, C", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MB     (%s-0%04xh)[USP].0, C", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x39) {
-		sprintf(buf, "MB     %s0%02xh[USP].1, C", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MB     (%s-0%04xh)[USP].1, C", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x3A) {
-		sprintf(buf, "MB     %s0%02xh[USP].2, C", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MB     (%s-0%04xh)[USP].2, C", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x3B) {
-		sprintf(buf, "MB     %s0%02xh[USP].3, C", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MB     (%s-0%04xh)[USP].3, C", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x3C) {
-		sprintf(buf, "MB     %s0%02xh[USP].4, C", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MB     (%s-0%04xh)[USP].4, C", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x3D) {
-		sprintf(buf, "MB     %s0%02xh[USP].5, C", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MB     (%s-0%04xh)[USP].5, C", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x3E) {
-		sprintf(buf, "MB     %s0%02xh[USP].6, C", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MB     (%s-0%04xh)[USP].6, C", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x3F) {
-		sprintf(buf, "MB     %s0%02xh[USP].7, C", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MB     (%s-0%04xh)[USP].7, C", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x21) {
-		sprintf(buf, "MBR    C, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MBR    C, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x20) {
-		sprintf(buf, "MBR    %s0%02xh[USP], C", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MBR    (%s-0%04xh)[USP], C", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x99) {
-		sprintf(buf, "MOVB   A, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOVB   A, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->dd = 0;
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x8A) {
-		sprintf(buf, "MOVB   %s0%02xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOVB   (%s-0%04xh)[USP], A", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x7C) {
-		sprintf(buf, "MOVB   off(%s), %s0%02xh[USP]", get_ram_label(((D->lrb>>5)<<8)|op[3], 4), ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOVB   off(%s), (%s-0%04xh)[USP]", get_ram_label(((D->lrb>>5)<<8)|op[3], 4), get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x98) {
-		sprintf(buf, "MOVB   %s0%02xh[USP], #0%02xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
+		sprintf(buf, "MOVB   (%s-0%04xh)[USP], #0%02xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x89) {
-		sprintf(buf, "MOVB   PSWH, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOVB   PSWH, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x88) {
-		sprintf(buf, "MOVB   PSWL, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOVB   PSWL, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x48) {
-		sprintf(buf, "MOVB   r0, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOVB   r0, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x49) {
-		sprintf(buf, "MOVB   r1, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOVB   r1, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x4A) {
-		sprintf(buf, "MOVB   r2, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOVB   r2, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x4B) {
-		sprintf(buf, "MOVB   r3, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOVB   r3, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x4C) {
-		sprintf(buf, "MOVB   r4, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOVB   r4, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x4D) {
-		sprintf(buf, "MOVB   r5, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOVB   r5, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x4E) {
-		sprintf(buf, "MOVB   r6, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOVB   r6, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x4F) {
-		sprintf(buf, "MOVB   r7, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "MOVB   r7, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 0 && op[2]==0xE2) {
-		sprintf(buf, "ORB    A, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "ORB    A, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xE1) {
-		sprintf(buf, "ORB    %s0%02xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "ORB    (%s-0%04xh)[USP], A", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xE3) {
-		sprintf(buf, "ORB    %s0%02xh[USP], off(%s)", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
+		sprintf(buf, "ORB    (%s-0%04xh)[USP], off(%s)", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xE0) {
-		sprintf(buf, "ORB    %s0%02xh[USP], #0%02xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
+		sprintf(buf, "ORB    (%s-0%04xh)[USP], #0%02xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x08) {
-		sprintf(buf, "RB     %s0%02xh[USP].0", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "RB     (%s-0%04xh)[USP].0", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x09) {
-		sprintf(buf, "RB     %s0%02xh[USP].1", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "RB     (%s-0%04xh)[USP].1", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x0A) {
-		sprintf(buf, "RB     %s0%02xh[USP].2", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "RB     (%s-0%04xh)[USP].2", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x0B) {
-		sprintf(buf, "RB     %s0%02xh[USP].3", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "RB     (%s-0%04xh)[USP].3", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x0C) {
-		sprintf(buf, "RB     %s0%02xh[USP].4", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "RB     (%s-0%04xh)[USP].4", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x0D) {
-		sprintf(buf, "RB     %s0%02xh[USP].5", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "RB     (%s-0%04xh)[USP].5", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x0E) {
-		sprintf(buf, "RB     %s0%02xh[USP].6", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "RB     (%s-0%04xh)[USP].6", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x0F) {
-		sprintf(buf, "RB     %s0%02xh[USP].7", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "RB     (%s-0%04xh)[USP].7", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x12) {
-		sprintf(buf, "RBR    %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "RBR    (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xB7) {
-		sprintf(buf, "ROLB   %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "ROLB   (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xC7) {
-		sprintf(buf, "RORB   %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "RORB   (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x18) {
-		sprintf(buf, "SB     %s0%02xh[USP].0", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "SB     (%s-0%04xh)[USP].0", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x19) {
-		sprintf(buf, "SB     %s0%02xh[USP].1", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "SB     (%s-0%04xh)[USP].1", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x1A) {
-		sprintf(buf, "SB     %s0%02xh[USP].2", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "SB     (%s-0%04xh)[USP].2", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x1B) {
-		sprintf(buf, "SB     %s0%02xh[USP].3", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "SB     (%s-0%04xh)[USP].3", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x1C) {
-		sprintf(buf, "SB     %s0%02xh[USP].4", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "SB     (%s-0%04xh)[USP].4", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x1D) {
-		sprintf(buf, "SB     %s0%02xh[USP].5", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "SB     (%s-0%04xh)[USP].5", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x1E) {
-		sprintf(buf, "SB     %s0%02xh[USP].6", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "SB     (%s-0%04xh)[USP].6", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x1F) {
-		sprintf(buf, "SB     %s0%02xh[USP].7", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "SB     (%s-0%04xh)[USP].7", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 0 && op[2]==0xB2) {
-		sprintf(buf, "SBCB   A, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "SBCB   A, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xB1) {
-		sprintf(buf, "SBCB   %s0%02xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "SBCB   (%s-0%04xh)[USP], A", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xB3) {
-		sprintf(buf, "SBCB   %s0%02xh[USP], off(%s)", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
+		sprintf(buf, "SBCB   (%s-0%04xh)[USP], off(%s)", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xB0) {
-		sprintf(buf, "SBCB   %s0%02xh[USP], #0%02xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
+		sprintf(buf, "SBCB   (%s-0%04xh)[USP], #0%02xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x11) {
-		sprintf(buf, "SBR    %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "SBR    (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xD7) {
-		sprintf(buf, "SLLB   %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "SLLB   (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xF7) {
-		sprintf(buf, "SRAB   %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "SRAB   (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xE7) {
-		sprintf(buf, "SRLB   %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "SRLB   (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 0 && op[2]==0xA2) {
-		sprintf(buf, "SUBB   A, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "SUBB   A, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xA1) {
-		sprintf(buf, "SUBB   %s0%02xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "SUBB   (%s-0%04xh)[USP], A", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xA3) {
-		sprintf(buf, "SUBB   %s0%02xh[USP], off(%s)", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
+		sprintf(buf, "SUBB   (%s-0%04xh)[USP], off(%s)", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xA0) {
-		sprintf(buf, "SUBB   %s0%02xh[USP], #0%02xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
+		sprintf(buf, "SUBB   (%s-0%04xh)[USP], #0%02xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x13) {
-		sprintf(buf, "TRB    %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "TRB    (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 0 && op[2]==0x10) {
-		sprintf(buf, "XCHGB  A, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "XCHGB  A, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 0 && op[2]==0xF2) {
-		sprintf(buf, "XORB   A, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "XORB   A, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xF1) {
-		sprintf(buf, "XORB   %s0%02xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "XORB   (%s-0%04xh)[USP], A", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xF3) {
-		sprintf(buf, "XORB   %s0%02xh[USP], off(%s)", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
+		sprintf(buf, "XORB   (%s-0%04xh)[USP], off(%s)", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_ram_label(((D->lrb>>5)<<8)|op[3], 4));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xF0) {
-		sprintf(buf, "XORB   %s0%02xh[USP], #0%02xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
+		sprintf(buf, "XORB   (%s-0%04xh)[USP], #0%02xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, op[3]);
 		D->pc += 4;
 		return 4;
 	}
@@ -13821,12 +13822,12 @@ int dasmfunc_d2(dasm_state *D, char *buf) {
 int dasmfunc_d3(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 1) {
-		sprintf(buf, "ST     A, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "ST     A, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 2;
 		return 2;
 	}
 	if(D->dd == 0) {
-		sprintf(buf, "STB    A, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "STB    A, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->pc += 2;
 		return 2;
 	}
@@ -14009,7 +14010,7 @@ int dasmfunc_e2(dasm_state *D, char *buf) {
 int dasmfunc_e3(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
-		sprintf(buf, "L      A, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "L      A, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->dd = 1;
 		D->pc += 2;
 		return 2;
@@ -14180,7 +14181,7 @@ int dasmfunc_f2(dasm_state *D, char *buf) {
 int dasmfunc_f3(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
-		sprintf(buf, "LB     A, %s0%02xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
+		sprintf(buf, "LB     A, (%s-0%04xh)[USP]", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp);
 		D->dd = 0;
 		D->pc += 2;
 		return 2;

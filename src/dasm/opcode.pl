@@ -196,9 +196,8 @@ sub process
 			} elsif($arg =~ /(S8)/) {
 				# USP-relative: N8[USP]
 				my $idx = idx_of(\@opc, $1);
-				$instr =~ s/S8(.*)/%s0%02xh$1/;
-				push @param, '((signed char)op['.$idx.']) < 0 ? "-":"", '.
-					'_abs((signed char)op['.$idx.'])';
+				$instr =~ s/S8(.*)/(%s-0%04xh)$1/;
+				push @param, 'get_ram_label(D->usp+((signed char)op['.$idx.']), 4), D->usp';
 			} elsif($arg =~ /N16/) {
 				# 16-bit immediates and offsets
 				my $idx = idx_of(\@opc, "NL");
@@ -239,6 +238,11 @@ sub process
 			push @actions, "D->lrb = $n16;";
 		}
 
+		# track USP using MOV USP, $#n16
+		if($instr =~ /MOV USP, #/) {
+			push @actions, "D->usp = $n16;";
+		}
+		
 		# track VCALs
 		if($instr =~ /VCAL ([0-9])/) {
 			push @actions, "do_vcal($1);\n";
