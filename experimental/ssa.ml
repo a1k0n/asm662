@@ -45,8 +45,8 @@ let rec string_of_expr e =
     | RAMWord(Const(6)) -> "A"
     | RAMByte(Const(6)) -> "AL"
     | RAMByte(Const(7)) -> "AH"
-    | InputByte (n) -> Printf.sprintf "ramb_in[%02x]" n
-    | InputWord (n) -> Printf.sprintf "ramw_in[%02x]" n
+    | InputByte (n) -> Printf.sprintf "ramb_in[0x%02x]" n
+    | InputWord (n) -> Printf.sprintf "ramw_in[0x%02x]" n
     | RAMByte (expr) -> "ramb[" ^ (string_of_expr expr) ^ "]"
     | RAMWord (expr) -> "ramw[" ^ (string_of_expr expr) ^ "]"
     | ROMByte (expr) -> "romb[" ^ (string_of_expr expr) ^ "]"

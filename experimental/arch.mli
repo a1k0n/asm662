@@ -71,5 +71,5 @@ type nextaddr = Halt | Return | Simple of int | Jump of int * operand |
 
 val oprname : operand -> string;;
 
-val get_op_ssa : int -> opcode -> ssa_expression;;
+val get_op_ssa : int -> opcode -> ssa_expression list;;
 

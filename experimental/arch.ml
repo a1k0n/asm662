@@ -158,27 +158,72 @@ let rec islvalue = function
 
 let get_op_ssa addr op =
     match op with
-    | OP_CLR (o) -> (op_to_expr true o, Const (0))
-    | OP_CLRB (o) -> (op_to_expr false o, Const (0))
-    | OP_L (a, o) -> (op_to_expr true a, op_to_expr true o)
-    | OP_LB (a, o) -> (op_to_expr false a, op_to_expr false o)
-    | OP_ST (a, o) -> (op_to_expr true o, op_to_expr true a)
-    | OP_STB (a, o) -> (op_to_expr false o, op_to_expr false a)
-    | OP_MOV (o1, o2) -> (op_to_expr true o1, op_to_expr true o2)
-    | OP_MOVB (o1, o2) -> (op_to_expr false o1, op_to_expr false o2)
-    | OP_SB (o) -> (op_to_expr false o, Const(1))
-    | OP_RB (o) -> (op_to_expr false o, Const(0))
-    | OP_MB (o1, o2) -> (op_to_expr false o1, op_to_expr false o2)
-    | OP_ADD (o1, o2) -> (op_to_expr true o1, Sum((op_to_expr true o1),(op_to_expr true o2)))
-    | OP_ADDB (o1, o2) -> (op_to_expr false o1, Sum((op_to_expr false o1),(op_to_expr false o2)))
-    | OP_DEC (o1) -> (op_to_expr true o1, Diff((op_to_expr true o1),Const(1)))
-    | OP_DECB (o1) -> (op_to_expr false o1, Diff((op_to_expr false o1),Const(1)))
-    | OP_JNE (loc) -> (Const(0), Equal(op_to_expr false Zero, Const(0)))
-    | OP_JEQ (loc) -> (Const(0), Equal(op_to_expr false Zero, Const(1)))
-    | OP_SJ (loc) -> (Const(0), Const(1))
-    | OP_JBR (b, loc) -> (Const(0), Equal(op_to_expr false b, Const(0)))
-    | OP_JBS (b, loc) -> (Const(0), Equal(op_to_expr false b, Const(1)))
+    | OP_CLR (o) -> [(op_to_expr true o, Const (0))]
+    | OP_CLRB (o) -> [(op_to_expr false o, Const (0))]
+    | OP_L (a, o) -> [(op_to_expr true a, op_to_expr true o); 
+        (op_to_expr false Zero, Equal(op_to_expr true o, Const(0)))]
+    | OP_LB (a, o) -> [(op_to_expr false a, op_to_expr false o); 
+        (op_to_expr false Zero, Equal(op_to_expr false o, Const(0)))]
+    | OP_LC (a, o) -> [(op_to_expr true a, op_to_expr true o);
+        (op_to_expr false Zero, Equal(op_to_expr true o, Const(0)))]
+    | OP_LCB (a, o) -> [(op_to_expr false a, op_to_expr false o);
+        (op_to_expr false Zero, Equal(op_to_expr false o, Const(0)))]
+    | OP_ST (a, o) -> [(op_to_expr true o, op_to_expr true a)]
+    | OP_STB (a, o) -> [(op_to_expr false o, op_to_expr false a)]
+    | OP_MOV (o1, o2) -> [(op_to_expr true o1, op_to_expr true o2)]
+    | OP_MOVB (o1, o2) -> [(op_to_expr false o1, op_to_expr false o2)]
+    | OP_SB (o) -> [(op_to_expr false o, Const(1));
+        (op_to_expr false Zero, Equal(op_to_expr false o, Const(0)))]
+    | OP_RB (o) -> [(op_to_expr false o, Const(0));
+        (op_to_expr false Zero, Equal(op_to_expr false o, Const(0)))]
+    | OP_MB (o1, o2) -> [(op_to_expr false o1, op_to_expr false o2)]
+    | OP_ADD (o1, o2) -> [
+        (op_to_expr true o1, Sum((op_to_expr true o1),(op_to_expr true o2)));
+        (op_to_expr false Zero, Equal(AND(Sum((op_to_expr true o1),
+            (op_to_expr true o2)),Const(0xffff)),Const(0)));
+        (op_to_expr false Carry, RShift(Sum((op_to_expr true o1),
+            (op_to_expr true o2)),16))]
+    | OP_ADDB (o1, o2) -> [
+        (op_to_expr false o1, Sum((op_to_expr false o1),(op_to_expr false o2)));
+        (op_to_expr false Zero, Equal(AND(Sum((op_to_expr false o1),
+            (op_to_expr false o2)),Const(0xff)),Const(0)));
+        (op_to_expr false Carry, RShift(Sum((op_to_expr false o1),
+            (op_to_expr false o2)),8))]
+    | OP_DEC (o1) -> [(op_to_expr true o1, Diff(op_to_expr true o1,Const(1)));
+        (op_to_expr false Zero, Equal(op_to_expr true o1, Const(1)))]
+    | OP_DECB (o1) -> [(op_to_expr false o1,Diff(op_to_expr false o1,Const(1)));
+        (op_to_expr false Zero, Equal(op_to_expr false o1, Const(1)))]
+    | OP_MUL -> [
+        (op_to_expr true (ERn(1)),RShift(Prod(op_to_expr true Acc, 
+                                  op_to_expr true (ERn(0))),16));
+        (op_to_expr true Acc,AND(Prod(op_to_expr true Acc, 
+                                  op_to_expr true (ERn(0))),Const(0xffff)));
+        (op_to_expr false Zero,Equal(Prod(op_to_expr true Acc,
+                                     op_to_expr true (ERn(0))),Const(0)))]
+    | OP_MULB -> [
+        (op_to_expr true Acc,Prod(op_to_expr false Acc, 
+                                  op_to_expr false (Rn(0))));
+        (op_to_expr false Zero,Equal(Prod(op_to_expr false Acc,
+                                     op_to_expr false (Rn(0))),Const(0)))]
+    | OP_SWAP -> [(RAMByte(Const(6)),RAMByte(Const(7)));
+        (RAMByte(Const(7)),RAMByte(Const(6)))]
+    | OP_XCHG (o1, o2) -> [(op_to_expr true o1, op_to_expr true o2);
+        (op_to_expr true o2, op_to_expr true o1)]
+    | OP_XCHGB (o1, o2) -> [(op_to_expr false o1, op_to_expr false o2);
+        (op_to_expr false o2, op_to_expr false o1)]
+    | OP_JBR (b, loc) -> [(Const(0), Equal(op_to_expr false b, Const(0)))]
+    | OP_JBS (b, loc) -> [(Const(0), Equal(op_to_expr false b, Const(1)))]
+    | OP_JEQ (loc) -> [(Const(0), Equal(op_to_expr false Zero, Const(1)))]
+    | OP_JNE (loc) -> [(Const(0), Equal(op_to_expr false Zero, Const(0)))]
+    | OP_JLT (loc) -> [(Const(0), Equal(op_to_expr false Carry, Const(1)))]
+    | OP_JLE (loc) -> [(Const(0), OR(Equal(op_to_expr false Zero,
+            Const(1)),Equal(op_to_expr false Carry, Const(1))))]
+    | OP_JGT (loc) -> [(Const(0), OR(Equal(op_to_expr false Zero,
+            Const(0)),Equal(op_to_expr false Carry, Const(0))))]
+    | OP_JGE (loc) -> [(Const(0), Equal(op_to_expr false Carry, Const(0)))]
+    | OP_SJ (loc) -> [(Const(0), Const(1))]
+    | OP_J (loc) -> [(Const(0), Const(1))]
 (*    | _ -> raise Not_found *)
-    | _ -> (Const(0), Const(0))
+    | _ -> [(Const(0), Const(0))]
 ;;
 

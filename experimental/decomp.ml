@@ -25,12 +25,46 @@ let filename = Sys.argv.(1);;
 
 let binfile = read_whole_file filename;;
 
+let rec expreq e1 e2 =
+    match (e1,e2) with
+    | (Const(a),Const(b)) -> a == b
+    | (InputByte(a),InputByte(b)) -> a == b
+    | (InputWord(a),InputWord(b)) -> a == b
+    | (RAMByte(ex1),RAMByte(ex2)) -> expreq ex1 ex2
+    | (RAMWord(ex1),RAMWord(ex2)) -> expreq ex1 ex2
+    | (ROMByte(ex1),ROMByte(ex2)) -> expreq ex1 ex2
+    | (ROMWord(ex1),ROMWord(ex2)) -> expreq ex1 ex2
+    | (Bit(ex1,n1),Bit(ex2,n2)) -> (n1 == n2) && expreq ex1 ex2
+    | (Sum(ex1,ex2),Sum(ex3,ex4)) -> expreq ex1 ex3 && expreq ex2 ex4
+    | (Diff(ex1,ex2),Diff(ex3,ex4)) -> expreq ex1 ex3 && expreq ex2 ex4
+    | (Prod(ex1,ex2),Prod(ex3,ex4)) -> expreq ex1 ex3 && expreq ex2 ex4
+    | (Quot(ex1,ex2),Quot(ex3,ex4)) -> expreq ex1 ex3 && expreq ex2 ex4
+    | (AND(ex1,ex2),AND(ex3,ex4)) -> expreq ex1 ex3 && expreq ex2 ex4
+    | (OR(ex1,ex2),OR(ex3,ex4)) -> expreq ex1 ex3 && expreq ex2 ex4
+    | (XOR(ex1,ex2),XOR(ex3,ex4)) -> expreq ex1 ex3 && expreq ex2 ex4
+    | (Less(ex1,ex2),Less(ex3,ex4)) -> expreq ex1 ex3 && expreq ex2 ex4
+    | (Equal(ex1,ex2),Equal(ex3,ex4)) -> expreq ex1 ex3 && expreq ex2 ex4
+    | (LessOrEqual(ex1,ex2),LessOrEqual(ex3,ex4)) -> expreq ex1 ex3 && expreq ex2 ex4
+    | (LShift(ex1,n1),LShift(ex2,n2)) -> (n1 == n2) && expreq ex1 ex2
+    | (RShift(ex1,n1),RShift(ex2,n2)) -> (n1 == n2) && expreq ex1 ex2
+    | _ -> false
+;;
+
 let evalexpr ram expr =
     let rec fold expr = match expr with
     | RAMByte(Const(a)) -> (try Hashtbl.find ram a with Not_found -> InputByte(a))
     | RAMByte(e) -> (RAMByte(fold e))
     | RAMWord(e) -> fold (OR(RAMByte(e),LShift(RAMByte(Sum(e,Const(1))),8)))
+    | ROMByte(e) -> (ROMByte(fold e))
+    | ROMWord(e) -> (ROMWord(fold e))
     | OR(InputByte(a),LShift(InputByte(b),8)) when b==(a+1) -> InputWord(a)
+
+    (* ((e & 0xff) | ((e >> 0x8) << 0x8)) *)
+    | OR(AND(e,Const(0xff)),LShift(RShift(e2,8),8)) when (expreq e e2) -> fold e
+    (* (e & 0xff) >> 8 -> 0 *)
+    | RShift(AND(_,Const(0xff)),8) -> Const(0)
+    | RShift(RAMByte(_),8) -> Const(0)
+    | RShift(InputByte(_),8) -> Const(0)
 
     | OR(a,Const(0)) -> fold a
     | OR(Const(0),a) -> fold a
@@ -38,6 +72,9 @@ let evalexpr ram expr =
     | OR(Const(0xff),RAMByte(_)) -> Const(0xff)
     | AND(_,Const(0)) -> Const(0)
     | AND(Const(0),_) -> Const(0)
+
+    | OR(OR(ex,Const(n1)),Const(n2)) -> AND(fold ex,Const(n1 lor n2))
+    | AND(AND(ex,Const(n1)),Const(n2)) -> AND(fold ex,Const(n1 land n2))
 
     | Sum(Const(a),Const(b)) -> Const(a+b)
     | Diff(Const(a),Const(b)) -> Const(a-b)
@@ -71,11 +108,11 @@ let evalexpr ram expr =
 
     let rec dofold n e =
         let e2 = fold e in
-        if (e2 == e) || (n>20) then
+        if (expreq e e2) || (n>20) then
             e2
         else
-(*            (printf "fold: %s -> %s\n" (string_of_expr e) (string_of_expr e2);
-            dofold (n+1) e2) *)
+            (*printf "fold: %s -> %s\n" (string_of_expr e) (string_of_expr e2);
+            dofold (n+1) e2*)
             dofold (n+1) e2
     in
 
@@ -94,31 +131,37 @@ let evalssa op =
     | _ -> dst_
     in
 
+    (dst, seval)
+;;
+
+let applyssa op =
+    let (dst,seval) = op in
     (match dst with
     | RAMByte(Const(n)) -> Hashtbl.add __ram n seval
-    | RAMWord(Const(n)) -> (Hashtbl.add __ram n (evalexpr __ram (AND(seval, Const(0xff))));
-                            Hashtbl.add __ram (n+1) (evalexpr __ram (RShift(seval, 8))))
-(*    | _ -> printf "unable to assign to %s\n" (string_of_expr dst)); *)
-    | _ -> ());
-    (dst, seval)
+    | RAMWord(Const(n)) -> (Hashtbl.add __ram n (AND(seval, Const(0xff)));
+                            Hashtbl.add __ram (n+1) (RShift(seval, 8)))
+    | _ -> ())
 ;;
 
 let rec dasmchunk binfile addr _dd =
     if addr > 0x7ff0 then 
         () 
     else begin
-        printf "%04x:" addr; flush stdout;
         let (ssa,op,dd,newaddrs) = get_disassembly binfile addr _dd in
-        let ssa2 = evalssa ssa in
-        begin
-            printf "%04x: " newaddrs.(0); flush stdout;
-            printf "%-25s: " op; flush stdout;
-            printf "%s\n" (string_of_ssa ssa2); flush stdout;
-            dasmchunk binfile newaddrs.(0) dd
-        end
+        let crap = ref (Printf.sprintf "%04x: %-25s" addr op) in
+        let ssa2apply = List.map(fun sa -> 
+            let ssa2 = evalssa sa in
+            begin
+                printf "%s: %s\n" !crap (string_of_ssa ssa2);
+                flush stdout;
+                crap := Printf.sprintf "%-31s" ""
+            end; ssa2) ssa in
+        List.iter applyssa ssa2apply;
+        dasmchunk binfile newaddrs.(0) dd
     end
 ;;
 
-dasmchunk binfile 0x21E2 0;;
+dasmchunk binfile 0x21e9 0;;
+dasmchunk binfile 0x238b 0;;
 dasmchunk binfile 0x5010 0;;
 
