@@ -26,6 +26,8 @@ sub idx_of($$)
 			return $i;
 		}
 	}
+	my @instr = @$aref;
+	die "$srch not found in @instr\n";
 	return 'missing';
 }
 
