@@ -22,6 +22,15 @@ sub add_instr($$$$$)
 	push @{$baseop{$op0}}, $rec;
 }
 
+sub prettify($)
+{
+	my ($ins) = @_;
+	if($ins =~ /^([^ ]*) (.*)$/) {
+		$ins = sprintf("%-6s %s", $1, $2);
+	}
+	return $ins;
+}
+
 sub gen_snippet($)
 {
 	my ($href) = @_;
@@ -36,7 +45,8 @@ sub gen_snippet($)
 		print(" && op[$i]==0x".$opc->[$i]);
 	}
 	print(") {\n");
-	print("\t\tsprintf(buf, \"".$href->{instr}."\"");
+	my $ins = prettify($href->{instr});
+	print("\t\tsprintf(buf, \"".$ins."\"");
 	my $args = $href->{args};
 	my ($reladdr, $n16);
 	for(my $i=0;$i<=$#$args;$i++) {
