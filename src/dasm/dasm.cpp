@@ -97,7 +97,7 @@ void dasm(dasm_state *D, DASMQueue *dqueue, DASMOutput *out)
 		}
 		dqueue->pop_front();
 
-		while(!D->mask[D->pc] && D->pc < 0x8000) {
+		while(D->pc < 0x8000 && !D->mask[D->pc]) {
 			char buf[256];
 			int i;
 			unsigned pc = D->pc; // keep old PC value

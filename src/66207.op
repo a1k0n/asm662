@@ -1085,6 +1085,11 @@ POPS LRB		-UN 64
 PUSHS A			-1N 55
 PUSHS LRB		-UN 54
 
+; ---- PUSHU ----
+
+PUSHU A			-1N 76
+; what's POPU A?
+
 ; ---- RB -----
 
 RB rN.n			-UN 20+N,08+n
@@ -1687,7 +1692,5 @@ XORB [DP], #N8		-UN C2,F0,N8
 XORB S8[USP], #N8	-UN C3,S8,F0,N8
 XORB N16[X1], #N8	-UN C0,NL,NH,F0,N8
 XORB N16[X2], #N8	-UN C1,NL,NH,F0,N8
-
-nop76			-UN 76
 
 ; vim: ts=8

@@ -242,6 +242,11 @@ sub process
 		if($instr =~ /MOV USP, #/) {
 			push @actions, "D->usp = $n16;";
 		}
+
+		# track USP with PUSHU's, INC's, and DEC's.
+		if($instr =~ /PUSHU A/) { push @actions, "D->usp -= 2;"; }
+		if($instr =~ /INC USP/) { push @actions, "D->usp ++;"; }
+		if($instr =~ /DEC USP/) { push @actions, "D->usp --;"; }
 		
 		# track VCALs
 		if($instr =~ /VCAL ([0-9])/) {

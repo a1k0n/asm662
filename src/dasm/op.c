@@ -5577,8 +5577,9 @@ int dasmfunc_73(dasm_state *D, char *buf) {
 
 int dasmfunc_76(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
-	if(1) {
-		sprintf(buf, "nop76");
+	if(D->dd == 1) {
+		sprintf(buf, "PUSHU   A");
+		D->usp -= 2;
 		D->pc += 1;
 		return 1;
 	}
@@ -7393,11 +7394,13 @@ int dasmfunc_a1(dasm_state *D, char *buf) {
 	}
 	if(1 && op[1]==0x17) {
 		sprintf(buf, "DEC     USP");
+		D->usp --;
 		D->pc += 2;
 		return 2;
 	}
 	if(1 && op[1]==0x16) {
 		sprintf(buf, "INC     USP");
+		D->usp ++;
 		D->pc += 2;
 		return 2;
 	}
