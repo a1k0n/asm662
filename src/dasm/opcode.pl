@@ -57,8 +57,22 @@ sub gen_snippet($)
 		}
 	}
 	print(");\n");
+
+	# track DD changes
 	if($href->{dd} eq 'S') { print("\t\tD->dd = 1;\n"); }
 	elsif($href->{dd} eq 'R') { print("\t\tD->dd = 0;\n"); }
+
+	# track LRB usage using MOV LRB, #N16
+	if($href->{instr} =~ /MOV LRB, #/) {
+		print("\t\tD->lrb = $n16;\n");
+	}
+
+	# track VCALs
+	if($href->{instr} =~ /VCAL ([0-9])/) {
+		printf("\t\tdo_vcal($1);\n");
+	}
+
+	# decide whether or not to update the program counter
 	if($href->{cond} eq 'I' || $href->{cond} eq 'J') {
 		# indirect jump.. we have no idea what to do here, so leave PC
 		# alone and allow the front end to figure it out
@@ -67,6 +81,7 @@ sub gen_snippet($)
 		# everything else - increment PC as normal
 		print("\t\tD->pc += ".($#$opc+1).";\n");
 	}
+
 	print("\t\treturn ".($#$opc+1).";\n\t}\n");
 }
 

@@ -12,13 +12,20 @@ extern "C" const char *get_label(unsigned addr)
 	static char lbuf[64];
 	const char *l = _dout->get_label(addr);
 	if(l) {
-		_dqueue->add(addr, _D->pc, l, _D->dd);
+		_dqueue->add(addr, _D->pc, l, _D->dd, _D->lrb);
 		return l;
 	}
 	sprintf(lbuf, "label_%04x", addr);
-	_dqueue->add(addr, _D->pc, lbuf, _D->dd);
+	_dqueue->add(addr, _D->pc, lbuf, _D->dd, _D->lrb);
 	_dout->add_label(addr, lbuf);
 	return lbuf;
+}
+
+const unsigned vcal_base=0x28;
+extern "C" void do_vcal(unsigned n)
+{
+	unsigned addr = _D->rom[vcal_base+n*2]|(_D->rom[vcal_base+n*2+1]<<8);
+	get_label(addr);
 }
 
 void dasm(dasm_state *D, DASMQueue *dqueue, DASMOutput *out)
@@ -26,6 +33,7 @@ void dasm(dasm_state *D, DASMQueue *dqueue, DASMOutput *out)
 	dasmfunc f;
 	int d,i=0;
 	char linebuf[1024];
+	char lrb[12];
 
 	_D = D;
 	_dqueue = dqueue;
@@ -33,14 +41,20 @@ void dasm(dasm_state *D, DASMQueue *dqueue, DASMOutput *out)
 	while(!dqueue->empty()) {
 		D->pc = dqueue->front().addr;
 		D->dd = dqueue->front().dd;
+		D->lrb = dqueue->front().lrb;
 		{
 			unsigned f = dqueue->front().from;
 			if(f == 0xffff) {
 				sprintf(linebuf, "%-30s ; %04X called by user", 
 						"", D->pc);
 			} else {
-				sprintf(linebuf, "%-30s ; %04X called from %04X (DD=%d)", 
-						"", D->pc, f, D->dd);
+				if(D->lrb == 0xffff)
+					strcpy(lrb, "P??,B??");
+				else
+					sprintf(lrb, "P%02X,B%02X", 
+							D->lrb>>5, (D->lrb&0x1f)<<3);
+				sprintf(linebuf, "%-30s ; %04X from %04X "
+						"(DD%d,%s)", "", D->pc, f, D->dd, lrb);
 			}
 			out->add_ref(D->pc, linebuf);
 		}
@@ -52,7 +66,8 @@ void dasm(dasm_state *D, DASMQueue *dqueue, DASMOutput *out)
 			unsigned pc = D->pc; // keep old PC value
 			f = dasmtable[D->rom[pc]];
 			if(!f) {
-				sprintf(linebuf, "; opcode %02x invalid @%04X; halting", D->rom[pc], pc);
+				sprintf(linebuf, "; opcode %02x invalid @%04X; halting", 
+						D->rom[pc], pc);
 				out->add_warn(pc, linebuf);
 				break;
 			}
@@ -60,20 +75,25 @@ void dasm(dasm_state *D, DASMQueue *dqueue, DASMOutput *out)
 			if(d == -1) {
 				D->dd^=1;
 				if((d=f(D, buf)) == -1) {
-					sprintf(linebuf, "; invalid opcode encountered @%04X; halting", pc);
+					sprintf(linebuf, "; invalid opcode encountered @%04X;"
+							" halting", pc);
 					out->add_warn(pc, linebuf);
 					break;
 				} else {
 					out->add_warn(pc, "; warning: had to flip DD");
 				}
 			}
-			sprintf(linebuf, "%-30s ; %04X ", buf, pc);
+			if(D->lrb == 0xffff)
+				strcpy(lrb, "?? ??");
+			else
+				sprintf(lrb, "%02X %02X", D->lrb>>5, (D->lrb&0x1f)<<3);
+
+			sprintf(linebuf, "%-30s ; %04X %d %s ", buf, pc, 
+					D->dd, lrb);
 			for(i=0;i<d;i++) {
 				sprintf(buf, "%02X", D->rom[pc+i]);
 				strcat(linebuf, buf);
 			}
-			sprintf(buf, " DD=%d", D->dd);
-			strcat(linebuf, buf);
 			out->add_line(pc, linebuf);
 			for(i=0;i<d;i++) D->mask[pc+i] = 1;
 		}
@@ -85,7 +105,7 @@ void init_66207(dasm_state *D, DASMQueue *q, DASMOutput *out)
 	int i=0;
 #define makeentry(x) { \
 			unsigned a = (D->rom[i+1]<<8) | D->rom[i];\
-			if(a < 0x8000) { q->add(a, i, x, 0); \
+			if(a < 0x8000) { q->add(a, i, x, 0, 0xffff); \
 			out->add_label(a, x); } out->add_label(i, x"_vec"); i+=2; }
 	makeentry("int_start");
 	makeentry("int_break");
@@ -107,6 +127,11 @@ void init_66207(dasm_state *D, DASMQueue *q, DASMOutput *out)
 	makeentry("int_PWM_timer");
 	makeentry("int_serial_tx_BRG");
 	makeentry("int_INT1");
+#undef makeentry
+#define makeentry(x) { \
+			unsigned a = (D->rom[i+1]<<8) | D->rom[i];\
+			if(a < 0x8000) { out->add_label(a, x); } \
+			out->add_label(i, x"_vec"); i+=2; }
 	makeentry("vcal_0");
 	makeentry("vcal_1");
 	makeentry("vcal_2");
@@ -159,7 +184,7 @@ int main(int argc, char **argv)
 	for(int i=3;i<argc;i++) {
 		unsigned addr;
 		sscanf(argv[i], "%x", &addr);
-		dq.add(addr, 0xffff, string("user_")+argv[i], 0);
+		dq.add(addr, 0xffff, string("user_")+argv[i], 0, 0xffff);
 	}
 
 	// perform disassembly

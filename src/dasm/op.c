@@ -140,6 +140,7 @@ int dasmfunc_10(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
 		sprintf(buf, "VCAL 0");
+		do_vcal(0);
 		D->pc += 1;
 		return 1;
 	}
@@ -150,6 +151,7 @@ int dasmfunc_11(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
 		sprintf(buf, "VCAL 1");
+		do_vcal(1);
 		D->pc += 1;
 		return 1;
 	}
@@ -160,6 +162,7 @@ int dasmfunc_12(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
 		sprintf(buf, "VCAL 2");
+		do_vcal(2);
 		D->pc += 1;
 		return 1;
 	}
@@ -170,6 +173,7 @@ int dasmfunc_13(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
 		sprintf(buf, "VCAL 3");
+		do_vcal(3);
 		D->pc += 1;
 		return 1;
 	}
@@ -180,6 +184,7 @@ int dasmfunc_14(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
 		sprintf(buf, "VCAL 4");
+		do_vcal(4);
 		D->pc += 1;
 		return 1;
 	}
@@ -190,6 +195,7 @@ int dasmfunc_15(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
 		sprintf(buf, "VCAL 5");
+		do_vcal(5);
 		D->pc += 1;
 		return 1;
 	}
@@ -200,6 +206,7 @@ int dasmfunc_16(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
 		sprintf(buf, "VCAL 6");
+		do_vcal(6);
 		D->pc += 1;
 		return 1;
 	}
@@ -210,6 +217,7 @@ int dasmfunc_17(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
 		sprintf(buf, "VCAL 7");
+		do_vcal(7);
 		D->pc += 1;
 		return 1;
 	}
@@ -5230,6 +5238,7 @@ int dasmfunc_57(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
 		sprintf(buf, "MOV LRB, #0%04xh", (op[2]<<8)|op[1]);
+		D->lrb = (op[2]<<8)|op[1];
 		D->pc += 3;
 		return 3;
 	}
