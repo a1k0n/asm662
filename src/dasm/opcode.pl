@@ -52,6 +52,9 @@ sub gen_snippet($)
 			} else {
 				print(", $n16");
 			}
+		} elsif($type eq 'S8') {
+			print(", ((signed char)op[".$args->[$i]."]) < 0 ? '-':' ', ".
+				"_abs((signed char)op[".$args->[$i]."])");
 		} else {
 			print(", op[".$args->[$i]."]");
 		}
@@ -183,17 +186,20 @@ sub process
 		# replace NL, NH, N'L, N'H, N8, address with %s.. hmm, we need to
 		# know what order they're in in the final instruction...
 		my @args;
-		while($instr =~ /(N'?8|N'?16|rel8|addr16).*/) {
+		while($instr =~ /([SN]'?8|N'?16|rel8|addr16).*/) {
 			my $arg = $1;
 			if($arg =~ /N'?8/) {
 				push @args, $arg;
-				$instr =~ s/N'?8(.*)/0%02xh$1/;
+				$instr =~ s/N'?8(.*)/%03xh$1/;
+			} elsif($arg =~ /S8/) {
+				push @args, $arg;
+				$instr =~ s/S8(.*)/%c%03xh$1/;
 			} elsif($arg =~ /N16/) {
 				push @args, "NL";
-				$instr =~ s/N16(.*)/0%04xh$1/;
+				$instr =~ s/N16(.*)/%05xh$1/;
 			} elsif($arg =~ /N'16/) {
 				push @args, "N'L";
-				$instr =~ s/N'16(.*)/0%04xh$1/;
+				$instr =~ s/N'16(.*)/%05xh$1/;
 			} elsif($arg =~ /rel8/) {
 				push @args, "rel8";
 				$instr =~ s/rel8(.*)/%s$1/;

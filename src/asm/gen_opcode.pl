@@ -154,7 +154,7 @@ sub process
 			return;
 		}
 		push @args, $insname;
-		while($instr =~ s/(,|#|A|C|er[0-3]|r[0-7]|DP|X[12]|[US]SP|LRB|PSW[LH]|off|\[|\]|N'?8|N'?16|rel8|addr16|\.[0-7])(.*)/$2/) {
+		while($instr =~ s/(,|#|A|C|er[0-3]|r[0-7]|DP|X[12]|[US]SP|LRB|PSW[LH]|off|\[|\]|[NS]'?8|N'?16|rel8|addr16|\.[0-7])(.*)/$2/) {
 			my $arg = $1;
 			my $argidx = $#args + 2;
 			if($arg =~ /^[,#\[\]]$/) {
@@ -163,7 +163,7 @@ sub process
 				push @args, "OFFSET";
 			} elsif($arg =~ /\.([0-7])/) {
 				push @args, "DOT$1";
-			} elsif($arg =~ /N'?8/) {
+			} elsif($arg =~ /[SN]'?8/) {
 				push @args, "expr";
 				push @actions, "instr[".idx_of(\@opc, $arg)."] = \$$argidx;";
 			} elsif($arg =~ /N16/) {
