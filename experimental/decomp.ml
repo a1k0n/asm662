@@ -21,7 +21,7 @@ let read_whole_chan chan =
 ;;
 
 let read_whole_file filename =
-    let chan = open_in filename in
+    let chan = open_in_bin filename in
     read_whole_chan chan
 ;;
 
