@@ -64,6 +64,12 @@ static int output_unmasked_data(FILE *out, DASMOutput *dout, dasm_state *D,
 	}
 	for(;a<z;a++) {
 		if(D->mask[a]) break;
+		const char *l = dout->get_label(a);
+		if(l) {
+			strcpy(ihateC, l);
+			strcat(ihateC, ":");
+			started_line = -1;
+		}
 		if(started_line != -1) {
 			if((a&0x7) == 0x7) {
 				fprintf(out, ",0%02Xh ; %04X\n", D->rom[a], started_line);
@@ -80,6 +86,7 @@ static int output_unmasked_data(FILE *out, DASMOutput *dout, dasm_state *D,
 				fprintf(out, "0%02Xh", D->rom[a]);
 				started_line = a;
 			}
+			ihateC[0] = 0;
 		}
 	}
 	if(started_line != -1) {

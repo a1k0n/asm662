@@ -7,6 +7,7 @@ extern "C" {
 static dasm_state *_D;
 static DASMQueue *_dqueue;
 static DASMOutput *_dout;
+static unsigned tbladdr_lo=0x5600,tbladdr_hi=0x7ff0;
 extern "C" const char *get_rom_label(unsigned addr)
 {
 	static char lbuf[64];
@@ -18,6 +19,20 @@ extern "C" const char *get_rom_label(unsigned addr)
 	sprintf(lbuf, "label_%04x", addr);
 	_dqueue->add(addr, _D->pc, lbuf, _D->dd, _D->lrb);
 	_dout->add_label(addr, lbuf);
+	return lbuf;
+}
+
+extern "C" const char *get_romtable_label(unsigned addr)
+{
+	static char lbuf[64];
+	const char *l = _dout->get_label(addr);
+	if(l) return l;
+	if(addr >= tbladdr_lo && addr < tbladdr_hi) {
+		sprintf(lbuf, "tbl_%04x", addr);
+		_dout->add_label(addr, lbuf);
+		return lbuf;
+	}
+	sprintf(lbuf, "0%04xh", addr);
 	return lbuf;
 }
 

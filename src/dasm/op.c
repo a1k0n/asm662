@@ -4005,7 +4005,7 @@ int dasmfunc_44(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0x90) {
-		sprintf(buf, "ADC     er0, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "ADC     er0, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4020,7 +4020,7 @@ int dasmfunc_44(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0x80) {
-		sprintf(buf, "ADD     er0, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "ADD     er0, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4035,7 +4035,7 @@ int dasmfunc_44(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xD0) {
-		sprintf(buf, "AND     er0, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "AND     er0, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4060,7 +4060,7 @@ int dasmfunc_44(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xC0) {
-		sprintf(buf, "CMP     er0, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "CMP     er0, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4115,7 +4115,7 @@ int dasmfunc_44(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0x98) {
-		sprintf(buf, "MOV     er0, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "MOV     er0, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4185,7 +4185,7 @@ int dasmfunc_44(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xD0) {
-		sprintf(buf, "OR      er0, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "OR      er0, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4210,7 +4210,7 @@ int dasmfunc_44(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xB0) {
-		sprintf(buf, "SBC     er0, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "SBC     er0, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4240,7 +4240,7 @@ int dasmfunc_44(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xA0) {
-		sprintf(buf, "SUB     er0, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "SUB     er0, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4260,7 +4260,7 @@ int dasmfunc_44(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xF0) {
-		sprintf(buf, "XOR     er0, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "XOR     er0, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4275,7 +4275,7 @@ int dasmfunc_45(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0x90) {
-		sprintf(buf, "ADC     er1, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "ADC     er1, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4290,7 +4290,7 @@ int dasmfunc_45(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0x80) {
-		sprintf(buf, "ADD     er1, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "ADD     er1, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4305,7 +4305,7 @@ int dasmfunc_45(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xD0) {
-		sprintf(buf, "AND     er1, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "AND     er1, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4330,7 +4330,7 @@ int dasmfunc_45(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xC0) {
-		sprintf(buf, "CMP     er1, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "CMP     er1, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4385,7 +4385,7 @@ int dasmfunc_45(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0x98) {
-		sprintf(buf, "MOV     er1, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "MOV     er1, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4455,7 +4455,7 @@ int dasmfunc_45(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xD0) {
-		sprintf(buf, "OR      er1, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "OR      er1, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4480,7 +4480,7 @@ int dasmfunc_45(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xB0) {
-		sprintf(buf, "SBC     er1, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "SBC     er1, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4510,7 +4510,7 @@ int dasmfunc_45(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xA0) {
-		sprintf(buf, "SUB     er1, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "SUB     er1, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4530,7 +4530,7 @@ int dasmfunc_45(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xF0) {
-		sprintf(buf, "XOR     er1, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "XOR     er1, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4545,7 +4545,7 @@ int dasmfunc_46(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0x90) {
-		sprintf(buf, "ADC     er2, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "ADC     er2, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4560,7 +4560,7 @@ int dasmfunc_46(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0x80) {
-		sprintf(buf, "ADD     er2, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "ADD     er2, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4575,7 +4575,7 @@ int dasmfunc_46(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xD0) {
-		sprintf(buf, "AND     er2, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "AND     er2, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4600,7 +4600,7 @@ int dasmfunc_46(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xC0) {
-		sprintf(buf, "CMP     er2, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "CMP     er2, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4655,7 +4655,7 @@ int dasmfunc_46(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0x98) {
-		sprintf(buf, "MOV     er2, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "MOV     er2, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4725,7 +4725,7 @@ int dasmfunc_46(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xD0) {
-		sprintf(buf, "OR      er2, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "OR      er2, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4750,7 +4750,7 @@ int dasmfunc_46(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xB0) {
-		sprintf(buf, "SBC     er2, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "SBC     er2, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4780,7 +4780,7 @@ int dasmfunc_46(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xA0) {
-		sprintf(buf, "SUB     er2, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "SUB     er2, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4800,7 +4800,7 @@ int dasmfunc_46(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xF0) {
-		sprintf(buf, "XOR     er2, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "XOR     er2, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4815,7 +4815,7 @@ int dasmfunc_47(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0x90) {
-		sprintf(buf, "ADC     er3, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "ADC     er3, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4830,7 +4830,7 @@ int dasmfunc_47(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0x80) {
-		sprintf(buf, "ADD     er3, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "ADD     er3, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4845,7 +4845,7 @@ int dasmfunc_47(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xD0) {
-		sprintf(buf, "AND     er3, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "AND     er3, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4870,7 +4870,7 @@ int dasmfunc_47(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xC0) {
-		sprintf(buf, "CMP     er3, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "CMP     er3, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4925,7 +4925,7 @@ int dasmfunc_47(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0x98) {
-		sprintf(buf, "MOV     er3, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "MOV     er3, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -4995,7 +4995,7 @@ int dasmfunc_47(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xD0) {
-		sprintf(buf, "OR      er3, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "OR      er3, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -5020,7 +5020,7 @@ int dasmfunc_47(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xB0) {
-		sprintf(buf, "SBC     er3, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "SBC     er3, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -5050,7 +5050,7 @@ int dasmfunc_47(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xA0) {
-		sprintf(buf, "SUB     er3, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "SUB     er3, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -5070,7 +5070,7 @@ int dasmfunc_47(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xF0) {
-		sprintf(buf, "XOR     er3, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "XOR     er3, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -5245,7 +5245,7 @@ int dasmfunc_55(dasm_state *D, char *buf) {
 int dasmfunc_57(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
-		sprintf(buf, "MOV     LRB, #0%04xh", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     LRB, #%s", get_romtable_label((op[2]<<8)|op[1]));
 		D->lrb = (op[2]<<8)|op[1];
 		D->pc += 3;
 		return 3;
@@ -5356,7 +5356,7 @@ int dasmfunc_5f(dasm_state *D, char *buf) {
 int dasmfunc_60(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
-		sprintf(buf, "MOV     X1, #0%04xh", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     X1, #%s", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 3;
 		return 3;
 	}
@@ -5366,7 +5366,7 @@ int dasmfunc_60(dasm_state *D, char *buf) {
 int dasmfunc_61(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
-		sprintf(buf, "MOV     X2, #0%04xh", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     X2, #%s", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 3;
 		return 3;
 	}
@@ -5376,7 +5376,7 @@ int dasmfunc_61(dasm_state *D, char *buf) {
 int dasmfunc_62(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
-		sprintf(buf, "MOV     DP, #0%04xh", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     DP, #%s", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 3;
 		return 3;
 	}
@@ -5422,7 +5422,7 @@ int dasmfunc_65(dasm_state *D, char *buf) {
 int dasmfunc_67(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
-		sprintf(buf, "L       A, #0%04xh", (op[2]<<8)|op[1]);
+		sprintf(buf, "L       A, #%s", get_romtable_label((op[2]<<8)|op[1]));
 		D->dd = 1;
 		D->pc += 3;
 		return 3;
@@ -5742,7 +5742,7 @@ int dasmfunc_85(dasm_state *D, char *buf) {
 int dasmfunc_86(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 1) {
-		sprintf(buf, "ADD     A, #0%04xh", (op[2]<<8)|op[1]);
+		sprintf(buf, "ADD     A, #%s", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 3;
 		return 3;
 	}
@@ -5882,7 +5882,7 @@ int dasmfunc_90(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0x90) {
-		sprintf(buf, "ADC     X1, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "ADC     X1, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -5902,7 +5902,7 @@ int dasmfunc_90(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0x80) {
-		sprintf(buf, "ADD     X1, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "ADD     X1, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -5922,7 +5922,7 @@ int dasmfunc_90(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xD0) {
-		sprintf(buf, "AND     X1, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "AND     X1, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -5952,12 +5952,12 @@ int dasmfunc_90(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xC0) {
-		sprintf(buf, "CMP     X1, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "CMP     X1, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[1]==0x9E) {
-		sprintf(buf, "CMPC    A, 0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "CMPC    A, %s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -5967,12 +5967,12 @@ int dasmfunc_90(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0xAD) {
-		sprintf(buf, "CMPC    A, 0%04xh[X1]", (op[3]<<8)|op[2]);
+		sprintf(buf, "CMPC    A, %s[X1]", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[1]==0x9F) {
-		sprintf(buf, "CMPCB   A, 0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "CMPCB   A, %s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -5982,7 +5982,7 @@ int dasmfunc_90(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0xAF) {
-		sprintf(buf, "CMPCB   A, 0%04xh[X1]", (op[3]<<8)|op[2]);
+		sprintf(buf, "CMPCB   A, %s[X1]", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -5996,7 +5996,7 @@ int dasmfunc_90(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0x9C) {
-		sprintf(buf, "LC      A, 0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "LC      A, %s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6006,12 +6006,12 @@ int dasmfunc_90(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0xA9) {
-		sprintf(buf, "LC      A, 0%04xh[X1]", (op[3]<<8)|op[2]);
+		sprintf(buf, "LC      A, %s[X1]", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[1]==0x9D) {
-		sprintf(buf, "LCB     A, 0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "LCB     A, %s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6021,7 +6021,7 @@ int dasmfunc_90(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0xAB) {
-		sprintf(buf, "LCB     A, 0%04xh[X1]", (op[3]<<8)|op[2]);
+		sprintf(buf, "LCB     A, %s[X1]", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6112,7 +6112,7 @@ int dasmfunc_90(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xD0) {
-		sprintf(buf, "OR      X1, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "OR      X1, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6142,7 +6142,7 @@ int dasmfunc_90(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xB0) {
-		sprintf(buf, "SBC     X1, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "SBC     X1, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6177,7 +6177,7 @@ int dasmfunc_90(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xA0) {
-		sprintf(buf, "SUB     X1, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "SUB     X1, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6202,7 +6202,7 @@ int dasmfunc_90(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xF0) {
-		sprintf(buf, "XOR     X1, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "XOR     X1, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6222,7 +6222,7 @@ int dasmfunc_91(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0x90) {
-		sprintf(buf, "ADC     X2, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "ADC     X2, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6242,7 +6242,7 @@ int dasmfunc_91(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0x80) {
-		sprintf(buf, "ADD     X2, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "ADD     X2, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6262,7 +6262,7 @@ int dasmfunc_91(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xD0) {
-		sprintf(buf, "AND     X2, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "AND     X2, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6292,7 +6292,7 @@ int dasmfunc_91(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xC0) {
-		sprintf(buf, "CMP     X2, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "CMP     X2, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6302,7 +6302,7 @@ int dasmfunc_91(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0xAD) {
-		sprintf(buf, "CMPC    A, 0%04xh[X2]", (op[3]<<8)|op[2]);
+		sprintf(buf, "CMPC    A, %s[X2]", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6312,7 +6312,7 @@ int dasmfunc_91(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0xAF) {
-		sprintf(buf, "CMPCB   A, 0%04xh[X2]", (op[3]<<8)|op[2]);
+		sprintf(buf, "CMPCB   A, %s[X2]", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6326,7 +6326,7 @@ int dasmfunc_91(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0xA9) {
-		sprintf(buf, "LC      A, 0%04xh[X2]", (op[3]<<8)|op[2]);
+		sprintf(buf, "LC      A, %s[X2]", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6336,7 +6336,7 @@ int dasmfunc_91(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0xAB) {
-		sprintf(buf, "LCB     A, 0%04xh[X2]", (op[3]<<8)|op[2]);
+		sprintf(buf, "LCB     A, %s[X2]", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6422,7 +6422,7 @@ int dasmfunc_91(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xD0) {
-		sprintf(buf, "OR      X2, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "OR      X2, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6452,7 +6452,7 @@ int dasmfunc_91(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xB0) {
-		sprintf(buf, "SBC     X2, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "SBC     X2, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6487,7 +6487,7 @@ int dasmfunc_91(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xA0) {
-		sprintf(buf, "SUB     X2, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "SUB     X2, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6512,7 +6512,7 @@ int dasmfunc_91(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xF0) {
-		sprintf(buf, "XOR     X2, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "XOR     X2, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6532,7 +6532,7 @@ int dasmfunc_92(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0x90) {
-		sprintf(buf, "ADC     DP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "ADC     DP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6552,7 +6552,7 @@ int dasmfunc_92(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0x80) {
-		sprintf(buf, "ADD     DP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "ADD     DP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6572,7 +6572,7 @@ int dasmfunc_92(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xD0) {
-		sprintf(buf, "AND     DP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "AND     DP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6602,7 +6602,7 @@ int dasmfunc_92(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xC0) {
-		sprintf(buf, "CMP     DP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "CMP     DP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6612,7 +6612,7 @@ int dasmfunc_92(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0xAD) {
-		sprintf(buf, "CMPC    A, 0%04xh[DP]", (op[3]<<8)|op[2]);
+		sprintf(buf, "CMPC    A, %s[DP]", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6622,7 +6622,7 @@ int dasmfunc_92(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0xAF) {
-		sprintf(buf, "CMPCB   A, 0%04xh[DP]", (op[3]<<8)|op[2]);
+		sprintf(buf, "CMPCB   A, %s[DP]", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6636,7 +6636,7 @@ int dasmfunc_92(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0xA9) {
-		sprintf(buf, "LC      A, 0%04xh[DP]", (op[3]<<8)|op[2]);
+		sprintf(buf, "LC      A, %s[DP]", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6646,7 +6646,7 @@ int dasmfunc_92(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0xAB) {
-		sprintf(buf, "LCB     A, 0%04xh[DP]", (op[3]<<8)|op[2]);
+		sprintf(buf, "LCB     A, %s[DP]", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6732,7 +6732,7 @@ int dasmfunc_92(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xD0) {
-		sprintf(buf, "OR      DP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "OR      DP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6762,7 +6762,7 @@ int dasmfunc_92(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xB0) {
-		sprintf(buf, "SBC     DP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "SBC     DP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6797,7 +6797,7 @@ int dasmfunc_92(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xA0) {
-		sprintf(buf, "SUB     DP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "SUB     DP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6822,7 +6822,7 @@ int dasmfunc_92(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xF0) {
-		sprintf(buf, "XOR     DP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "XOR     DP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -6862,7 +6862,7 @@ int dasmfunc_95(dasm_state *D, char *buf) {
 int dasmfunc_96(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 1) {
-		sprintf(buf, "ADC     A, #0%04xh", (op[2]<<8)|op[1]);
+		sprintf(buf, "ADC     A, #%s", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 3;
 		return 3;
 	}
@@ -6982,7 +6982,7 @@ int dasmfunc_a0(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0x90) {
-		sprintf(buf, "ADC     SSP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "ADC     SSP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -7002,7 +7002,7 @@ int dasmfunc_a0(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0x80) {
-		sprintf(buf, "ADD     SSP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "ADD     SSP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -7022,7 +7022,7 @@ int dasmfunc_a0(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xD0) {
-		sprintf(buf, "AND     SSP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "AND     SSP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -7052,7 +7052,7 @@ int dasmfunc_a0(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xC0) {
-		sprintf(buf, "CMP     SSP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "CMP     SSP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -7132,7 +7132,7 @@ int dasmfunc_a0(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0x98) {
-		sprintf(buf, "MOV     SSP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "MOV     SSP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -7182,7 +7182,7 @@ int dasmfunc_a0(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xD0) {
-		sprintf(buf, "OR      SSP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "OR      SSP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -7212,7 +7212,7 @@ int dasmfunc_a0(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xB0) {
-		sprintf(buf, "SBC     SSP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "SBC     SSP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -7247,7 +7247,7 @@ int dasmfunc_a0(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xA0) {
-		sprintf(buf, "SUB     SSP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "SUB     SSP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -7272,7 +7272,7 @@ int dasmfunc_a0(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xF0) {
-		sprintf(buf, "XOR     SSP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "XOR     SSP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -7292,7 +7292,7 @@ int dasmfunc_a1(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0x90) {
-		sprintf(buf, "ADC     USP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "ADC     USP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -7312,7 +7312,7 @@ int dasmfunc_a1(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0x80) {
-		sprintf(buf, "ADD     USP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "ADD     USP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -7332,7 +7332,7 @@ int dasmfunc_a1(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xD0) {
-		sprintf(buf, "AND     USP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "AND     USP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -7362,7 +7362,7 @@ int dasmfunc_a1(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xC0) {
-		sprintf(buf, "CMP     USP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "CMP     USP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -7372,7 +7372,7 @@ int dasmfunc_a1(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0xAD) {
-		sprintf(buf, "CMPC    A, 0%04xh[USP]", (op[3]<<8)|op[2]);
+		sprintf(buf, "CMPC    A, %s[USP]", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -7401,7 +7401,7 @@ int dasmfunc_a1(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0xA9) {
-		sprintf(buf, "LC      A, 0%04xh[USP]", (op[3]<<8)|op[2]);
+		sprintf(buf, "LC      A, %s[USP]", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -7411,7 +7411,7 @@ int dasmfunc_a1(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0xAB) {
-		sprintf(buf, "LCB     A, 0%04xh[USP]", (op[3]<<8)|op[2]);
+		sprintf(buf, "LCB     A, %s[USP]", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -7457,7 +7457,7 @@ int dasmfunc_a1(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0x98) {
-		sprintf(buf, "MOV     USP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "MOV     USP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->usp = (op[3]<<8)|op[2];
 		D->pc += 4;
 		return 4;
@@ -7508,7 +7508,7 @@ int dasmfunc_a1(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xD0) {
-		sprintf(buf, "OR      USP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "OR      USP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -7538,7 +7538,7 @@ int dasmfunc_a1(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xB0) {
-		sprintf(buf, "SBC     USP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "SBC     USP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -7573,7 +7573,7 @@ int dasmfunc_a1(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xA0) {
-		sprintf(buf, "SUB     USP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "SUB     USP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -7598,7 +7598,7 @@ int dasmfunc_a1(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xF0) {
-		sprintf(buf, "XOR     USP, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "XOR     USP, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -7693,7 +7693,7 @@ int dasmfunc_a2(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xAF) {
-		sprintf(buf, "CMPCB   A, 0%04xh[USP]", (op[3]<<8)|op[2]);
+		sprintf(buf, "CMPCB   A, %s[USP]", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -8562,7 +8562,7 @@ int dasmfunc_a4(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0x90) {
-		sprintf(buf, "ADC     LRB, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "ADC     LRB, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -8577,7 +8577,7 @@ int dasmfunc_a4(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0x80) {
-		sprintf(buf, "ADD     LRB, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "ADD     LRB, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -8592,7 +8592,7 @@ int dasmfunc_a4(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0xD0) {
-		sprintf(buf, "AND     LRB, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "AND     LRB, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -8622,7 +8622,7 @@ int dasmfunc_a4(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xC0) {
-		sprintf(buf, "CMP     LRB, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "CMP     LRB, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -8737,7 +8737,7 @@ int dasmfunc_a4(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xD0) {
-		sprintf(buf, "OR      LRB, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "OR      LRB, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -8767,7 +8767,7 @@ int dasmfunc_a4(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xB0) {
-		sprintf(buf, "SBC     LRB, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "SBC     LRB, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -8802,7 +8802,7 @@ int dasmfunc_a4(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xA0) {
-		sprintf(buf, "SUB     LRB, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "SUB     LRB, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -8827,7 +8827,7 @@ int dasmfunc_a4(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xF0) {
-		sprintf(buf, "XOR     LRB, #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "XOR     LRB, #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -8837,7 +8837,7 @@ int dasmfunc_a4(dasm_state *D, char *buf) {
 int dasmfunc_a6(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 1) {
-		sprintf(buf, "SUB     A, #0%04xh", (op[2]<<8)|op[1]);
+		sprintf(buf, "SUB     A, #%s", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 3;
 		return 3;
 	}
@@ -8947,307 +8947,307 @@ int dasmfunc_af(dasm_state *D, char *buf) {
 int dasmfunc_b0(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 1 && op[3]==0x92) {
-		sprintf(buf, "ADC     A, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "ADC     A, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x93) {
-		sprintf(buf, "ADC     0%04xh[X1], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "ADC     %s[X1], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0x90) {
-		sprintf(buf, "ADC     0%04xh[X1], #0%04xh", (op[2]<<8)|op[1], (op[5]<<8)|op[4]);
+		sprintf(buf, "ADC     %s[X1], #%s", get_romtable_label((op[2]<<8)|op[1]), get_romtable_label((op[5]<<8)|op[4]));
 		D->pc += 6;
 		return 6;
 	}
 	if(D->dd == 1 && op[3]==0x82) {
-		sprintf(buf, "ADD     A, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "ADD     A, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x81) {
-		sprintf(buf, "ADD     0%04xh[X1], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "ADD     %s[X1], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 1 && op[3]==0x83) {
-		sprintf(buf, "ADD     0%04xh[X1], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "ADD     %s[X1], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0x80) {
-		sprintf(buf, "ADD     0%04xh[X1], #0%04xh", (op[2]<<8)|op[1], (op[5]<<8)|op[4]);
+		sprintf(buf, "ADD     %s[X1], #%s", get_romtable_label((op[2]<<8)|op[1]), get_romtable_label((op[5]<<8)|op[4]));
 		D->pc += 6;
 		return 6;
 	}
 	if(1 && op[3]==0xD1) {
-		sprintf(buf, "AND     0%04xh[X1], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "AND     %s[X1], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 1 && op[3]==0xD2) {
-		sprintf(buf, "AND     A, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "AND     A, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xD3) {
-		sprintf(buf, "AND     0%04xh[X1], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "AND     %s[X1], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0xD0) {
-		sprintf(buf, "AND     0%04xh[X1], #0%04xh", (op[2]<<8)|op[1], (op[5]<<8)|op[4]);
+		sprintf(buf, "AND     %s[X1], #%s", get_romtable_label((op[2]<<8)|op[1]), get_romtable_label((op[5]<<8)|op[4]));
 		D->pc += 6;
 		return 6;
 	}
 	if(1 && op[3]==0x23) {
-		sprintf(buf, "CAL     [0%04xh[X1]]", (op[2]<<8)|op[1]);
+		sprintf(buf, "CAL     [%s[X1]]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x15) {
-		sprintf(buf, "CLR     0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "CLR     %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 1 && op[3]==0xC2) {
-		sprintf(buf, "CMP     A, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "CMP     A, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xC1) {
-		sprintf(buf, "CMP     0%04xh[X1], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "CMP     %s[X1], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xC3) {
-		sprintf(buf, "CMP     0%04xh[X1], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "CMP     %s[X1], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0xC0) {
-		sprintf(buf, "CMP     0%04xh[X1], #0%04xh", (op[2]<<8)|op[1], (op[5]<<8)|op[4]);
+		sprintf(buf, "CMP     %s[X1], #%s", get_romtable_label((op[2]<<8)|op[1]), get_romtable_label((op[5]<<8)|op[4]));
 		D->pc += 6;
 		return 6;
 	}
 	if(1 && op[3]==0xAC) {
-		sprintf(buf, "CMPC    A, [0%04xh[X1]]", (op[2]<<8)|op[1]);
+		sprintf(buf, "CMPC    A, [%s[X1]]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xAE) {
-		sprintf(buf, "CMPCB   A, [0%04xh[X1]]", (op[2]<<8)|op[1]);
+		sprintf(buf, "CMPCB   A, [%s[X1]]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x17) {
-		sprintf(buf, "DEC     0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "DEC     %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x16) {
-		sprintf(buf, "INC     0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "INC     %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x22) {
-		sprintf(buf, "J       [0%04xh[X1]]", (op[2]<<8)|op[1]);
+		sprintf(buf, "J       [%s[X1]]", get_romtable_label((op[2]<<8)|op[1]));
 		return 4;
 	}
 	if(1 && op[3]==0xA8) {
-		sprintf(buf, "LC      A, [0%04xh[X1]]", (op[2]<<8)|op[1]);
+		sprintf(buf, "LC      A, [%s[X1]]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xAA) {
-		sprintf(buf, "LCB     A, [0%04xh[X1]]", (op[2]<<8)|op[1]);
+		sprintf(buf, "LCB     A, [%s[X1]]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x99) {
-		sprintf(buf, "MOV     A, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     A, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->dd = 1;
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x7A) {
-		sprintf(buf, "MOV     DP, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     DP, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x48) {
-		sprintf(buf, "MOV     er0, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     er0, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x49) {
-		sprintf(buf, "MOV     er1, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     er1, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x4A) {
-		sprintf(buf, "MOV     er2, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     er2, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x4B) {
-		sprintf(buf, "MOV     er3, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     er3, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x7F) {
-		sprintf(buf, "MOV     LRB, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     LRB, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x8A) {
-		sprintf(buf, "MOV     0%04xh[X1], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     %s[X1], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x98) {
-		sprintf(buf, "MOV     0%04xh[X1], #0%04xh", (op[2]<<8)|op[1], (op[5]<<8)|op[4]);
+		sprintf(buf, "MOV     %s[X1], #%s", get_romtable_label((op[2]<<8)|op[1]), get_romtable_label((op[5]<<8)|op[4]));
 		D->pc += 6;
 		return 6;
 	}
 	if(1 && op[3]==0x7C) {
-		sprintf(buf, "MOV     off(%s), 0%04xh[X1]", get_ram_label(((D->lrb>>5)<<8)|op[4], 4), (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     off(%s), %s[X1]", get_ram_label(((D->lrb>>5)<<8)|op[4], 4), get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0x7D) {
-		sprintf(buf, "MOV     PSW, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     PSW, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x7E) {
-		sprintf(buf, "MOV     SSP, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     SSP, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x7B) {
-		sprintf(buf, "MOV     USP, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     USP, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x78) {
-		sprintf(buf, "MOV     X1, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     X1, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x79) {
-		sprintf(buf, "MOV     X2, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     X2, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 1 && op[3]==0xE2) {
-		sprintf(buf, "OR      A, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "OR      A, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xE1) {
-		sprintf(buf, "OR      0%04xh[X1], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "OR      %s[X1], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xE3) {
-		sprintf(buf, "OR      0%04xh[X1], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "OR      %s[X1], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0xD0) {
-		sprintf(buf, "OR      0%04xh[X1], #0%04xh", (op[2]<<8)|op[1], (op[5]<<8)|op[4]);
+		sprintf(buf, "OR      %s[X1], #%s", get_romtable_label((op[2]<<8)|op[1]), get_romtable_label((op[5]<<8)|op[4]));
 		D->pc += 6;
 		return 6;
 	}
 	if(1 && op[3]==0xB7) {
-		sprintf(buf, "ROL     0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "ROL     %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xC7) {
-		sprintf(buf, "ROR     0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "ROR     %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 1 && op[3]==0xB2) {
-		sprintf(buf, "SBC     A, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "SBC     A, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xB1) {
-		sprintf(buf, "SBC     0%04xh[X1], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "SBC     %s[X1], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xB3) {
-		sprintf(buf, "SBC     0%04xh[X1], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "SBC     %s[X1], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0xB0) {
-		sprintf(buf, "SBC     0%04xh[X1], #0%04xh", (op[2]<<8)|op[1], (op[5]<<8)|op[4]);
+		sprintf(buf, "SBC     %s[X1], #%s", get_romtable_label((op[2]<<8)|op[1]), get_romtable_label((op[5]<<8)|op[4]));
 		D->pc += 6;
 		return 6;
 	}
 	if(1 && op[3]==0xD7) {
-		sprintf(buf, "SLL     0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "SLL     %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xF7) {
-		sprintf(buf, "SRA     0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "SRA     %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xE7) {
-		sprintf(buf, "SRL     0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "SRL     %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 1 && op[3]==0xA2) {
-		sprintf(buf, "SUB     A, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "SUB     A, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xA1) {
-		sprintf(buf, "SUB     0%04xh[X1], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "SUB     %s[X1], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 1 && op[3]==0xA3) {
-		sprintf(buf, "SUB     0%04xh[X1], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "SUB     %s[X1], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0xA0) {
-		sprintf(buf, "SUB     0%04xh[X1], #0%04xh", (op[2]<<8)|op[1], (op[5]<<8)|op[4]);
+		sprintf(buf, "SUB     %s[X1], #%s", get_romtable_label((op[2]<<8)|op[1]), get_romtable_label((op[5]<<8)|op[4]));
 		D->pc += 6;
 		return 6;
 	}
 	if(D->dd == 1 && op[3]==0x10) {
-		sprintf(buf, "XCHG    A, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "XCHG    A, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 1 && op[3]==0xF2) {
-		sprintf(buf, "XOR     A, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "XOR     A, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xF1) {
-		sprintf(buf, "XOR     0%04xh[X1], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "XOR     %s[X1], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xF3) {
-		sprintf(buf, "XOR     0%04xh[X1], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "XOR     %s[X1], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0xF0) {
-		sprintf(buf, "XOR     0%04xh[X1], #0%04xh", (op[2]<<8)|op[1], (op[5]<<8)|op[4]);
+		sprintf(buf, "XOR     %s[X1], #%s", get_romtable_label((op[2]<<8)|op[1]), get_romtable_label((op[5]<<8)|op[4]));
 		D->pc += 6;
 		return 6;
 	}
@@ -9257,307 +9257,307 @@ int dasmfunc_b0(dasm_state *D, char *buf) {
 int dasmfunc_b1(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 1 && op[3]==0x92) {
-		sprintf(buf, "ADC     A, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "ADC     A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x93) {
-		sprintf(buf, "ADC     0%04xh[X2], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "ADC     %s[X2], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0x90) {
-		sprintf(buf, "ADC     0%04xh[X2], #0%04xh", (op[2]<<8)|op[1], (op[5]<<8)|op[4]);
+		sprintf(buf, "ADC     %s[X2], #%s", get_romtable_label((op[2]<<8)|op[1]), get_romtable_label((op[5]<<8)|op[4]));
 		D->pc += 6;
 		return 6;
 	}
 	if(D->dd == 1 && op[3]==0x82) {
-		sprintf(buf, "ADD     A, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "ADD     A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x81) {
-		sprintf(buf, "ADD     0%04xh[X2], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "ADD     %s[X2], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 1 && op[3]==0x83) {
-		sprintf(buf, "ADD     0%04xh[X2], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "ADD     %s[X2], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0x80) {
-		sprintf(buf, "ADD     0%04xh[X2], #0%04xh", (op[2]<<8)|op[1], (op[5]<<8)|op[4]);
+		sprintf(buf, "ADD     %s[X2], #%s", get_romtable_label((op[2]<<8)|op[1]), get_romtable_label((op[5]<<8)|op[4]));
 		D->pc += 6;
 		return 6;
 	}
 	if(1 && op[3]==0xD1) {
-		sprintf(buf, "AND     0%04xh[X2], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "AND     %s[X2], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 1 && op[3]==0xD2) {
-		sprintf(buf, "AND     A, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "AND     A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xD3) {
-		sprintf(buf, "AND     0%04xh[X2], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "AND     %s[X2], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0xD0) {
-		sprintf(buf, "AND     0%04xh[X2], #0%04xh", (op[2]<<8)|op[1], (op[5]<<8)|op[4]);
+		sprintf(buf, "AND     %s[X2], #%s", get_romtable_label((op[2]<<8)|op[1]), get_romtable_label((op[5]<<8)|op[4]));
 		D->pc += 6;
 		return 6;
 	}
 	if(1 && op[3]==0x23) {
-		sprintf(buf, "CAL     [0%04xh[X2]]", (op[2]<<8)|op[1]);
+		sprintf(buf, "CAL     [%s[X2]]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x15) {
-		sprintf(buf, "CLR     0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "CLR     %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 1 && op[3]==0xC2) {
-		sprintf(buf, "CMP     A, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "CMP     A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xC1) {
-		sprintf(buf, "CMP     0%04xh[X2], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "CMP     %s[X2], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xC3) {
-		sprintf(buf, "CMP     0%04xh[X2], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "CMP     %s[X2], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0xC0) {
-		sprintf(buf, "CMP     0%04xh[X2], #0%04xh", (op[2]<<8)|op[1], (op[5]<<8)|op[4]);
+		sprintf(buf, "CMP     %s[X2], #%s", get_romtable_label((op[2]<<8)|op[1]), get_romtable_label((op[5]<<8)|op[4]));
 		D->pc += 6;
 		return 6;
 	}
 	if(1 && op[3]==0xAC) {
-		sprintf(buf, "CMPC    A, [0%04xh[X2]]", (op[2]<<8)|op[1]);
+		sprintf(buf, "CMPC    A, [%s[X2]]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xAE) {
-		sprintf(buf, "CMPCB   A, [0%04xh[X2]]", (op[2]<<8)|op[1]);
+		sprintf(buf, "CMPCB   A, [%s[X2]]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x17) {
-		sprintf(buf, "DEC     0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "DEC     %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x16) {
-		sprintf(buf, "INC     0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "INC     %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x22) {
-		sprintf(buf, "J       [0%04xh[X2]]", (op[2]<<8)|op[1]);
+		sprintf(buf, "J       [%s[X2]]", get_romtable_label((op[2]<<8)|op[1]));
 		return 4;
 	}
 	if(1 && op[3]==0xA8) {
-		sprintf(buf, "LC      A, [0%04xh[X2]]", (op[2]<<8)|op[1]);
+		sprintf(buf, "LC      A, [%s[X2]]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xAA) {
-		sprintf(buf, "LCB     A, [0%04xh[X2]]", (op[2]<<8)|op[1]);
+		sprintf(buf, "LCB     A, [%s[X2]]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x99) {
-		sprintf(buf, "MOV     A, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->dd = 1;
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x7A) {
-		sprintf(buf, "MOV     DP, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     DP, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x48) {
-		sprintf(buf, "MOV     er0, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     er0, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x49) {
-		sprintf(buf, "MOV     er1, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     er1, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x4A) {
-		sprintf(buf, "MOV     er2, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     er2, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x4B) {
-		sprintf(buf, "MOV     er3, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     er3, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x7F) {
-		sprintf(buf, "MOV     LRB, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     LRB, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x8A) {
-		sprintf(buf, "MOV     0%04xh[X2], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     %s[X2], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x98) {
-		sprintf(buf, "MOV     0%04xh[X2], #0%04xh", (op[2]<<8)|op[1], (op[5]<<8)|op[4]);
+		sprintf(buf, "MOV     %s[X2], #%s", get_romtable_label((op[2]<<8)|op[1]), get_romtable_label((op[5]<<8)|op[4]));
 		D->pc += 6;
 		return 6;
 	}
 	if(1 && op[3]==0x7C) {
-		sprintf(buf, "MOV     off(%s), 0%04xh[X2]", get_ram_label(((D->lrb>>5)<<8)|op[4], 4), (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     off(%s), %s[X2]", get_ram_label(((D->lrb>>5)<<8)|op[4], 4), get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0x7D) {
-		sprintf(buf, "MOV     PSW, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     PSW, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x7E) {
-		sprintf(buf, "MOV     SSP, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     SSP, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x7B) {
-		sprintf(buf, "MOV     USP, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     USP, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x78) {
-		sprintf(buf, "MOV     X1, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     X1, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x79) {
-		sprintf(buf, "MOV     X2, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOV     X2, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 1 && op[3]==0xE2) {
-		sprintf(buf, "OR      A, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "OR      A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xE1) {
-		sprintf(buf, "OR      0%04xh[X2], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "OR      %s[X2], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xE3) {
-		sprintf(buf, "OR      0%04xh[X2], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "OR      %s[X2], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0xD0) {
-		sprintf(buf, "OR      0%04xh[X2], #0%04xh", (op[2]<<8)|op[1], (op[5]<<8)|op[4]);
+		sprintf(buf, "OR      %s[X2], #%s", get_romtable_label((op[2]<<8)|op[1]), get_romtable_label((op[5]<<8)|op[4]));
 		D->pc += 6;
 		return 6;
 	}
 	if(1 && op[3]==0xB7) {
-		sprintf(buf, "ROL     0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "ROL     %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xC7) {
-		sprintf(buf, "ROR     0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "ROR     %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 1 && op[3]==0xB2) {
-		sprintf(buf, "SBC     A, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "SBC     A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xB1) {
-		sprintf(buf, "SBC     0%04xh[X2], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "SBC     %s[X2], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xB3) {
-		sprintf(buf, "SBC     0%04xh[X2], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "SBC     %s[X2], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0xB0) {
-		sprintf(buf, "SBC     0%04xh[X2], #0%04xh", (op[2]<<8)|op[1], (op[5]<<8)|op[4]);
+		sprintf(buf, "SBC     %s[X2], #%s", get_romtable_label((op[2]<<8)|op[1]), get_romtable_label((op[5]<<8)|op[4]));
 		D->pc += 6;
 		return 6;
 	}
 	if(1 && op[3]==0xD7) {
-		sprintf(buf, "SLL     0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "SLL     %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xF7) {
-		sprintf(buf, "SRA     0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "SRA     %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xE7) {
-		sprintf(buf, "SRL     0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "SRL     %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 1 && op[3]==0xA2) {
-		sprintf(buf, "SUB     A, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "SUB     A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xA1) {
-		sprintf(buf, "SUB     0%04xh[X2], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "SUB     %s[X2], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 1 && op[3]==0xA3) {
-		sprintf(buf, "SUB     0%04xh[X2], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "SUB     %s[X2], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0xA0) {
-		sprintf(buf, "SUB     0%04xh[X2], #0%04xh", (op[2]<<8)|op[1], (op[5]<<8)|op[4]);
+		sprintf(buf, "SUB     %s[X2], #%s", get_romtable_label((op[2]<<8)|op[1]), get_romtable_label((op[5]<<8)|op[4]));
 		D->pc += 6;
 		return 6;
 	}
 	if(D->dd == 1 && op[3]==0x10) {
-		sprintf(buf, "XCHG    A, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "XCHG    A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 1 && op[3]==0xF2) {
-		sprintf(buf, "XOR     A, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "XOR     A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xF1) {
-		sprintf(buf, "XOR     0%04xh[X2], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "XOR     %s[X2], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xF3) {
-		sprintf(buf, "XOR     0%04xh[X2], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "XOR     %s[X2], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0xF0) {
-		sprintf(buf, "XOR     0%04xh[X2], #0%04xh", (op[2]<<8)|op[1], (op[5]<<8)|op[4]);
+		sprintf(buf, "XOR     %s[X2], #%s", get_romtable_label((op[2]<<8)|op[1]), get_romtable_label((op[5]<<8)|op[4]));
 		D->pc += 6;
 		return 6;
 	}
@@ -9577,7 +9577,7 @@ int dasmfunc_b2(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0x90) {
-		sprintf(buf, "ADC     [DP], #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "ADC     [DP], #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -9597,7 +9597,7 @@ int dasmfunc_b2(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0x80) {
-		sprintf(buf, "ADD     [DP], #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "ADD     [DP], #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -9617,7 +9617,7 @@ int dasmfunc_b2(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xD0) {
-		sprintf(buf, "AND     [DP], #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "AND     [DP], #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -9647,7 +9647,7 @@ int dasmfunc_b2(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xC0) {
-		sprintf(buf, "CMP     [DP], #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "CMP     [DP], #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -9727,7 +9727,7 @@ int dasmfunc_b2(dasm_state *D, char *buf) {
 		return 2;
 	}
 	if(1 && op[1]==0x98) {
-		sprintf(buf, "MOV     [DP], #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "MOV     [DP], #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -9777,7 +9777,7 @@ int dasmfunc_b2(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xD0) {
-		sprintf(buf, "OR      [DP], #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "OR      [DP], #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -9807,7 +9807,7 @@ int dasmfunc_b2(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xB0) {
-		sprintf(buf, "SBC     [DP], #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "SBC     [DP], #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -9842,7 +9842,7 @@ int dasmfunc_b2(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xA0) {
-		sprintf(buf, "SUB     [DP], #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "SUB     [DP], #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -9867,7 +9867,7 @@ int dasmfunc_b2(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[1]==0xF0) {
-		sprintf(buf, "XOR     [DP], #0%04xh", (op[3]<<8)|op[2]);
+		sprintf(buf, "XOR     [DP], #%s", get_romtable_label((op[3]<<8)|op[2]));
 		D->pc += 4;
 		return 4;
 	}
@@ -9887,7 +9887,7 @@ int dasmfunc_b3(dasm_state *D, char *buf) {
 		return 4;
 	}
 	if(1 && op[2]==0x90) {
-		sprintf(buf, "ADC     (%s-0%04xh)[USP], #0%04xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, (op[4]<<8)|op[3]);
+		sprintf(buf, "ADC     (%s-0%04xh)[USP], #%s", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -9907,7 +9907,7 @@ int dasmfunc_b3(dasm_state *D, char *buf) {
 		return 4;
 	}
 	if(1 && op[2]==0x80) {
-		sprintf(buf, "ADD     (%s-0%04xh)[USP], #0%04xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, (op[4]<<8)|op[3]);
+		sprintf(buf, "ADD     (%s-0%04xh)[USP], #%s", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -9927,7 +9927,7 @@ int dasmfunc_b3(dasm_state *D, char *buf) {
 		return 4;
 	}
 	if(1 && op[2]==0xD0) {
-		sprintf(buf, "AND     (%s-0%04xh)[USP], #0%04xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, (op[4]<<8)|op[3]);
+		sprintf(buf, "AND     (%s-0%04xh)[USP], #%s", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -9957,7 +9957,7 @@ int dasmfunc_b3(dasm_state *D, char *buf) {
 		return 4;
 	}
 	if(1 && op[2]==0xC0) {
-		sprintf(buf, "CMP     (%s-0%04xh)[USP], #0%04xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, (op[4]<<8)|op[3]);
+		sprintf(buf, "CMP     (%s-0%04xh)[USP], #%s", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -10037,7 +10037,7 @@ int dasmfunc_b3(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[2]==0x98) {
-		sprintf(buf, "MOV     (%s-0%04xh)[USP], #0%04xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, (op[4]<<8)|op[3]);
+		sprintf(buf, "MOV     (%s-0%04xh)[USP], #%s", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -10087,7 +10087,7 @@ int dasmfunc_b3(dasm_state *D, char *buf) {
 		return 4;
 	}
 	if(1 && op[2]==0xD0) {
-		sprintf(buf, "OR      (%s-0%04xh)[USP], #0%04xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, (op[4]<<8)|op[3]);
+		sprintf(buf, "OR      (%s-0%04xh)[USP], #%s", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -10117,7 +10117,7 @@ int dasmfunc_b3(dasm_state *D, char *buf) {
 		return 4;
 	}
 	if(1 && op[2]==0xB0) {
-		sprintf(buf, "SBC     (%s-0%04xh)[USP], #0%04xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, (op[4]<<8)|op[3]);
+		sprintf(buf, "SBC     (%s-0%04xh)[USP], #%s", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -10152,7 +10152,7 @@ int dasmfunc_b3(dasm_state *D, char *buf) {
 		return 4;
 	}
 	if(1 && op[2]==0xA0) {
-		sprintf(buf, "SUB     (%s-0%04xh)[USP], #0%04xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, (op[4]<<8)|op[3]);
+		sprintf(buf, "SUB     (%s-0%04xh)[USP], #%s", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -10177,7 +10177,7 @@ int dasmfunc_b3(dasm_state *D, char *buf) {
 		return 4;
 	}
 	if(1 && op[2]==0xF0) {
-		sprintf(buf, "XOR     (%s-0%04xh)[USP], #0%04xh", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, (op[4]<<8)|op[3]);
+		sprintf(buf, "XOR     (%s-0%04xh)[USP], #%s", get_ram_label(D->usp+((signed char)op[1]), 4), D->usp, get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -10192,7 +10192,7 @@ int dasmfunc_b4(dasm_state *D, char *buf) {
 		return 4;
 	}
 	if(1 && op[2]==0x90) {
-		sprintf(buf, "ADC     off(%s), #0%04xh", get_ram_label(((D->lrb>>5)<<8)|op[1], 4), (op[4]<<8)|op[3]);
+		sprintf(buf, "ADC     off(%s), #%s", get_ram_label(((D->lrb>>5)<<8)|op[1], 4), get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -10207,7 +10207,7 @@ int dasmfunc_b4(dasm_state *D, char *buf) {
 		return 4;
 	}
 	if(1 && op[2]==0x80) {
-		sprintf(buf, "ADD     off(%s), #0%04xh", get_ram_label(((D->lrb>>5)<<8)|op[1], 4), (op[4]<<8)|op[3]);
+		sprintf(buf, "ADD     off(%s), #%s", get_ram_label(((D->lrb>>5)<<8)|op[1], 4), get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -10222,7 +10222,7 @@ int dasmfunc_b4(dasm_state *D, char *buf) {
 		return 4;
 	}
 	if(1 && op[2]==0xD0) {
-		sprintf(buf, "AND     off(%s), #0%04xh", get_ram_label(((D->lrb>>5)<<8)|op[1], 4), (op[4]<<8)|op[3]);
+		sprintf(buf, "AND     off(%s), #%s", get_ram_label(((D->lrb>>5)<<8)|op[1], 4), get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -10247,7 +10247,7 @@ int dasmfunc_b4(dasm_state *D, char *buf) {
 		return 4;
 	}
 	if(1 && op[2]==0xC0) {
-		sprintf(buf, "CMP     off(%s), #0%04xh", get_ram_label(((D->lrb>>5)<<8)|op[1], 4), (op[4]<<8)|op[3]);
+		sprintf(buf, "CMP     off(%s), #%s", get_ram_label(((D->lrb>>5)<<8)|op[1], 4), get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -10257,7 +10257,7 @@ int dasmfunc_b4(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[2]==0xAD) {
-		sprintf(buf, "CMPC    A, 0%04xh[off(%s)]", (op[4]<<8)|op[3], get_ram_label(((D->lrb>>5)<<8)|op[1], 4));
+		sprintf(buf, "CMPC    A, %s[off(%s)]", get_romtable_label((op[4]<<8)|op[3]), get_ram_label(((D->lrb>>5)<<8)|op[1], 4));
 		D->pc += 5;
 		return 5;
 	}
@@ -10267,7 +10267,7 @@ int dasmfunc_b4(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[2]==0xAF) {
-		sprintf(buf, "CMPCB   A, 0%04xh[off(%s)]", (op[4]<<8)|op[3], get_ram_label(((D->lrb>>5)<<8)|op[1], 4));
+		sprintf(buf, "CMPCB   A, %s[off(%s)]", get_romtable_label((op[4]<<8)|op[3]), get_ram_label(((D->lrb>>5)<<8)|op[1], 4));
 		D->pc += 5;
 		return 5;
 	}
@@ -10291,7 +10291,7 @@ int dasmfunc_b4(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[2]==0xA9) {
-		sprintf(buf, "LC      A, 0%04xh[off(%s)]", (op[4]<<8)|op[3], get_ram_label(((D->lrb>>5)<<8)|op[1], 4));
+		sprintf(buf, "LC      A, %s[off(%s)]", get_romtable_label((op[4]<<8)|op[3]), get_ram_label(((D->lrb>>5)<<8)|op[1], 4));
 		D->pc += 5;
 		return 5;
 	}
@@ -10301,7 +10301,7 @@ int dasmfunc_b4(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[2]==0xAB) {
-		sprintf(buf, "LCB     A, 0%04xh[off(%s)]", (op[4]<<8)|op[3], get_ram_label(((D->lrb>>5)<<8)|op[1], 4));
+		sprintf(buf, "LCB     A, %s[off(%s)]", get_romtable_label((op[4]<<8)|op[3]), get_ram_label(((D->lrb>>5)<<8)|op[1], 4));
 		D->pc += 5;
 		return 5;
 	}
@@ -10347,7 +10347,7 @@ int dasmfunc_b4(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[2]==0x98) {
-		sprintf(buf, "MOV     off(%s), #0%04xh", get_ram_label(((D->lrb>>5)<<8)|op[1], 4), (op[4]<<8)|op[3]);
+		sprintf(buf, "MOV     off(%s), #%s", get_ram_label(((D->lrb>>5)<<8)|op[1], 4), get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -10397,7 +10397,7 @@ int dasmfunc_b4(dasm_state *D, char *buf) {
 		return 4;
 	}
 	if(1 && op[2]==0xD0) {
-		sprintf(buf, "OR      off(%s), #0%04xh", get_ram_label(((D->lrb>>5)<<8)|op[1], 4), (op[4]<<8)|op[3]);
+		sprintf(buf, "OR      off(%s), #%s", get_ram_label(((D->lrb>>5)<<8)|op[1], 4), get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -10422,7 +10422,7 @@ int dasmfunc_b4(dasm_state *D, char *buf) {
 		return 4;
 	}
 	if(1 && op[2]==0xB0) {
-		sprintf(buf, "SBC     off(%s), #0%04xh", get_ram_label(((D->lrb>>5)<<8)|op[1], 4), (op[4]<<8)|op[3]);
+		sprintf(buf, "SBC     off(%s), #%s", get_ram_label(((D->lrb>>5)<<8)|op[1], 4), get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -10452,7 +10452,7 @@ int dasmfunc_b4(dasm_state *D, char *buf) {
 		return 4;
 	}
 	if(1 && op[2]==0xA0) {
-		sprintf(buf, "SUB     off(%s), #0%04xh", get_ram_label(((D->lrb>>5)<<8)|op[1], 4), (op[4]<<8)|op[3]);
+		sprintf(buf, "SUB     off(%s), #%s", get_ram_label(((D->lrb>>5)<<8)|op[1], 4), get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -10472,7 +10472,7 @@ int dasmfunc_b4(dasm_state *D, char *buf) {
 		return 4;
 	}
 	if(1 && op[2]==0xF0) {
-		sprintf(buf, "XOR     off(%s), #0%04xh", get_ram_label(((D->lrb>>5)<<8)|op[1], 4), (op[4]<<8)|op[3]);
+		sprintf(buf, "XOR     off(%s), #%s", get_ram_label(((D->lrb>>5)<<8)|op[1], 4), get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -10492,7 +10492,7 @@ int dasmfunc_b5(dasm_state *D, char *buf) {
 		return 4;
 	}
 	if(1 && op[2]==0x90) {
-		sprintf(buf, "ADC     %s, #0%04xh", get_ram_label(op[1], 2), (op[4]<<8)|op[3]);
+		sprintf(buf, "ADC     %s, #%s", get_ram_label(op[1], 2), get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -10512,7 +10512,7 @@ int dasmfunc_b5(dasm_state *D, char *buf) {
 		return 4;
 	}
 	if(1 && op[2]==0x80) {
-		sprintf(buf, "ADD     %s, #0%04xh", get_ram_label(op[1], 2), (op[4]<<8)|op[3]);
+		sprintf(buf, "ADD     %s, #%s", get_ram_label(op[1], 2), get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -10532,7 +10532,7 @@ int dasmfunc_b5(dasm_state *D, char *buf) {
 		return 4;
 	}
 	if(1 && op[2]==0xD0) {
-		sprintf(buf, "AND     %s, #0%04xh", get_ram_label(op[1], 2), (op[4]<<8)|op[3]);
+		sprintf(buf, "AND     %s, #%s", get_ram_label(op[1], 2), get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -10562,7 +10562,7 @@ int dasmfunc_b5(dasm_state *D, char *buf) {
 		return 4;
 	}
 	if(1 && op[2]==0xC0) {
-		sprintf(buf, "CMP     %s, #0%04xh", get_ram_label(op[1], 2), (op[4]<<8)|op[3]);
+		sprintf(buf, "CMP     %s, #%s", get_ram_label(op[1], 2), get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -10572,7 +10572,7 @@ int dasmfunc_b5(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[2]==0xAD) {
-		sprintf(buf, "CMPC    A, 0%04xh[%s]", (op[4]<<8)|op[3], get_ram_label(op[1], 2));
+		sprintf(buf, "CMPC    A, %s[%s]", get_romtable_label((op[4]<<8)|op[3]), get_ram_label(op[1], 2));
 		D->pc += 5;
 		return 5;
 	}
@@ -10582,7 +10582,7 @@ int dasmfunc_b5(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[2]==0xAF) {
-		sprintf(buf, "CMPCB   A, 0%04xh[%s]", (op[4]<<8)|op[3], get_ram_label(op[1], 2));
+		sprintf(buf, "CMPCB   A, %s[%s]", get_romtable_label((op[4]<<8)|op[3]), get_ram_label(op[1], 2));
 		D->pc += 5;
 		return 5;
 	}
@@ -10606,7 +10606,7 @@ int dasmfunc_b5(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[2]==0xA9) {
-		sprintf(buf, "LC      A, 0%04xh[%s]", (op[4]<<8)|op[3], get_ram_label(op[1], 2));
+		sprintf(buf, "LC      A, %s[%s]", get_romtable_label((op[4]<<8)|op[3]), get_ram_label(op[1], 2));
 		D->pc += 5;
 		return 5;
 	}
@@ -10616,7 +10616,7 @@ int dasmfunc_b5(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[2]==0xAB) {
-		sprintf(buf, "LCB     A, 0%04xh[%s]", (op[4]<<8)|op[3], get_ram_label(op[1], 2));
+		sprintf(buf, "LCB     A, %s[%s]", get_romtable_label((op[4]<<8)|op[3]), get_ram_label(op[1], 2));
 		D->pc += 5;
 		return 5;
 	}
@@ -10662,7 +10662,7 @@ int dasmfunc_b5(dasm_state *D, char *buf) {
 		return 3;
 	}
 	if(1 && op[2]==0x98) {
-		sprintf(buf, "MOV     %s, #0%04xh", get_ram_label(op[1], 2), (op[4]<<8)|op[3]);
+		sprintf(buf, "MOV     %s, #%s", get_ram_label(op[1], 2), get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -10712,7 +10712,7 @@ int dasmfunc_b5(dasm_state *D, char *buf) {
 		return 4;
 	}
 	if(1 && op[2]==0xD0) {
-		sprintf(buf, "OR      %s, #0%04xh", get_ram_label(op[1], 2), (op[4]<<8)|op[3]);
+		sprintf(buf, "OR      %s, #%s", get_ram_label(op[1], 2), get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -10742,7 +10742,7 @@ int dasmfunc_b5(dasm_state *D, char *buf) {
 		return 4;
 	}
 	if(1 && op[2]==0xB0) {
-		sprintf(buf, "SBC     %s, #0%04xh", get_ram_label(op[1], 2), (op[4]<<8)|op[3]);
+		sprintf(buf, "SBC     %s, #%s", get_ram_label(op[1], 2), get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -10777,7 +10777,7 @@ int dasmfunc_b5(dasm_state *D, char *buf) {
 		return 4;
 	}
 	if(1 && op[2]==0xA0) {
-		sprintf(buf, "SUB     %s, #0%04xh", get_ram_label(op[1], 2), (op[4]<<8)|op[3]);
+		sprintf(buf, "SUB     %s, #%s", get_ram_label(op[1], 2), get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -10802,7 +10802,7 @@ int dasmfunc_b5(dasm_state *D, char *buf) {
 		return 4;
 	}
 	if(1 && op[2]==0xF0) {
-		sprintf(buf, "XOR     %s, #0%04xh", get_ram_label(op[1], 2), (op[4]<<8)|op[3]);
+		sprintf(buf, "XOR     %s, #%s", get_ram_label(op[1], 2), get_romtable_label((op[4]<<8)|op[3]));
 		D->pc += 5;
 		return 5;
 	}
@@ -10812,7 +10812,7 @@ int dasmfunc_b5(dasm_state *D, char *buf) {
 int dasmfunc_b6(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 1) {
-		sprintf(buf, "SBC     A, #0%04xh", (op[2]<<8)|op[1]);
+		sprintf(buf, "SBC     A, #%s", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 3;
 		return 3;
 	}
@@ -10922,463 +10922,463 @@ int dasmfunc_bf(dasm_state *D, char *buf) {
 int dasmfunc_c0(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 0 && op[3]==0x92) {
-		sprintf(buf, "ADCB    A, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "ADCB    A, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x91) {
-		sprintf(buf, "ADCB    0%04xh[X1], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "ADCB    %s[X1], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x93) {
-		sprintf(buf, "ADCB    0%04xh[X1], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "ADCB    %s[X1], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0x90) {
-		sprintf(buf, "ADCB    0%04xh[X1], #0%02xh", (op[2]<<8)|op[1], op[4]);
+		sprintf(buf, "ADCB    %s[X1], #0%02xh", get_romtable_label((op[2]<<8)|op[1]), op[4]);
 		D->pc += 5;
 		return 5;
 	}
 	if(D->dd == 0 && op[3]==0x82) {
-		sprintf(buf, "ADDB    A, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "ADDB    A, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x81) {
-		sprintf(buf, "ADDB    0%04xh[X1], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "ADDB    %s[X1], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x83) {
-		sprintf(buf, "ADDB    0%04xh[X1], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "ADDB    %s[X1], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0x80) {
-		sprintf(buf, "ADDB    0%04xh[X1], #0%02xh", (op[2]<<8)|op[1], op[4]);
+		sprintf(buf, "ADDB    %s[X1], #0%02xh", get_romtable_label((op[2]<<8)|op[1]), op[4]);
 		D->pc += 5;
 		return 5;
 	}
 	if(D->dd == 0 && op[3]==0xD2) {
-		sprintf(buf, "ANDB    A, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "ANDB    A, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xD1) {
-		sprintf(buf, "ANDB    0%04xh[X1], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "ANDB    %s[X1], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xD3) {
-		sprintf(buf, "ANDB    0%04xh[X1], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "ANDB    %s[X1], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0xD0) {
-		sprintf(buf, "ANDB    0%04xh[X1], #0%02xh", (op[2]<<8)|op[1], op[4]);
+		sprintf(buf, "ANDB    %s[X1], #0%02xh", get_romtable_label((op[2]<<8)|op[1]), op[4]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0x15) {
-		sprintf(buf, "CLRB    0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "CLRB    %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 0 && op[3]==0xC2) {
-		sprintf(buf, "CMPB    A, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "CMPB    A, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xC1) {
-		sprintf(buf, "CMPB    0%04xh[X1], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "CMPB    %s[X1], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xC3) {
-		sprintf(buf, "CMPB    0%04xh[X1], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "CMPB    %s[X1], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0xC0) {
-		sprintf(buf, "CMPB    0%04xh[X1], #0%02xh", (op[2]<<8)|op[1], op[4]);
+		sprintf(buf, "CMPB    %s[X1], #0%02xh", get_romtable_label((op[2]<<8)|op[1]), op[4]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0x17) {
-		sprintf(buf, "DECB    0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "DECB    %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x16) {
-		sprintf(buf, "INCB    0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "INCB    %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x28) {
-		sprintf(buf, "MB      C, 0%04xh[X1].0", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      C, %s[X1].0", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x29) {
-		sprintf(buf, "MB      C, 0%04xh[X1].1", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      C, %s[X1].1", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x2A) {
-		sprintf(buf, "MB      C, 0%04xh[X1].2", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      C, %s[X1].2", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x2B) {
-		sprintf(buf, "MB      C, 0%04xh[X1].3", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      C, %s[X1].3", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x2C) {
-		sprintf(buf, "MB      C, 0%04xh[X1].4", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      C, %s[X1].4", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x2D) {
-		sprintf(buf, "MB      C, 0%04xh[X1].5", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      C, %s[X1].5", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x2E) {
-		sprintf(buf, "MB      C, 0%04xh[X1].6", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      C, %s[X1].6", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x2F) {
-		sprintf(buf, "MB      C, 0%04xh[X1].7", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      C, %s[X1].7", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x38) {
-		sprintf(buf, "MB      0%04xh[X1].0, C", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      %s[X1].0, C", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x39) {
-		sprintf(buf, "MB      0%04xh[X1].1, C", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      %s[X1].1, C", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x3A) {
-		sprintf(buf, "MB      0%04xh[X1].2, C", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      %s[X1].2, C", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x3B) {
-		sprintf(buf, "MB      0%04xh[X1].3, C", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      %s[X1].3, C", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x3C) {
-		sprintf(buf, "MB      0%04xh[X1].4, C", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      %s[X1].4, C", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x3D) {
-		sprintf(buf, "MB      0%04xh[X1].5, C", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      %s[X1].5, C", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x3E) {
-		sprintf(buf, "MB      0%04xh[X1].6, C", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      %s[X1].6, C", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x3F) {
-		sprintf(buf, "MB      0%04xh[X1].7, C", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      %s[X1].7, C", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x21) {
-		sprintf(buf, "MBR     C, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MBR     C, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x20) {
-		sprintf(buf, "MBR     0%04xh[X1], C", (op[2]<<8)|op[1]);
+		sprintf(buf, "MBR     %s[X1], C", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x99) {
-		sprintf(buf, "MOVB    A, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    A, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->dd = 0;
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x8A) {
-		sprintf(buf, "MOVB    0%04xh[X1], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    %s[X1], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x7C) {
-		sprintf(buf, "MOVB    off(%s), 0%04xh[X1]", get_ram_label(((D->lrb>>5)<<8)|op[4], 4), (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    off(%s), %s[X1]", get_ram_label(((D->lrb>>5)<<8)|op[4], 4), get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0x98) {
-		sprintf(buf, "MOVB    0%04xh[X1], #0%02xh", (op[2]<<8)|op[1], op[4]);
+		sprintf(buf, "MOVB    %s[X1], #0%02xh", get_romtable_label((op[2]<<8)|op[1]), op[4]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0x89) {
-		sprintf(buf, "MOVB    PSWH, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    PSWH, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x88) {
-		sprintf(buf, "MOVB    PSWL, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    PSWL, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x48) {
-		sprintf(buf, "MOVB    r0, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    r0, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x49) {
-		sprintf(buf, "MOVB    r1, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    r1, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x4A) {
-		sprintf(buf, "MOVB    r2, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    r2, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x4B) {
-		sprintf(buf, "MOVB    r3, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    r3, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x4C) {
-		sprintf(buf, "MOVB    r4, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    r4, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x4D) {
-		sprintf(buf, "MOVB    r5, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    r5, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x4E) {
-		sprintf(buf, "MOVB    r6, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    r6, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x4F) {
-		sprintf(buf, "MOVB    r7, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    r7, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 0 && op[3]==0xE2) {
-		sprintf(buf, "ORB     A, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "ORB     A, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xE1) {
-		sprintf(buf, "ORB     0%04xh[X1], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "ORB     %s[X1], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xE3) {
-		sprintf(buf, "ORB     0%04xh[X1], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "ORB     %s[X1], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0xE0) {
-		sprintf(buf, "ORB     0%04xh[X1], #0%02xh", (op[2]<<8)|op[1], op[4]);
+		sprintf(buf, "ORB     %s[X1], #0%02xh", get_romtable_label((op[2]<<8)|op[1]), op[4]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0x08) {
-		sprintf(buf, "RB      0%04xh[X1].0", (op[2]<<8)|op[1]);
+		sprintf(buf, "RB      %s[X1].0", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x09) {
-		sprintf(buf, "RB      0%04xh[X1].1", (op[2]<<8)|op[1]);
+		sprintf(buf, "RB      %s[X1].1", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x0A) {
-		sprintf(buf, "RB      0%04xh[X1].2", (op[2]<<8)|op[1]);
+		sprintf(buf, "RB      %s[X1].2", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x0B) {
-		sprintf(buf, "RB      0%04xh[X1].3", (op[2]<<8)|op[1]);
+		sprintf(buf, "RB      %s[X1].3", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x0C) {
-		sprintf(buf, "RB      0%04xh[X1].4", (op[2]<<8)|op[1]);
+		sprintf(buf, "RB      %s[X1].4", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x0D) {
-		sprintf(buf, "RB      0%04xh[X1].5", (op[2]<<8)|op[1]);
+		sprintf(buf, "RB      %s[X1].5", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x0E) {
-		sprintf(buf, "RB      0%04xh[X1].6", (op[2]<<8)|op[1]);
+		sprintf(buf, "RB      %s[X1].6", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x0F) {
-		sprintf(buf, "RB      0%04xh[X1].7", (op[2]<<8)|op[1]);
+		sprintf(buf, "RB      %s[X1].7", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x12) {
-		sprintf(buf, "RBR     0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "RBR     %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xB7) {
-		sprintf(buf, "ROLB    0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "ROLB    %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xC7) {
-		sprintf(buf, "RORB    0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "RORB    %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x18) {
-		sprintf(buf, "SB      0%04xh[X1].0", (op[2]<<8)|op[1]);
+		sprintf(buf, "SB      %s[X1].0", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x19) {
-		sprintf(buf, "SB      0%04xh[X1].1", (op[2]<<8)|op[1]);
+		sprintf(buf, "SB      %s[X1].1", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x1A) {
-		sprintf(buf, "SB      0%04xh[X1].2", (op[2]<<8)|op[1]);
+		sprintf(buf, "SB      %s[X1].2", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x1B) {
-		sprintf(buf, "SB      0%04xh[X1].3", (op[2]<<8)|op[1]);
+		sprintf(buf, "SB      %s[X1].3", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x1C) {
-		sprintf(buf, "SB      0%04xh[X1].4", (op[2]<<8)|op[1]);
+		sprintf(buf, "SB      %s[X1].4", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x1D) {
-		sprintf(buf, "SB      0%04xh[X1].5", (op[2]<<8)|op[1]);
+		sprintf(buf, "SB      %s[X1].5", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x1E) {
-		sprintf(buf, "SB      0%04xh[X1].6", (op[2]<<8)|op[1]);
+		sprintf(buf, "SB      %s[X1].6", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x1F) {
-		sprintf(buf, "SB      0%04xh[X1].7", (op[2]<<8)|op[1]);
+		sprintf(buf, "SB      %s[X1].7", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 0 && op[3]==0xB2) {
-		sprintf(buf, "SBCB    A, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "SBCB    A, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xB1) {
-		sprintf(buf, "SBCB    0%04xh[X1], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "SBCB    %s[X1], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xB3) {
-		sprintf(buf, "SBCB    0%04xh[X1], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "SBCB    %s[X1], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0xB0) {
-		sprintf(buf, "SBCB    0%04xh[X1], #0%02xh", (op[2]<<8)|op[1], op[4]);
+		sprintf(buf, "SBCB    %s[X1], #0%02xh", get_romtable_label((op[2]<<8)|op[1]), op[4]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0x11) {
-		sprintf(buf, "SBR     0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "SBR     %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xD7) {
-		sprintf(buf, "SLLB    0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "SLLB    %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xF7) {
-		sprintf(buf, "SRAB    0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "SRAB    %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xE7) {
-		sprintf(buf, "SRLB    0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "SRLB    %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 0 && op[3]==0xA2) {
-		sprintf(buf, "SUBB    A, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "SUBB    A, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xA1) {
-		sprintf(buf, "SUBB    0%04xh[X1], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "SUBB    %s[X1], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xA3) {
-		sprintf(buf, "SUBB    0%04xh[X1], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "SUBB    %s[X1], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0xA0) {
-		sprintf(buf, "SUBB    0%04xh[X1], #0%02xh", (op[2]<<8)|op[1], op[4]);
+		sprintf(buf, "SUBB    %s[X1], #0%02xh", get_romtable_label((op[2]<<8)|op[1]), op[4]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0x13) {
-		sprintf(buf, "TRB     0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "TRB     %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 0 && op[3]==0x10) {
-		sprintf(buf, "XCHGB   A, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "XCHGB   A, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 0 && op[3]==0xF2) {
-		sprintf(buf, "XORB    A, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "XORB    A, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xF1) {
-		sprintf(buf, "XORB    0%04xh[X1], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "XORB    %s[X1], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xF3) {
-		sprintf(buf, "XORB    0%04xh[X1], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "XORB    %s[X1], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0xF0) {
-		sprintf(buf, "XORB    0%04xh[X1], #0%02xh", (op[2]<<8)|op[1], op[4]);
+		sprintf(buf, "XORB    %s[X1], #0%02xh", get_romtable_label((op[2]<<8)|op[1]), op[4]);
 		D->pc += 5;
 		return 5;
 	}
@@ -11388,463 +11388,463 @@ int dasmfunc_c0(dasm_state *D, char *buf) {
 int dasmfunc_c1(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 0 && op[3]==0x92) {
-		sprintf(buf, "ADCB    A, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "ADCB    A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x91) {
-		sprintf(buf, "ADCB    0%04xh[X2], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "ADCB    %s[X2], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x93) {
-		sprintf(buf, "ADCB    0%04xh[X2], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "ADCB    %s[X2], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0x90) {
-		sprintf(buf, "ADCB    0%04xh[X2], #0%02xh", (op[2]<<8)|op[1], op[4]);
+		sprintf(buf, "ADCB    %s[X2], #0%02xh", get_romtable_label((op[2]<<8)|op[1]), op[4]);
 		D->pc += 5;
 		return 5;
 	}
 	if(D->dd == 0 && op[3]==0x82) {
-		sprintf(buf, "ADDB    A, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "ADDB    A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x81) {
-		sprintf(buf, "ADDB    0%04xh[X2], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "ADDB    %s[X2], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x83) {
-		sprintf(buf, "ADDB    0%04xh[X2], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "ADDB    %s[X2], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0x80) {
-		sprintf(buf, "ADDB    0%04xh[X2], #0%02xh", (op[2]<<8)|op[1], op[4]);
+		sprintf(buf, "ADDB    %s[X2], #0%02xh", get_romtable_label((op[2]<<8)|op[1]), op[4]);
 		D->pc += 5;
 		return 5;
 	}
 	if(D->dd == 0 && op[3]==0xD2) {
-		sprintf(buf, "ANDB    A, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "ANDB    A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xD1) {
-		sprintf(buf, "ANDB    0%04xh[X2], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "ANDB    %s[X2], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xD3) {
-		sprintf(buf, "ANDB    0%04xh[X2], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "ANDB    %s[X2], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0xD0) {
-		sprintf(buf, "ANDB    0%04xh[X2], #0%02xh", (op[2]<<8)|op[1], op[4]);
+		sprintf(buf, "ANDB    %s[X2], #0%02xh", get_romtable_label((op[2]<<8)|op[1]), op[4]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0x15) {
-		sprintf(buf, "CLRB    0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "CLRB    %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 0 && op[3]==0xC2) {
-		sprintf(buf, "CMPB    A, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "CMPB    A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xC1) {
-		sprintf(buf, "CMPB    0%04xh[X2], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "CMPB    %s[X2], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xC3) {
-		sprintf(buf, "CMPB    0%04xh[X2], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "CMPB    %s[X2], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0xC0) {
-		sprintf(buf, "CMPB    0%04xh[X2], #0%02xh", (op[2]<<8)|op[1], op[4]);
+		sprintf(buf, "CMPB    %s[X2], #0%02xh", get_romtable_label((op[2]<<8)|op[1]), op[4]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0x17) {
-		sprintf(buf, "DECB    0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "DECB    %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x16) {
-		sprintf(buf, "INCB    0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "INCB    %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x28) {
-		sprintf(buf, "MB      C, 0%04xh[X2].0", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      C, %s[X2].0", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x29) {
-		sprintf(buf, "MB      C, 0%04xh[X2].1", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      C, %s[X2].1", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x2A) {
-		sprintf(buf, "MB      C, 0%04xh[X2].2", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      C, %s[X2].2", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x2B) {
-		sprintf(buf, "MB      C, 0%04xh[X2].3", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      C, %s[X2].3", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x2C) {
-		sprintf(buf, "MB      C, 0%04xh[X2].4", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      C, %s[X2].4", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x2D) {
-		sprintf(buf, "MB      C, 0%04xh[X2].5", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      C, %s[X2].5", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x2E) {
-		sprintf(buf, "MB      C, 0%04xh[X2].6", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      C, %s[X2].6", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x2F) {
-		sprintf(buf, "MB      C, 0%04xh[X2].7", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      C, %s[X2].7", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x38) {
-		sprintf(buf, "MB      0%04xh[X2].0, C", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      %s[X2].0, C", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x39) {
-		sprintf(buf, "MB      0%04xh[X2].1, C", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      %s[X2].1, C", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x3A) {
-		sprintf(buf, "MB      0%04xh[X2].2, C", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      %s[X2].2, C", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x3B) {
-		sprintf(buf, "MB      0%04xh[X2].3, C", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      %s[X2].3, C", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x3C) {
-		sprintf(buf, "MB      0%04xh[X2].4, C", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      %s[X2].4, C", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x3D) {
-		sprintf(buf, "MB      0%04xh[X2].5, C", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      %s[X2].5, C", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x3E) {
-		sprintf(buf, "MB      0%04xh[X2].6, C", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      %s[X2].6, C", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x3F) {
-		sprintf(buf, "MB      0%04xh[X2].7, C", (op[2]<<8)|op[1]);
+		sprintf(buf, "MB      %s[X2].7, C", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x21) {
-		sprintf(buf, "MBR     C, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MBR     C, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x20) {
-		sprintf(buf, "MBR     0%04xh[X2], C", (op[2]<<8)|op[1]);
+		sprintf(buf, "MBR     %s[X2], C", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x99) {
-		sprintf(buf, "MOVB    A, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->dd = 0;
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x8A) {
-		sprintf(buf, "MOVB    0%04xh[X2], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    %s[X2], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x7C) {
-		sprintf(buf, "MOVB    off(%s), 0%04xh[X2]", get_ram_label(((D->lrb>>5)<<8)|op[4], 4), (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    off(%s), %s[X2]", get_ram_label(((D->lrb>>5)<<8)|op[4], 4), get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0x98) {
-		sprintf(buf, "MOVB    0%04xh[X2], #0%02xh", (op[2]<<8)|op[1], op[4]);
+		sprintf(buf, "MOVB    %s[X2], #0%02xh", get_romtable_label((op[2]<<8)|op[1]), op[4]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0x89) {
-		sprintf(buf, "MOVB    PSWH, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    PSWH, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x88) {
-		sprintf(buf, "MOVB    PSWL, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    PSWL, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x48) {
-		sprintf(buf, "MOVB    r0, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    r0, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x49) {
-		sprintf(buf, "MOVB    r1, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    r1, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x4A) {
-		sprintf(buf, "MOVB    r2, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    r2, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x4B) {
-		sprintf(buf, "MOVB    r3, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    r3, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x4C) {
-		sprintf(buf, "MOVB    r4, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    r4, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x4D) {
-		sprintf(buf, "MOVB    r5, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    r5, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x4E) {
-		sprintf(buf, "MOVB    r6, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    r6, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x4F) {
-		sprintf(buf, "MOVB    r7, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "MOVB    r7, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 0 && op[3]==0xE2) {
-		sprintf(buf, "ORB     A, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "ORB     A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xE1) {
-		sprintf(buf, "ORB     0%04xh[X2], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "ORB     %s[X2], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xE3) {
-		sprintf(buf, "ORB     0%04xh[X2], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "ORB     %s[X2], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0xE0) {
-		sprintf(buf, "ORB     0%04xh[X2], #0%02xh", (op[2]<<8)|op[1], op[4]);
+		sprintf(buf, "ORB     %s[X2], #0%02xh", get_romtable_label((op[2]<<8)|op[1]), op[4]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0x08) {
-		sprintf(buf, "RB      0%04xh[X2].0", (op[2]<<8)|op[1]);
+		sprintf(buf, "RB      %s[X2].0", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x09) {
-		sprintf(buf, "RB      0%04xh[X2].1", (op[2]<<8)|op[1]);
+		sprintf(buf, "RB      %s[X2].1", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x0A) {
-		sprintf(buf, "RB      0%04xh[X2].2", (op[2]<<8)|op[1]);
+		sprintf(buf, "RB      %s[X2].2", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x0B) {
-		sprintf(buf, "RB      0%04xh[X2].3", (op[2]<<8)|op[1]);
+		sprintf(buf, "RB      %s[X2].3", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x0C) {
-		sprintf(buf, "RB      0%04xh[X2].4", (op[2]<<8)|op[1]);
+		sprintf(buf, "RB      %s[X2].4", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x0D) {
-		sprintf(buf, "RB      0%04xh[X2].5", (op[2]<<8)|op[1]);
+		sprintf(buf, "RB      %s[X2].5", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x0E) {
-		sprintf(buf, "RB      0%04xh[X2].6", (op[2]<<8)|op[1]);
+		sprintf(buf, "RB      %s[X2].6", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x0F) {
-		sprintf(buf, "RB      0%04xh[X2].7", (op[2]<<8)|op[1]);
+		sprintf(buf, "RB      %s[X2].7", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x12) {
-		sprintf(buf, "RBR     0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "RBR     %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xB7) {
-		sprintf(buf, "ROLB    0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "ROLB    %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xC7) {
-		sprintf(buf, "RORB    0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "RORB    %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x18) {
-		sprintf(buf, "SB      0%04xh[X2].0", (op[2]<<8)|op[1]);
+		sprintf(buf, "SB      %s[X2].0", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x19) {
-		sprintf(buf, "SB      0%04xh[X2].1", (op[2]<<8)|op[1]);
+		sprintf(buf, "SB      %s[X2].1", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x1A) {
-		sprintf(buf, "SB      0%04xh[X2].2", (op[2]<<8)|op[1]);
+		sprintf(buf, "SB      %s[X2].2", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x1B) {
-		sprintf(buf, "SB      0%04xh[X2].3", (op[2]<<8)|op[1]);
+		sprintf(buf, "SB      %s[X2].3", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x1C) {
-		sprintf(buf, "SB      0%04xh[X2].4", (op[2]<<8)|op[1]);
+		sprintf(buf, "SB      %s[X2].4", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x1D) {
-		sprintf(buf, "SB      0%04xh[X2].5", (op[2]<<8)|op[1]);
+		sprintf(buf, "SB      %s[X2].5", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x1E) {
-		sprintf(buf, "SB      0%04xh[X2].6", (op[2]<<8)|op[1]);
+		sprintf(buf, "SB      %s[X2].6", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0x1F) {
-		sprintf(buf, "SB      0%04xh[X2].7", (op[2]<<8)|op[1]);
+		sprintf(buf, "SB      %s[X2].7", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 0 && op[3]==0xB2) {
-		sprintf(buf, "SBCB    A, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "SBCB    A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xB1) {
-		sprintf(buf, "SBCB    0%04xh[X2], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "SBCB    %s[X2], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xB3) {
-		sprintf(buf, "SBCB    0%04xh[X2], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "SBCB    %s[X2], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0xB0) {
-		sprintf(buf, "SBCB    0%04xh[X2], #0%02xh", (op[2]<<8)|op[1], op[4]);
+		sprintf(buf, "SBCB    %s[X2], #0%02xh", get_romtable_label((op[2]<<8)|op[1]), op[4]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0x11) {
-		sprintf(buf, "SBR     0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "SBR     %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xD7) {
-		sprintf(buf, "SLLB    0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "SLLB    %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xF7) {
-		sprintf(buf, "SRAB    0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "SRAB    %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xE7) {
-		sprintf(buf, "SRLB    0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "SRLB    %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 0 && op[3]==0xA2) {
-		sprintf(buf, "SUBB    A, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "SUBB    A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xA1) {
-		sprintf(buf, "SUBB    0%04xh[X2], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "SUBB    %s[X2], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xA3) {
-		sprintf(buf, "SUBB    0%04xh[X2], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "SUBB    %s[X2], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0xA0) {
-		sprintf(buf, "SUBB    0%04xh[X2], #0%02xh", (op[2]<<8)|op[1], op[4]);
+		sprintf(buf, "SUBB    %s[X2], #0%02xh", get_romtable_label((op[2]<<8)|op[1]), op[4]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0x13) {
-		sprintf(buf, "TRB     0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "TRB     %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 0 && op[3]==0x10) {
-		sprintf(buf, "XCHGB   A, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "XCHGB   A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 0 && op[3]==0xF2) {
-		sprintf(buf, "XORB    A, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "XORB    A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xF1) {
-		sprintf(buf, "XORB    0%04xh[X2], A", (op[2]<<8)|op[1]);
+		sprintf(buf, "XORB    %s[X2], A", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[3]==0xF3) {
-		sprintf(buf, "XORB    0%04xh[X2], off(%s)", (op[2]<<8)|op[1], get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
+		sprintf(buf, "XORB    %s[X2], off(%s)", get_romtable_label((op[2]<<8)|op[1]), get_ram_label(((D->lrb>>5)<<8)|op[4], 4));
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[3]==0xF0) {
-		sprintf(buf, "XORB    0%04xh[X2], #0%02xh", (op[2]<<8)|op[1], op[4]);
+		sprintf(buf, "XORB    %s[X2], #0%02xh", get_romtable_label((op[2]<<8)|op[1]), op[4]);
 		D->pc += 5;
 		return 5;
 	}
@@ -13678,7 +13678,7 @@ int dasmfunc_c5(dasm_state *D, char *buf) {
 int dasmfunc_c6(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 1) {
-		sprintf(buf, "CMP     A, #0%04xh", (op[2]<<8)|op[1]);
+		sprintf(buf, "CMP     A, #%s", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 3;
 		return 3;
 	}
@@ -13777,12 +13777,12 @@ int dasmfunc_cf(dasm_state *D, char *buf) {
 int dasmfunc_d0(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 1) {
-		sprintf(buf, "ST      A, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "ST      A, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 0) {
-		sprintf(buf, "STB     A, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "STB     A, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 3;
 		return 3;
 	}
@@ -13792,12 +13792,12 @@ int dasmfunc_d0(dasm_state *D, char *buf) {
 int dasmfunc_d1(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 1) {
-		sprintf(buf, "ST      A, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "ST      A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 0) {
-		sprintf(buf, "STB     A, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "STB     A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 3;
 		return 3;
 	}
@@ -13867,7 +13867,7 @@ int dasmfunc_d5(dasm_state *D, char *buf) {
 int dasmfunc_d6(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 1) {
-		sprintf(buf, "AND     A, #0%04xh", (op[2]<<8)|op[1]);
+		sprintf(buf, "AND     A, #%s", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 3;
 		return 3;
 	}
@@ -13977,7 +13977,7 @@ int dasmfunc_df(dasm_state *D, char *buf) {
 int dasmfunc_e0(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
-		sprintf(buf, "L       A, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "L       A, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->dd = 1;
 		D->pc += 3;
 		return 3;
@@ -13988,7 +13988,7 @@ int dasmfunc_e0(dasm_state *D, char *buf) {
 int dasmfunc_e1(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
-		sprintf(buf, "L       A, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "L       A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->dd = 1;
 		D->pc += 3;
 		return 3;
@@ -14043,7 +14043,7 @@ int dasmfunc_e5(dasm_state *D, char *buf) {
 int dasmfunc_e6(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 1) {
-		sprintf(buf, "OR      A, #0%04xh", (op[2]<<8)|op[1]);
+		sprintf(buf, "OR      A, #%s", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 3;
 		return 3;
 	}
@@ -14148,7 +14148,7 @@ int dasmfunc_ef(dasm_state *D, char *buf) {
 int dasmfunc_f0(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
-		sprintf(buf, "LB      A, 0%04xh[X1]", (op[2]<<8)|op[1]);
+		sprintf(buf, "LB      A, %s[X1]", get_romtable_label((op[2]<<8)|op[1]));
 		D->dd = 0;
 		D->pc += 3;
 		return 3;
@@ -14159,7 +14159,7 @@ int dasmfunc_f0(dasm_state *D, char *buf) {
 int dasmfunc_f1(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
-		sprintf(buf, "LB      A, 0%04xh[X2]", (op[2]<<8)|op[1]);
+		sprintf(buf, "LB      A, %s[X2]", get_romtable_label((op[2]<<8)|op[1]));
 		D->dd = 0;
 		D->pc += 3;
 		return 3;
@@ -14214,7 +14214,7 @@ int dasmfunc_f5(dasm_state *D, char *buf) {
 int dasmfunc_f6(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 1) {
-		sprintf(buf, "XOR     A, #0%04xh", (op[2]<<8)|op[1]);
+		sprintf(buf, "XOR     A, #%s", get_romtable_label((op[2]<<8)|op[1]));
 		D->pc += 3;
 		return 3;
 	}

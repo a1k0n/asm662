@@ -202,14 +202,14 @@ sub process
 				# 16-bit immediates and offsets
 				my $idx = idx_of(\@opc, "NL");
 				$n16 = "(op[".($idx+1)."]<<8)|op[".$idx."]";
-				$instr =~ s/N16(.*)/0%04xh$1/;
-				push @param, $n16;
+				$instr =~ s/N16(.*)/%s$1/;
+				push @param, "get_romtable_label($n16)";
 			} elsif($arg =~ /N'16/) {
 				# 16-bit immediates and offsets
 				my $idx = idx_of(\@opc, "N'L");
 				$n16 = "(op[".($idx+1)."]<<8)|op[".$idx."]";
-				$instr =~ s/N'16(.*)/0%04xh$1/;
-				push @param, $n16;
+				$instr =~ s/N'16(.*)/%s$1/;
+				push @param, "get_romtable_label($n16)";
 			} elsif($arg =~ /(rel8)/) {
 				# relative branches and calls
 				my $idx = idx_of(\@opc, $1);
