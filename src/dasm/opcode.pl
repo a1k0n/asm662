@@ -53,8 +53,8 @@ sub gen_snippet($)
 				print(", $n16");
 			}
 		} elsif($type eq 'S8') {
-			print(", ((signed char)op[".$args->[$i]."]) < 0 ? '-':' ', ".
-				"_abs((signed char)op[".$args->[$i]."])");
+			print(', ((signed char)op['.$args->[$i].']) < 0 ? "-":"", '.
+				'_abs((signed char)op['.$args->[$i].'])');
 		} else {
 			print(", op[".$args->[$i]."]");
 		}
@@ -193,7 +193,7 @@ sub process
 				$instr =~ s/N'?8(.*)/%03xh$1/;
 			} elsif($arg =~ /S8/) {
 				push @args, $arg;
-				$instr =~ s/S8(.*)/%c%03xh$1/;
+				$instr =~ s/S8(.*)/%s%03xh$1/;
 			} elsif($arg =~ /N16/) {
 				push @args, "NL";
 				$instr =~ s/N16(.*)/%05xh$1/;

@@ -1,6 +1,6 @@
 #ifndef lint
 static char const 
-yyrcsid[] = "$FreeBSD: src/usr.bin/yacc/skeleton.c,v 1.28.2.1 2001/07/19 05:46:39 peter Exp $";
+yyrcsid[] = "$FreeBSD: src/usr.bin/yacc/skeleton.c,v 1.28 2000/01/17 02:04:06 bde Exp $";
 #endif
 #include <stdlib.h>
 #define YYBYACC 1
@@ -11,11 +11,7 @@ yyrcsid[] = "$FreeBSD: src/usr.bin/yacc/skeleton.c,v 1.28.2.1 2001/07/19 05:46:3
 #define yyclearin (yychar=(YYEMPTY))
 #define yyerrok (yyerrflag=0)
 #define YYRECOVERING() (yyerrflag!=0)
-#if defined(__cplusplus) || __STDC__
-static int yygrowstack(void);
-#else
 static int yygrowstack();
-#endif
 #define YYPREFIX "yy"
 #line 2 "asm662.y"
 /* build with yacc -d */
@@ -42,7 +38,7 @@ typedef union {
 	int value;
 	struct symbol *sym;
 } YYSTYPE;
-#line 46 "y.tab.c"
+#line 42 "y.tab.c"
 #define YYERRCODE 256
 #define SHIFTL 257
 #define SHIFTR 258
@@ -21226,7 +21222,7 @@ case 2628:
 #line 2800 "asm662.y"
 { u8 instr[5] = {0xC1,0,0,0xF0,0}; _SET16(instr,1,yyvsp[-7].value); instr[4] = yyvsp[-1].value; emit(instr,5); }
 break;
-#line 21230 "y.tab.c"
+#line 21226 "y.tab.c"
     }
     yyssp -= yym;
     yystate = *yyssp;

@@ -9868,307 +9868,307 @@ int dasmfunc_b2(dasm_state *D, char *buf) {
 int dasmfunc_b3(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 1 && op[2]==0x92) {
-		sprintf(buf, "ADC A, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "ADC A, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x93) {
-		sprintf(buf, "ADC %03xh[USP], off %03xh", op[1], op[3]);
+		sprintf(buf, "ADC %s%03xh[USP], off %03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x90) {
-		sprintf(buf, "ADC %c%03xh[USP], #%05xh", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]), (op[4]<<8)|op[3]);
+		sprintf(buf, "ADC %s%03xh[USP], #%05xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
 	if(D->dd == 1 && op[2]==0x82) {
-		sprintf(buf, "ADD A, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "ADD A, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x81) {
-		sprintf(buf, "ADD %c%03xh[USP], A", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "ADD %s%03xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 1 && op[2]==0x83) {
-		sprintf(buf, "ADD %03xh[USP], off %03xh", op[1], op[3]);
+		sprintf(buf, "ADD %s%03xh[USP], off %03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x80) {
-		sprintf(buf, "ADD %c%03xh[USP], #%05xh", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]), (op[4]<<8)|op[3]);
+		sprintf(buf, "ADD %s%03xh[USP], #%05xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[2]==0xD1) {
-		sprintf(buf, "AND %c%03xh[USP], A", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "AND %s%03xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 1 && op[2]==0xD2) {
-		sprintf(buf, "AND A, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "AND A, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xD3) {
-		sprintf(buf, "AND %03xh[USP], off %03xh", op[1], op[3]);
+		sprintf(buf, "AND %s%03xh[USP], off %03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xD0) {
-		sprintf(buf, "AND %c%03xh[USP], #%05xh", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]), (op[4]<<8)|op[3]);
+		sprintf(buf, "AND %s%03xh[USP], #%05xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[2]==0x23) {
-		sprintf(buf, "CAL [%c%03xh[USP]]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "CAL [%s%03xh[USP]]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x15) {
-		sprintf(buf, "CLR %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "CLR %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 1 && op[2]==0xC2) {
-		sprintf(buf, "CMP A, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "CMP A, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xC1) {
-		sprintf(buf, "CMP %c%03xh[USP], A", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "CMP %s%03xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xC3) {
-		sprintf(buf, "CMP %03xh[USP], off %03xh", op[1], op[3]);
+		sprintf(buf, "CMP %s%03xh[USP], off %03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xC0) {
-		sprintf(buf, "CMP %c%03xh[USP], #%05xh", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]), (op[4]<<8)|op[3]);
+		sprintf(buf, "CMP %s%03xh[USP], #%05xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[2]==0xAC) {
-		sprintf(buf, "CMPC A, [%c%03xh[USP]]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "CMPC A, [%s%03xh[USP]]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xAE) {
-		sprintf(buf, "CMPCB A, [%c%03xh[USP]]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "CMPCB A, [%s%03xh[USP]]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x17) {
-		sprintf(buf, "DEC %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "DEC %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x16) {
-		sprintf(buf, "INC %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "INC %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x22) {
-		sprintf(buf, "J [%c%03xh[USP]]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "J [%s%03xh[USP]]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		return 3;
 	}
 	if(1 && op[2]==0xA8) {
-		sprintf(buf, "LC A, [%c%03xh[USP]]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "LC A, [%s%03xh[USP]]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xAA) {
-		sprintf(buf, "LCB A, [%c%03xh[USP]]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "LCB A, [%s%03xh[USP]]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x99) {
-		sprintf(buf, "MOV A, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOV A, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->dd = 1;
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x7A) {
-		sprintf(buf, "MOV DP, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOV DP, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x48) {
-		sprintf(buf, "MOV er0, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOV er0, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x49) {
-		sprintf(buf, "MOV er1, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOV er1, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x4A) {
-		sprintf(buf, "MOV er2, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOV er2, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x4B) {
-		sprintf(buf, "MOV er3, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOV er3, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x7F) {
-		sprintf(buf, "MOV LRB, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOV LRB, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x8A) {
-		sprintf(buf, "MOV %c%03xh[USP], A", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOV %s%03xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x98) {
-		sprintf(buf, "MOV %c%03xh[USP], #%05xh", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]), (op[4]<<8)|op[3]);
+		sprintf(buf, "MOV %s%03xh[USP], #%05xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[2]==0x7C) {
-		sprintf(buf, "MOV off %03xh, %03xh[USP]", op[3], op[1]);
+		sprintf(buf, "MOV off %03xh, %s%03xh[USP]", op[3], ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x7D) {
-		sprintf(buf, "MOV PSW, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOV PSW, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x7E) {
-		sprintf(buf, "MOV SSP, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOV SSP, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x7B) {
-		sprintf(buf, "MOV USP, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOV USP, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x78) {
-		sprintf(buf, "MOV X1, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOV X1, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x79) {
-		sprintf(buf, "MOV X2, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOV X2, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 1 && op[2]==0xE2) {
-		sprintf(buf, "OR A, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "OR A, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xE1) {
-		sprintf(buf, "OR %c%03xh[USP], A", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "OR %s%03xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xE3) {
-		sprintf(buf, "OR %03xh[USP], off %03xh", op[1], op[3]);
+		sprintf(buf, "OR %s%03xh[USP], off %03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xD0) {
-		sprintf(buf, "OR %c%03xh[USP], #%05xh", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]), (op[4]<<8)|op[3]);
+		sprintf(buf, "OR %s%03xh[USP], #%05xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[2]==0xB7) {
-		sprintf(buf, "ROL %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "ROL %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xC7) {
-		sprintf(buf, "ROR %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "ROR %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 1 && op[2]==0xB2) {
-		sprintf(buf, "SBC A, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "SBC A, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xB1) {
-		sprintf(buf, "SBC %c%03xh[USP], A", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "SBC %s%03xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xB3) {
-		sprintf(buf, "SBC %03xh[USP], off %03xh", op[1], op[3]);
+		sprintf(buf, "SBC %s%03xh[USP], off %03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xB0) {
-		sprintf(buf, "SBC %c%03xh[USP], #%05xh", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]), (op[4]<<8)|op[3]);
+		sprintf(buf, "SBC %s%03xh[USP], #%05xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
 	if(1 && op[2]==0xD7) {
-		sprintf(buf, "SLL %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "SLL %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xF7) {
-		sprintf(buf, "SRA %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "SRA %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xE7) {
-		sprintf(buf, "SRL %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "SRL %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 1 && op[2]==0xA2) {
-		sprintf(buf, "SUB A, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "SUB A, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xA1) {
-		sprintf(buf, "SUB %c%03xh[USP], A", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "SUB %s%03xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 1 && op[2]==0xA3) {
-		sprintf(buf, "SUB %03xh[USP], off %03xh", op[1], op[3]);
+		sprintf(buf, "SUB %s%03xh[USP], off %03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xA0) {
-		sprintf(buf, "SUB %c%03xh[USP], #%05xh", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]), (op[4]<<8)|op[3]);
+		sprintf(buf, "SUB %s%03xh[USP], #%05xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
 	if(D->dd == 1 && op[2]==0x10) {
-		sprintf(buf, "XCHG A, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "XCHG A, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 1 && op[2]==0xF2) {
-		sprintf(buf, "XOR A, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "XOR A, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xF1) {
-		sprintf(buf, "XOR %c%03xh[USP], A", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "XOR %s%03xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xF3) {
-		sprintf(buf, "XOR %03xh[USP], off %03xh", op[1], op[3]);
+		sprintf(buf, "XOR %s%03xh[USP], off %03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xF0) {
-		sprintf(buf, "XOR %c%03xh[USP], #%05xh", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]), (op[4]<<8)|op[3]);
+		sprintf(buf, "XOR %s%03xh[USP], #%05xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), (op[4]<<8)|op[3]);
 		D->pc += 5;
 		return 5;
 	}
@@ -12311,463 +12311,463 @@ int dasmfunc_c2(dasm_state *D, char *buf) {
 int dasmfunc_c3(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 0 && op[2]==0x92) {
-		sprintf(buf, "ADCB A, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "ADCB A, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x91) {
-		sprintf(buf, "ADCB %c%03xh[USP], A", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "ADCB %s%03xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x93) {
-		sprintf(buf, "ADCB %03xh[USP], off %03xh", op[1], op[3]);
+		sprintf(buf, "ADCB %s%03xh[USP], off %03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x90) {
-		sprintf(buf, "ADCB %03xh[USP], #%03xh", op[1], op[3]);
+		sprintf(buf, "ADCB %s%03xh[USP], #%03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 0 && op[2]==0x82) {
-		sprintf(buf, "ADDB A, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "ADDB A, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x81) {
-		sprintf(buf, "ADDB %c%03xh[USP], A", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "ADDB %s%03xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x83) {
-		sprintf(buf, "ADDB %03xh[USP], off %03xh", op[1], op[3]);
+		sprintf(buf, "ADDB %s%03xh[USP], off %03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x80) {
-		sprintf(buf, "ADDB %03xh[USP], #%03xh", op[1], op[3]);
+		sprintf(buf, "ADDB %s%03xh[USP], #%03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(D->dd == 0 && op[2]==0xD2) {
-		sprintf(buf, "ANDB A, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "ANDB A, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xD1) {
-		sprintf(buf, "ANDB %c%03xh[USP], A", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "ANDB %s%03xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xD3) {
-		sprintf(buf, "ANDB %03xh[USP], off %03xh", op[1], op[3]);
+		sprintf(buf, "ANDB %s%03xh[USP], off %03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xD0) {
-		sprintf(buf, "ANDB %03xh[USP], #%03xh", op[1], op[3]);
+		sprintf(buf, "ANDB %s%03xh[USP], #%03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x15) {
-		sprintf(buf, "CLRB %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "CLRB %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 0 && op[2]==0xC2) {
-		sprintf(buf, "CMPB A, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "CMPB A, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xC1) {
-		sprintf(buf, "CMPB %c%03xh[USP], A", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "CMPB %s%03xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xC3) {
-		sprintf(buf, "CMPB %03xh[USP], off %03xh", op[1], op[3]);
+		sprintf(buf, "CMPB %s%03xh[USP], off %03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xC0) {
-		sprintf(buf, "CMPB %03xh[USP], #%03xh", op[1], op[3]);
+		sprintf(buf, "CMPB %s%03xh[USP], #%03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x17) {
-		sprintf(buf, "DECB %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "DECB %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x16) {
-		sprintf(buf, "INCB %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "INCB %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x28) {
-		sprintf(buf, "MB C, %c%03xh[USP].0", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MB C, %s%03xh[USP].0", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x29) {
-		sprintf(buf, "MB C, %c%03xh[USP].1", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MB C, %s%03xh[USP].1", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x2A) {
-		sprintf(buf, "MB C, %c%03xh[USP].2", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MB C, %s%03xh[USP].2", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x2B) {
-		sprintf(buf, "MB C, %c%03xh[USP].3", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MB C, %s%03xh[USP].3", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x2C) {
-		sprintf(buf, "MB C, %c%03xh[USP].4", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MB C, %s%03xh[USP].4", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x2D) {
-		sprintf(buf, "MB C, %c%03xh[USP].5", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MB C, %s%03xh[USP].5", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x2E) {
-		sprintf(buf, "MB C, %c%03xh[USP].6", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MB C, %s%03xh[USP].6", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x2F) {
-		sprintf(buf, "MB C, %c%03xh[USP].7", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MB C, %s%03xh[USP].7", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x38) {
-		sprintf(buf, "MB %c%03xh[USP].0, C", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MB %s%03xh[USP].0, C", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x39) {
-		sprintf(buf, "MB %c%03xh[USP].1, C", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MB %s%03xh[USP].1, C", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x3A) {
-		sprintf(buf, "MB %c%03xh[USP].2, C", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MB %s%03xh[USP].2, C", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x3B) {
-		sprintf(buf, "MB %c%03xh[USP].3, C", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MB %s%03xh[USP].3, C", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x3C) {
-		sprintf(buf, "MB %c%03xh[USP].4, C", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MB %s%03xh[USP].4, C", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x3D) {
-		sprintf(buf, "MB %c%03xh[USP].5, C", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MB %s%03xh[USP].5, C", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x3E) {
-		sprintf(buf, "MB %c%03xh[USP].6, C", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MB %s%03xh[USP].6, C", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x3F) {
-		sprintf(buf, "MB %c%03xh[USP].7, C", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MB %s%03xh[USP].7, C", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x21) {
-		sprintf(buf, "MBR C, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MBR C, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x20) {
-		sprintf(buf, "MBR %c%03xh[USP], C", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MBR %s%03xh[USP], C", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x99) {
-		sprintf(buf, "MOVB A, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOVB A, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->dd = 0;
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x8A) {
-		sprintf(buf, "MOVB %c%03xh[USP], A", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOVB %s%03xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x7C) {
-		sprintf(buf, "MOVB off %03xh, %03xh[USP]", op[3], op[1]);
+		sprintf(buf, "MOVB off %03xh, %s%03xh[USP]", op[3], ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x98) {
-		sprintf(buf, "MOVB %03xh[USP], #%03xh", op[1], op[3]);
+		sprintf(buf, "MOVB %s%03xh[USP], #%03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x89) {
-		sprintf(buf, "MOVB PSWH, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOVB PSWH, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x88) {
-		sprintf(buf, "MOVB PSWL, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOVB PSWL, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x48) {
-		sprintf(buf, "MOVB r0, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOVB r0, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x49) {
-		sprintf(buf, "MOVB r1, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOVB r1, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x4A) {
-		sprintf(buf, "MOVB r2, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOVB r2, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x4B) {
-		sprintf(buf, "MOVB r3, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOVB r3, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x4C) {
-		sprintf(buf, "MOVB r4, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOVB r4, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x4D) {
-		sprintf(buf, "MOVB r5, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOVB r5, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x4E) {
-		sprintf(buf, "MOVB r6, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOVB r6, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x4F) {
-		sprintf(buf, "MOVB r7, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "MOVB r7, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 0 && op[2]==0xE2) {
-		sprintf(buf, "ORB A, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "ORB A, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xE1) {
-		sprintf(buf, "ORB %c%03xh[USP], A", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "ORB %s%03xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xE3) {
-		sprintf(buf, "ORB %03xh[USP], off %03xh", op[1], op[3]);
+		sprintf(buf, "ORB %s%03xh[USP], off %03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xE0) {
-		sprintf(buf, "ORB %03xh[USP], #%03xh", op[1], op[3]);
+		sprintf(buf, "ORB %s%03xh[USP], #%03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x08) {
-		sprintf(buf, "RB %c%03xh[USP].0", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "RB %s%03xh[USP].0", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x09) {
-		sprintf(buf, "RB %c%03xh[USP].1", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "RB %s%03xh[USP].1", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x0A) {
-		sprintf(buf, "RB %c%03xh[USP].2", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "RB %s%03xh[USP].2", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x0B) {
-		sprintf(buf, "RB %c%03xh[USP].3", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "RB %s%03xh[USP].3", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x0C) {
-		sprintf(buf, "RB %c%03xh[USP].4", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "RB %s%03xh[USP].4", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x0D) {
-		sprintf(buf, "RB %c%03xh[USP].5", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "RB %s%03xh[USP].5", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x0E) {
-		sprintf(buf, "RB %c%03xh[USP].6", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "RB %s%03xh[USP].6", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x0F) {
-		sprintf(buf, "RB %c%03xh[USP].7", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "RB %s%03xh[USP].7", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x12) {
-		sprintf(buf, "RBR %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "RBR %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xB7) {
-		sprintf(buf, "ROLB %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "ROLB %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xC7) {
-		sprintf(buf, "RORB %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "RORB %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x18) {
-		sprintf(buf, "SB %c%03xh[USP].0", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "SB %s%03xh[USP].0", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x19) {
-		sprintf(buf, "SB %c%03xh[USP].1", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "SB %s%03xh[USP].1", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x1A) {
-		sprintf(buf, "SB %c%03xh[USP].2", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "SB %s%03xh[USP].2", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x1B) {
-		sprintf(buf, "SB %c%03xh[USP].3", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "SB %s%03xh[USP].3", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x1C) {
-		sprintf(buf, "SB %c%03xh[USP].4", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "SB %s%03xh[USP].4", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x1D) {
-		sprintf(buf, "SB %c%03xh[USP].5", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "SB %s%03xh[USP].5", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x1E) {
-		sprintf(buf, "SB %c%03xh[USP].6", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "SB %s%03xh[USP].6", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0x1F) {
-		sprintf(buf, "SB %c%03xh[USP].7", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "SB %s%03xh[USP].7", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 0 && op[2]==0xB2) {
-		sprintf(buf, "SBCB A, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "SBCB A, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xB1) {
-		sprintf(buf, "SBCB %c%03xh[USP], A", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "SBCB %s%03xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xB3) {
-		sprintf(buf, "SBCB %03xh[USP], off %03xh", op[1], op[3]);
+		sprintf(buf, "SBCB %s%03xh[USP], off %03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xB0) {
-		sprintf(buf, "SBCB %03xh[USP], #%03xh", op[1], op[3]);
+		sprintf(buf, "SBCB %s%03xh[USP], #%03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x11) {
-		sprintf(buf, "SBR %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "SBR %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xD7) {
-		sprintf(buf, "SLLB %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "SLLB %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xF7) {
-		sprintf(buf, "SRAB %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "SRAB %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xE7) {
-		sprintf(buf, "SRLB %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "SRLB %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 0 && op[2]==0xA2) {
-		sprintf(buf, "SUBB A, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "SUBB A, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xA1) {
-		sprintf(buf, "SUBB %c%03xh[USP], A", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "SUBB %s%03xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xA3) {
-		sprintf(buf, "SUBB %03xh[USP], off %03xh", op[1], op[3]);
+		sprintf(buf, "SUBB %s%03xh[USP], off %03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xA0) {
-		sprintf(buf, "SUBB %03xh[USP], #%03xh", op[1], op[3]);
+		sprintf(buf, "SUBB %s%03xh[USP], #%03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0x13) {
-		sprintf(buf, "TRB %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "TRB %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 0 && op[2]==0x10) {
-		sprintf(buf, "XCHGB A, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "XCHGB A, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(D->dd == 0 && op[2]==0xF2) {
-		sprintf(buf, "XORB A, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "XORB A, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xF1) {
-		sprintf(buf, "XORB %c%03xh[USP], A", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "XORB %s%03xh[USP], A", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 3;
 		return 3;
 	}
 	if(1 && op[2]==0xF3) {
-		sprintf(buf, "XORB %03xh[USP], off %03xh", op[1], op[3]);
+		sprintf(buf, "XORB %s%03xh[USP], off %03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
 	if(1 && op[2]==0xF0) {
-		sprintf(buf, "XORB %03xh[USP], #%03xh", op[1], op[3]);
+		sprintf(buf, "XORB %s%03xh[USP], #%03xh", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]), op[3]);
 		D->pc += 4;
 		return 4;
 	}
@@ -13813,12 +13813,12 @@ int dasmfunc_d2(dasm_state *D, char *buf) {
 int dasmfunc_d3(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(D->dd == 1) {
-		sprintf(buf, "ST A, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "ST A, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 2;
 		return 2;
 	}
 	if(D->dd == 0) {
-		sprintf(buf, "STB A, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "STB A, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->pc += 2;
 		return 2;
 	}
@@ -14001,7 +14001,7 @@ int dasmfunc_e2(dasm_state *D, char *buf) {
 int dasmfunc_e3(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
-		sprintf(buf, "L A, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "L A, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->dd = 1;
 		D->pc += 2;
 		return 2;
@@ -14172,7 +14172,7 @@ int dasmfunc_f2(dasm_state *D, char *buf) {
 int dasmfunc_f3(dasm_state *D, char *buf) {
 	unsigned char *op = D->rom+D->pc;
 	if(1) {
-		sprintf(buf, "LB A, %c%03xh[USP]", ((signed char)op[1]) < 0 ? '-':' ', _abs((signed char)op[1]));
+		sprintf(buf, "LB A, %s%03xh[USP]", ((signed char)op[1]) < 0 ? "-":"", _abs((signed char)op[1]));
 		D->dd = 0;
 		D->pc += 2;
 		return 2;
