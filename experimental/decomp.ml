@@ -1,6 +1,10 @@
 open Printf
 open Opcode
 open Ssa
+open List
+
+let mkaddrlist l =
+    fold_left (fun x y -> x ^ " " ^ (sprintf "%04x" y)) "" !l
 
 let read_whole_chan chan =
     let chunksiz = 4096 in
@@ -148,20 +152,178 @@ let rec dasmchunk binfile addr _dd =
         () 
     else begin
         let (ssa,op,dd,newaddrs) = get_disassembly binfile addr _dd in
-        let crap = ref (Printf.sprintf "%04x: %-25s" addr op) in
-        let ssa2apply = List.map(fun sa -> 
+        let crap = ref (sprintf "%04x: %-25s" addr op) in
+        let ssa2apply = map(fun sa -> 
             let ssa2 = evalssa sa in
             begin
                 printf "%s: %s\n" !crap (string_of_ssa ssa2);
                 flush stdout;
-                crap := Printf.sprintf "%-31s" ""
+                crap := sprintf "%-31s" ""
             end; ssa2) ssa in
-        List.iter applyssa ssa2apply;
+        iter applyssa ssa2apply;
         dasmchunk binfile newaddrs.(0) dd
     end
 ;;
 
+(*
 dasmchunk binfile 0x21e9 0;;
 dasmchunk binfile 0x238b 0;;
 dasmchunk binfile 0x5010 0;;
+dasmchunk binfile 0x5063 0;;
+*)
+
+let make16 nl nh =
+    (nh*256) + nl
+;;
+
+let get_vec_addr buf addr =
+    make16 (int_of_char buf.[addr]) (int_of_char buf.[addr+1])
+;;
+
+let cfg binfile addr =
+    let insn_in = Hashtbl.create 4096 and
+        insn_out = Hashtbl.create 4096 in
+    let add_edge fromaddr toaddr =
+        try 
+            let inlist = Hashtbl.find insn_in toaddr in
+                inlist := fromaddr :: !inlist
+        with Not_found ->
+            Hashtbl.add insn_in toaddr (ref [fromaddr])
+    in
+        
+    let rec cfgloop addr _dd depth =
+        (*printf "cfgloop %04x depth %d\n" addr depth;*)
+        if addr > 0x7ff0 then () 
+        else try Hashtbl.find insn_out addr; ()
+        with Not_found -> 
+            let (ssa,op,dd,newaddrs) = get_disassembly binfile addr _dd in
+            let n = Array.length newaddrs in
+            Hashtbl.add insn_out addr (ref (Array.to_list newaddrs));
+            Array.iter (fun toaddr -> add_edge addr toaddr) newaddrs;
+            (if n>1 then cfgloop newaddrs.(1) dd (depth+1));
+            cfgloop newaddrs.(0) dd depth
+            
+    in
+    Hashtbl.add insn_out 0 (ref [addr]);
+    add_edge 0 addr;
+    cfgloop addr 0 0;
+    (insn_in,insn_out)
+;;
+
+(*
+type cfgnode = CFGNode of int * cfgnode list * cfgnode list;;
+
+let fixup_cfg cfg origin =
+    let (insn_in, insn_out) = cfg in
+    let h = Hashtbl.create 1024 in
+    let rec makenode addr =
+        try Hashtbl.find h addr
+        with Not_found ->
+            let n = newnode addr in
+            Hashtbl.add h addr n; n
+
+        and newnode addr =
+            let o = if Hashtbl.mem insn_out addr then
+                !(Hashtbl.find insn_out addr)
+            else [] in
+            let i = if Hashtbl.mem insn_in addr then
+                !(Hashtbl.find insn_in addr)
+            else [] in
+                CFGNode (addr, map makenode i, map makenode o)
+    in
+    makenode origin
+;; *)
+
+let display_cfg cfg =
+    let (insn_in, insn_out) = cfg in
+    let cfgdisplay addr o =
+        try
+            let i = Hashtbl.find insn_in addr in
+            printf "%20s -> %04x ->%s\n" (mkaddrlist i) addr (mkaddrlist o)
+        with Not_found ->
+            printf "%20s -> %04x ->%s\n" "???" addr (mkaddrlist o)
+    in
+    Hashtbl.iter cfgdisplay insn_out
+;;
+
+let display_dot nodes cfg =
+    let (insn_in, insn_out) = cfg in
+    let get_succ addr =
+        try Hashtbl.find insn_out addr
+        with Not_found -> ref [] in
+    let cfgdisplay addr =
+        let o = get_succ addr in
+        iter (fun x -> if x != 0x8000 then printf "\t\"%04x\" -> \"%04x\";\n" addr x) !o
+    in
+    printf "digraph duh {\n";
+    iter cfgdisplay nodes;
+    printf "}\n"
+;;
+
+let fixup_cfg cfg origin =
+    let (insn_in, insn_out) = cfg in
+    let h = ref [] in
+    let worklist = ref [origin] in
+
+    let get_succ addr =
+        try Hashtbl.find insn_out addr
+        with Not_found -> ref [] in
+
+    let get_pred addr =
+        try Hashtbl.find insn_in addr
+        with Not_found -> ref [] in
+
+        (* if there is only one successor AND that successor has only one
+         * predecessor, merge it with this node.
+         * do this until you can't anymore, then return a list of all
+         * successors to the worklist. *)
+    let rec fixup baseaddr addr =
+        let succ = get_succ addr in
+        if length !succ == 1 then
+            let saddr = hd !succ in
+            let pred = get_pred saddr in
+            if length !pred == 1 then
+                (* replace the successors of this node with the successors
+                 * of the next node, and repeat *)
+                begin
+                    let s = get_succ baseaddr in
+                    s := !(get_succ saddr);
+(*printf " -> successors of %04x: %s\n" baseaddr (mkaddrlist s);*)
+                    fixup baseaddr saddr
+                end
+            else
+                !succ
+        else
+            !succ
+    in
+
+    let fin = Hashtbl.create 128 in
+    let rec workloop () =
+        try
+            let n = hd !worklist in
+            if Hashtbl.mem fin n then begin
+                worklist := tl !worklist;
+                workloop ()
+            end
+            else begin
+                Hashtbl.add fin n 1;
+                h := n :: !h;
+                worklist := (fixup n n) @ (tl !worklist);
+(*printf "successors of %04x: %s\n" n (mkaddrlist (get_succ n));*)
+                workloop ()
+            end
+        with Failure _ -> ()
+    in
+
+    workloop ();
+    !h
+;;
+
+let origin = get_vec_addr binfile 0x36 in
+(*let origin = get_vec_addr binfile 0 in*)
+(*let origin = 0x5010 in*)
+(*display_cfg (cfg binfile origin);*)
+let cfg = cfg binfile origin in
+let nodes = fixup_cfg cfg origin in
+display_dot nodes cfg;;
 
