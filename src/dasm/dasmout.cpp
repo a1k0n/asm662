@@ -42,7 +42,14 @@ static int output_unmasked_data(FILE *out, DASMOutput *dout, dasm_state *D,
 	int started_line=-1;
 	unsigned i;
 	char ihateC[64];
+	int skipped_data = 0;
 	ihateC[0] = 0;
+	while(D->mask[a] && a<z) { a++; skipped_data++; }
+	if(skipped_data && label) {
+		// we have a problem here.  solve it by emitting an relative-PC equate
+		fprintf(out, "%-15s EQU     $-%d ; %04X\n", label, skipped_data, a-skipped_data);
+		label = NULL;
+	}
 	if(label) {
 		strcpy(ihateC, label);
 		strcat(ihateC, ":");
@@ -50,7 +57,6 @@ static int output_unmasked_data(FILE *out, DASMOutput *dout, dasm_state *D,
 		for(i=strlen(ihateC);i<25;i++) ihateC[i]=' ';
 		ihateC[i]=0;
 	}
-	while(D->mask[a] && a<z) a++;
 	if(!D->mask[a] && (D->mask[a+2] || (a+2 == z)) && !D->mask[a+1]) {
 		// special case: only two bytes
 		unsigned addr = (D->rom[a+1]<<8)|D->rom[a];
