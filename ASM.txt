@@ -1,0 +1,155 @@
+asm662 ver 0.9
+
+
+INTRODUCTION
+
+This is a multipass, case-insensitive OKI 66201/66207/66301 assembler with
+a built-in C-style expression parser.  It's simple and powerful, although
+it has a few limitations:
+
+	- In this version, the output is only as a 32k ROM .bin.  The rom size
+	  is fixed.  Future versions will allow you to change ROM size.
+	- No list file generation in this version.
+	- No linker whatsoever.  This is an architectural decision insofar as
+	  all branch/call targets can be arbitrary expressions, and I don't
+	  want to store a full parse tree for each external symbol reference.
+	  This isn't to say it isn't possible, or that I couldn't just stick to
+	  symbols rather than full expressions for branch/call instructions.
+	- No "preload" directive yet.  In future versions, you'll be able to
+	  start with an existing .bin and apply patches to it.
+	- It doesn't check the validity of the DD flag during assembly at all.
+	  However, dasm662 _does_ issue warnings of DD flag violations, so you
+	  can use the two in conjunction.
+
+Full source is provided under the BSD license, along with a Win32 console
+binary.  This also compiles under FreeBSD, Linux, etc.  Feel free to make
+derivative projects.
+
+One word of warning: a small bit of laziness resulted in this code being
+portable only to little-endian machines.  That can easily be fixed if
+anyone cares.  
+
+
+AUTHOR
+
+asm662 was written by Andy Sloane <andy@a1k0n.net>.  Most of the assembler
+is automatically generated lex & yacc code (so the expression parser wasn't
+any extra real work -- it's about 10 lines of yacc).  The code is generated
+in perl using a modified version of Doc's (from pgmfi.org) disassembler's
+opcode file.
+
+
+INVOCATION
+
+asm662 accepts only two arguments:
+asm662 input.asm output.bin
+
+It performs one pass over the source file in order to resolve all symbols,
+then does another pass which generates the output.  Future versions may
+allow you to increase the number of passes in the case where you have
+complex expressions involving symbols defined after usage.  You'll receive
+a warning if a symbol is still uninitialized in the final pass.
+
+
+EXPRESSIONS
+
+asm662 supports both decimal and hexadecimal arithmetic.  (octal and binary
+can be added on request.)  Keep in mind that the default radix is decimal,
+so 0AA is not a valid number.  AA is a symbol, not a number, so be sure to
+prefix all hex values above 99 with a zero.
+
+Both "assembler" style and "C" style hex formats are supported.  Valid
+formats are: 
+	1235   - decimal
+	12abh  - hex
+	12ABh
+	0x12ab
+	0x12Ab
+	ab12h  - a symbol called ab12h, not a number!
+	0ab12h - hex.
+
+The following operators are supported, and they work just like they do in
+C:
+	( )    - associativity
+	+      - addition
+	-      - subtraction and unary minus
+	*      - multiplcation
+	/      - division
+	%      - modulus
+	&      - bitwise AND
+	|      - bitwise OR
+	^      - bitwise XOR
+	<<     - bit shift left
+	>>     - bit shift right
+
+The order of operations is (I believe) the same as it is in C:
+highest:   * / %
+		   - +
+		   & | ^
+lowest:    << >>
+
+In addition, the special symbol $ represents the current code location, so
+for instance
+				sj      $
+is an infinite loop.  (But you can't do things like $ EQU 0100h instead of
+using ORG.)
+
+
+DIRECTIVES
+
+I'll explain these with a simple example.
+
+----------[cut here]------------------------------------------------------
+; this is a comment - the semicolon and the rest of the line 
+; following it is ignored.
+				org 0000h           ; org <number> - sets the origin
+									; address for the code
+				dw      int_start   ; dw - inserts a list of 16-bit words
+				db      0ffh,0ffh   ; db - inserts a list of bytes
+
+				org 0038h
+int_start:      l       a, #(stuff&0xf0f0)  ; we can use any expression for
+				l       a, #(stuff^0xffff)  ; the immediate value here.
+				l       a, table
+				MoV     x1, A  ; this assembler is case-insensitive
+				st      a, stuff&0xff[x1]   ; or for the index here.
+				sj      $  ; as explained above, this is an infinite loop
+
+; equates have the form <symbol> equ <value expression>
+stuff           equ     ((1<<4)|(0xfff>>2))*113
+; due to a quirk of multipass assemblers, you can do things like
+npasses         equ     npasses+1
+
+; labels of the form <labelname>: are equivalent to <labelname> equ $
+table:          dw      stuff, npasses
+----------[cut here]------------------------------------------------------
+
+After assembling this into a .bin, disassembling the result, and then
+cropping out the extra unused bytes by hand, we get:
+				org 0000h
+int_start_vec:            DW  00038h           ; 0000
+[other int vectors removed]
+											   ; 0038 called from 0000 (DD=0)
+int_start:      L A, #0c080h                   ; 0038 6780C0 DD=1
+				L A, #03c70h                   ; 003B 67703C DD=1
+				L A, 046h                      ; 003E E546 DD=1
+				MOV X1, A                      ; 0040 50 DD=1
+				ST A, 0008fh[X1]               ; 0041 D08F00 DD=1
+											   ; 0044 called from 0044 (DD=1)
+label_0044:     SJ label_0044                  ; 0044 CBFE DD=1
+				DB                                08Fh,0C3h ; 0046
+				DB  002h,000h                               ; 0048
+
+As you can see, stuff turns out to be C38F and npasses is 0002, which is
+correct for a two-pass assembler (npasses increments every pass over its
+definition -- if we had used npasses above its definition, it would be 1!).
+
+In short, the currently supported directives are:
+
+label:          - assign the current location ($) to 'label'
+label equ expr  - evaluate expr and assign its value to 'label'
+	  org expr  - evaluate expr and assign its value to $
+
+More directives are planned for future versions.
+
+

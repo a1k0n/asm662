@@ -1,0 +1,40 @@
+				org 0000h
+int_start_vec:            DW  00038h           ; 0000
+int_break_vec:            DW  0ffffh           ; 0002
+int_WDT_vec:              DW  0ffffh           ; 0004
+int_NMI_vec:              DW  0ffffh           ; 0006
+int_INT0_vec:             DW  0ffffh           ; 0008
+int_serial_rx_vec:        DW  0ffffh           ; 000A
+int_serial_tx_vec:        DW  0ffffh           ; 000C
+int_serial_rx_BRG_vec:    DW  0ffffh           ; 000E
+int_timer_0_overflow_vec: DW  0ffffh           ; 0010
+int_timer_0_vec:          DW  0ffffh           ; 0012
+int_timer_1_overflow_vec: DW  0ffffh           ; 0014
+int_timer_1_vec:          DW  0ffffh           ; 0016
+int_timer_2_overflow_vec: DW  0ffffh           ; 0018
+int_timer_2_vec:          DW  0ffffh           ; 001A
+int_timer_3_overflow_vec: DW  0ffffh           ; 001C
+int_timer_3_vec:          DW  0ffffh           ; 001E
+int_a2d_finished_vec:     DW  0ffffh           ; 0020
+int_PWM_timer_vec:        DW  0ffffh           ; 0022
+int_serial_tx_BRG_vec:    DW  0ffffh           ; 0024
+int_INT1_vec:             DW  0ffffh           ; 0026
+vcal_0_vec:               DW  0ffffh           ; 0028
+vcal_1_vec:               DW  0ffffh           ; 002A
+vcal_2_vec:               DW  0ffffh           ; 002C
+vcal_3_vec:               DW  0ffffh           ; 002E
+vcal_4_vec:               DW  0ffffh           ; 0030
+vcal_5_vec:               DW  0ffffh           ; 0032
+vcal_6_vec:               DW  0ffffh           ; 0034
+vcal_7_vec:               DW  0ffffh           ; 0036
+											   ; 0038 called from 0000 (DD=0)
+int_start:      L A, #0c080h                   ; 0038 6780C0 DD=1
+				L A, #03c70h                   ; 003B 67703C DD=1
+				L A, 046h                      ; 003E E546 DD=1
+				MOV X1, A                      ; 0040 50 DD=1
+				ST A, 0008fh[X1]               ; 0041 D08F00 DD=1
+											   ; 0044 called from 0044 (DD=1)
+label_0044:     SJ label_0044                  ; 0044 CBFE DD=1
+				DB                                08Fh,0C3h ; 0046
+				DB  002h,000h,0FFh,0FFh,0FFh,0FFh,0FFh,0FFh ; 0048
+

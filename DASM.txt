@@ -1,0 +1,63 @@
+dasm662 ver 1.3
+
+
+INTRODUCTION
+
+This is a quick and dirty OKI 66201/66207/66301 disassembler which does a
+full code walk over the ROM in order to determine what's code and what's
+data.  Obviously, this method doesn't work 100% if there are [double]
+indirect calls.  However I think it's a good starting point.
+
+The code is ANSI C/C++.  The actual opcode disassembler back end is
+generated from perl out of the 66207.op file provided in Doc's
+disassembler, without which this would not be possible.  I corrected a few
+errors in that file, by the way, and perhaps introduced some of my own, but
+the output seems OK so far.
+
+Full source is provided under the BSD license, along with a Win32 console 
+binary.  This also compiles under FreeBSD, Linux, etc, and shouldn't be
+endian-dependent at all.  Feel free to make derivative projects.
+
+Enjoy.
+
+a1k0n <andy@a1k0n.net>
+
+
+INVOCATION
+
+Run it like this:
+dasm662 P28.bin P28dump.asm
+to disasseble P28.bin into a new file called P28dump.asm.  If you specify a
+dash (-) for the second argument it will output to stdout.
+
+You can also specify addresses that the code walk doesn't reach as extra
+arguments, i.e.:
+dasm662 P30-US.bin p30.asm 02B2
+
+
+CHANGELOG
+
+Changes from 1.2:
+	- Integrated with asm662 distribution
+	- Fixed a few opcode bugs found while writing asm662
+	- Now produces code re-assemblable by asm662!
+Changes from 1.1:
+	- Pretty printing fixes:
+		- Put labels on the same line as their code
+		- special-cased two bytes of data to produce "DW"s
+		- Made instruction/operand formatting consistent: 
+		  "INSTR OPR1, OPR2" (always a space after the comma)
+	- Branch targets are now symbolic (i.e. "label_02ba" instead of 02BA)
+	- Hex values are shown as 0xxh instead of XX in order to be compatible
+	  with assemblers (this could be changed to 0xXX if someone has a
+	  strong preference).  The reason for this is that an assembler won't
+	  be able to tell the difference between the hex value "FE" and the
+	  symbol "FE".  0FE would be sufficient if the default radix is 16, but
+	  I'd rather not assume that.
+	- Architectural cleanup.  Still messy, but it works.
+Changes from 1.0:
+	- Corrected some disassembler bugs.
+	- Made second commandline option for output.
+	- Cleaned up the code a bit.
+	- Added user labels specified on the commandline.
+
