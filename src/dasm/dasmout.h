@@ -1,4 +1,5 @@
 #include <map>
+#include <set>
 #include <string>
 using namespace std;
 
@@ -14,8 +15,11 @@ public:
 	void add_warn(unsigned addr, const string &line);
 	void add_line(unsigned addr, const string &line);
 	void dump(FILE *out, dasm_state *D);
+	bool ignore(unsigned addr);
+	void add_ignore(unsigned addr);
 private:
 	multimap<unsigned,string> lines;
+	set<unsigned> ignore_set;
 };
 
 

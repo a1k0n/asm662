@@ -13,11 +13,11 @@ extern "C" const char *get_rom_label(unsigned addr)
 	static char lbuf[64];
 	const char *l = _dout->get_label(addr);
 	if(l) {
-		_dqueue->add(addr, _D->pc, l, _D->dd, _D->lrb);
+		_dqueue->add(addr, _D->pc, l, _D->dd, _D->lrb, _D->usp);
 		return l;
 	}
 	sprintf(lbuf, "label_%04x", addr);
-	_dqueue->add(addr, _D->pc, lbuf, _D->dd, _D->lrb);
+	_dqueue->add(addr, _D->pc, lbuf, _D->dd, _D->lrb, _D->usp);
 	_dout->add_label(addr, lbuf);
 	return lbuf;
 }
@@ -25,7 +25,8 @@ extern "C" const char *get_rom_label(unsigned addr)
 extern "C" const char *get_romtable_label(unsigned addr)
 {
 	static char lbuf[64];
-	if(addr >= tbladdr_lo && addr < tbladdr_hi) {
+	if(!_dout->ignore(addr) && 
+			(addr >= tbladdr_lo && addr < tbladdr_hi)) {
 		const char *l = _dout->get_label(addr);
 		if(l) return l;
 		sprintf(lbuf, "tbl_%04x", addr);
@@ -71,6 +72,7 @@ void dasm(dasm_state *D, DASMQueue *dqueue, DASMOutput *out)
 		D->pc = dqueue->front().addr;
 		D->dd = dqueue->front().dd;
 		D->lrb = dqueue->front().lrb;
+		D->usp = dqueue->front().usp;
 		{
 			unsigned f = dqueue->front().from;
 			if(f == 0xffff) {
@@ -134,7 +136,7 @@ void init_66207(dasm_state *D, DASMQueue *q, DASMOutput *out)
 	int i=0;
 #define makeentry(x) { \
 			unsigned a = (D->rom[i+1]<<8) | D->rom[i];\
-			if(a < 0x8000) { q->add(a, i, x, 0, 0xffff); \
+			if(a < 0x8000) { q->add(a, i, x, 0, 0xffff, 0x0000); \
 			out->add_label(a, x); } out->add_label(i, x"_vec"); i+=2; }
 	makeentry("int_start");
 	makeentry("int_break");
@@ -214,11 +216,13 @@ int main(int argc, char **argv)
 	// mask all ROM as unseen data
 	memset(ds.mask, 0, sizeof(ds.mask));
 
-	// add user entry points
+	// add user table exclusion addresses
 	for(int i=3;i<argc;i++) {
 		unsigned addr;
 		sscanf(argv[i], "%x", &addr);
-		dq.add(addr, 0xffff, string("user_")+argv[i], 0, 0xffff);
+//		dq.add(addr, 0xffff, string("user_")+argv[i], 0, 0xffff);
+		// treat these as table exclusions instead
+		dout.add_ignore(addr);
 	}
 
 	// perform disassembly
@@ -228,6 +232,8 @@ int main(int argc, char **argv)
 	// call dasm(), marking more blocks of code each time.  i.e. for an
 	// interactive disassembler.  dump can of course be called after each
 	// step to display the results.
+
+//	dasm(&ds, &dq, &dout);
 
 	// write our output to fp
 	dout.dump(fp, &ds);

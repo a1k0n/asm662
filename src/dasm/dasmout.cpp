@@ -46,6 +46,16 @@ void DASMOutput::add_line(unsigned addr, const string &l)
 	lines.insert(pair<unsigned,string>(addr*4+3,l));
 }
 
+bool DASMOutput::ignore(unsigned addr)
+{
+	return ignore_set.count(addr) == 1 ? true : false;
+}
+
+void DASMOutput::add_ignore(unsigned addr)
+{
+	ignore_set.insert(addr);
+}
+
 static int output_unmasked_data(FILE *out, DASMOutput *dout, dasm_state *D,
 		unsigned a, unsigned z, const char *label)
 {
@@ -68,7 +78,8 @@ static int output_unmasked_data(FILE *out, DASMOutput *dout, dasm_state *D,
 		for(i=strlen(ihateC);i<25;i++) ihateC[i]=' ';
 		ihateC[i]=0;
 	}
-	if(!D->mask[a] && (D->mask[a+2] || (a+2 == z)) && !D->mask[a+1]) {
+	if(!D->mask[a] && (D->mask[a+2] || (a+2 == z)) && !D->mask[a+1] &&
+			dout->get_label(a+1)==NULL) {
 		// special case: only two bytes
 		unsigned addr = (D->rom[a+1]<<8)|D->rom[a];
 		const char *l = dout->get_label(addr);
@@ -134,6 +145,8 @@ void DASMOutput::dump(FILE *out, dasm_state *D)
 			lab = NULL;
 		}
 	}
-	output_unmasked_data(out, this, D, a, 0x8000, NULL);
+	addr=0x7fff;
+	while((addr >= a) && (D->rom[addr] == 0xff)) addr--;
+	output_unmasked_data(out, this, D, a, addr+1, NULL);
 }
 
