@@ -14,5 +14,5 @@ extern dasmfunc dasmtable[];
 extern const char *get_label(unsigned addr);
 extern void do_vcal(unsigned n);
 
-static inline int _abs(int x) { return x<0? -x:x; }
+static int _abs(int x) { return x<0? -x:x; }
 
