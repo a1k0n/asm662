@@ -1,7 +1,7 @@
 CC   = cc
 CXX  = c++
 LEX  = flex
-YACC = bison -y
+YACC = yacc
 OBJS = main.o lex.yy.o y.tab.o sym.o
 CFLAGS = -g -O2 -Wall
 LDFLAGS = -g
