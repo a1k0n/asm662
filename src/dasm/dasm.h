@@ -11,8 +11,8 @@ typedef struct {
 typedef int (*dasmfunc)(dasm_state *, char *buf);
 
 extern dasmfunc dasmtable[];
-extern const char *get_label(unsigned addr);
-extern const char *get_zp_label(unsigned addr);
+extern const char *get_rom_label(unsigned addr);
+extern const char *get_ram_label(unsigned addr, int digits);
 extern void do_vcal(unsigned n);
 
 static int _abs(int x) { return x<0? -x:x; }

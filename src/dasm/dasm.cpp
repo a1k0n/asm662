@@ -7,7 +7,7 @@ extern "C" {
 static dasm_state *_D;
 static DASMQueue *_dqueue;
 static DASMOutput *_dout;
-extern "C" const char *get_label(unsigned addr)
+extern "C" const char *get_rom_label(unsigned addr)
 {
 	static char lbuf[64];
 	const char *l = _dout->get_label(addr);
@@ -22,14 +22,16 @@ extern "C" const char *get_label(unsigned addr)
 }
 
 static map<unsigned, const char *> _SFRs;
-extern "C" const char *get_zp_label(unsigned addr)
+extern "C" const char *get_ram_label(unsigned addr, int digits)
 {
-	static char lbuf[64];
+	static char lbuf1[64], lbuf2[64];
+	static char *lbuf=lbuf2;
+	lbuf = (lbuf == lbuf1) ? lbuf2 : lbuf1;
 	map<unsigned, const char *>::iterator i =
 		_SFRs.find(addr);
 	if(i != _SFRs.end())
 		return (*i).second;
-	sprintf(lbuf, "0%02xh", addr);
+	sprintf(lbuf, "0%0*xh", digits, addr);
 	return lbuf;
 }
 
@@ -37,7 +39,7 @@ const unsigned vcal_base=0x28;
 extern "C" void do_vcal(unsigned n)
 {
 	unsigned addr = _D->rom[vcal_base+n*2]|(_D->rom[vcal_base+n*2+1]<<8);
-	get_label(addr);
+	get_rom_label(addr);
 }
 
 void dasm(dasm_state *D, DASMQueue *dqueue, DASMOutput *out)

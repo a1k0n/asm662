@@ -33,3 +33,5 @@ y.tab.c: asm662.y
 
 clean:
 	rm -f asm662 $(OBJS) opcode.l tokens.y instrs.y asm662.l asm662.y
+
+main.o: ../66207_regs.h

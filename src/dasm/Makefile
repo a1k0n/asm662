@@ -20,3 +20,5 @@ op.c: ../66207.op opcode.pl
 
 clean: op.c
 	rm -f dasm662 $(OBJS)
+
+dasm.o: ../66207_regs.h

@@ -1,4 +1,4 @@
-dasm662 ver 1.4
+dasm662 ver 1.5
 
 
 INTRODUCTION
@@ -36,6 +36,16 @@ dasm662 P30-US.bin p30.asm 02B2
 
 
 CHANGELOG
+
+Changes from 1.4:
+	- Misc bugfixes.
+	- Added some zero-page SFRs which shadow registers:
+		- added ASSP (00h) and SSPH (01h) - (SSP register)
+		- added ALRB (02h) and LRBH (03h) - (LRB register)
+		- added PSW (04h) and zp_PSWH (05h) - (PSWL and PSWH)
+	- Added symbolic RAM location labelling to off(N8) addressing modes.
+	  In the case where LRB is set such that indexing starts at page 0,
+	  the zero-page registers show up, i.e. off(PSW)
 
 Changes from 1.3:
 	- Now tracks the LRB register and displays the current page and

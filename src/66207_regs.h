@@ -1,6 +1,10 @@
 /* special function registers for 66201/66207 */
 {
-	i=0x06; makesfr("ACC"); makesfr("ACCH");
+	i=0x00; 
+	makesfr("ASSP"); makesfr("SSPH");
+	makesfr("ALRB"); makesfr("LRBH");
+	makesfr("PSW"); makesfr("zp_PSWH");
+	makesfr("ACC");   makesfr("ACCH");
 	i=0x10; makesfr("SBYCON"); makesfr("WDT");
 	makesfr("PRPHF"); makesfr("STPACP");
 	i=0x18; makesfr("IRQ"); makesfr("IRQH");
@@ -29,5 +33,40 @@
 	makesfr("PWMC1"); makesfr("PWMC1H"); makesfr("PWMR1"); makesfr("PWMR1H");
 	makesfr("PWCON0");
 	i=0x7a; makesfr("PWCON1");
+/*
+	i=0x80;
+	makesfr("pr0_X1");  makesfr("pr0_X1H");
+	makesfr("pr0_X2");  makesfr("pr0_X2H");
+	makesfr("pr0_DP");  makesfr("pr0_DPH");
+	makesfr("pr0_USP"); makesfr("pr0_USPH");
+	makesfr("pr1_X1");  makesfr("pr1_X1H");
+	makesfr("pr1_X2");  makesfr("pr1_X2H");
+	makesfr("pr1_DP");  makesfr("pr1_DPH");
+	makesfr("pr1_USP"); makesfr("pr1_USPH");
+	makesfr("pr2_X1");  makesfr("pr2_X1H");
+	makesfr("pr2_X2");  makesfr("pr2_X2H");
+	makesfr("pr2_DP");  makesfr("pr2_DPH");
+	makesfr("pr2_USP"); makesfr("pr2_USPH");
+	makesfr("pr3_X1");  makesfr("pr3_X1H");
+	makesfr("pr3_X2");  makesfr("pr3_X2H");
+	makesfr("pr3_DP");  makesfr("pr3_DPH");
+	makesfr("pr3_USP"); makesfr("pr3_USPH");
+	makesfr("pr4_X1");  makesfr("pr4_X1H");
+	makesfr("pr4_X2");  makesfr("pr4_X2H");
+	makesfr("pr4_DP");  makesfr("pr4_DPH");
+	makesfr("pr4_USP"); makesfr("pr4_USPH");
+	makesfr("pr5_X1");  makesfr("pr5_X1H");
+	makesfr("pr5_X2");  makesfr("pr5_X2H");
+	makesfr("pr5_DP");  makesfr("pr5_DPH");
+	makesfr("pr5_USP"); makesfr("pr5_USPH");
+	makesfr("pr6_X1");  makesfr("pr6_X1H");
+	makesfr("pr6_X2");  makesfr("pr6_X2H");
+	makesfr("pr6_DP");  makesfr("pr6_DPH");
+	makesfr("pr6_USP"); makesfr("pr6_USPH");
+	makesfr("pr7_X1");  makesfr("pr7_X1H");
+	makesfr("pr7_X2");  makesfr("pr7_X2H");
+	makesfr("pr7_DP");  makesfr("pr7_DPH");
+	makesfr("pr7_USP"); makesfr("pr7_USPH");
+*/
 }
 

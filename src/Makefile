@@ -15,3 +15,5 @@ asm/asm662::
 dasm/dasm662::
 	cd dasm; $(MAKE)
 
+clean::
+	cd asm; $(MAKE) clean; cd ../dasm; $(MAKE) clean
