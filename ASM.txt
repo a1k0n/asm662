@@ -1,22 +1,18 @@
-asm662 ver 0.9
+asm662 ver 1.0
 
 
 INTRODUCTION
 
-This is a multipass, case-insensitive OKI 66201/66207/66301 assembler with
-a built-in C-style expression parser.  It's simple and powerful, although
-it has a few limitations:
+This is a portable multipass, case-insensitive OKI 66201/66207/66301
+assembler with a built-in C-style expression parser.  It's simple and
+powerful, although it has a few limitations:
 
-    - In this version, the output is only as a 32k ROM .bin.  The rom size
-      is fixed.  Future versions will allow you to change ROM size.
     - No list file generation in this version.
     - No linker whatsoever.  This is an architectural decision insofar as
       all branch/call targets can be arbitrary expressions, and I don't
       want to store a full parse tree for each external symbol reference.
       This isn't to say it isn't possible, or that I couldn't just stick to
       symbols rather than full expressions for branch/call instructions.
-    - No "preload" directive yet.  In future versions, you'll be able to
-      start with an existing .bin and apply patches to it.
     - It doesn't check the validity of the DD flag during assembly at all.
       However, dasm662 _does_ issue warnings of DD flag violations, so you
       can use the two in conjunction.
@@ -25,17 +21,12 @@ it has a few limitations:
           bit_loc equ 3
           RB 28h.bit_loc
       (although you can do RB byte_loc.3)
-    - No macro facility, and no plans to add one.  Due to the architecture
-      of this program, this would best be done as a separate macro
-      assembler front end to this assembler.  Feel free to write one.
+    - No macro facility.
+	- Syntax is different from the official 66k dev tools, but similar to
+	  x86 dev tools.
 
-Full source is provided under the BSD license, along with a Win32 console
-binary.  This also compiles under FreeBSD, Linux, etc.  Feel free to make
+Full source is provided under the BSD license.  Feel free to make
 derivative projects.
-
-One word of warning: a small bit of laziness resulted in this code being
-portable only to little-endian machines.  That can easily be fixed if
-anyone cares.  
 
 
 AUTHOR
@@ -160,4 +151,12 @@ label equ expr  - evaluate expr and assign its value to 'label'
       org expr  - evaluate expr and assign its value to $
 
 More directives are planned for future versions.
+
+
+CHANGELOG
+
+Changes from 0.9:
+	- Fixed only known bigendian bug.  Should hopefully compile and run
+	  correctly on MacOS X, Solaris/sparc, etc.
+
 

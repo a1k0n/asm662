@@ -58,5 +58,5 @@ ROOT:
 
 instruction: NL
 	| DB exprlist NL { emit(_valbytes, _val_n); _val_n=0; }
-	| DW exprlist NL { /* warning: little endian only */ emit((u8*)_valwords, _val_n*2); _val_n=0; }
+	| DW exprlist NL { emit_words(_valwords, _val_n); _val_n=0; }
 	| VCAL expr NL { u8 instr[1]={0x10}; instr[0] += $2; if(instr[0] > 0x17) emit_error("invalid VCAL"); else emit(instr, 1); }

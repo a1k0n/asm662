@@ -3,10 +3,13 @@ dasm662 ver 1.4
 
 INTRODUCTION
 
-This is a quick and dirty OKI 66201/66207/66301 disassembler which does a
-full code walk over the ROM in order to determine what's code and what's
-data.  Obviously, this method doesn't work 100% if there are [double]
-indirect calls.  However I think it's a good starting point.
+This is a portable OKI 66201/66207/66301 disassembler which does a full
+code walk over the ROM in order to determine what's code and what's data.
+Obviously, this method doesn't work 100% if there are [double] indirect
+calls.  However, it works well enough to be useful.
+
+Full source is provided under the BSD license.  Feel free to make
+derivative projects.
 
 The code is ANSI C/C++.  The actual opcode disassembler back end is
 generated from perl out of the 66207.op file provided in Doc's
@@ -14,13 +17,10 @@ disassembler, without which this would not be possible.  I corrected a few
 errors in that file, by the way, and perhaps introduced some of my own, but
 the output seems OK so far.
 
-Full source is provided under the BSD license, along with a Win32 console 
-binary.  This also compiles under FreeBSD, Linux, etc, and shouldn't be
-endian-dependent at all.  Feel free to make derivative projects.
 
-Enjoy.
+AUTHOR
 
-a1k0n <andy@a1k0n.net>
+dasm662 was written by Andy Sloane <andy@a1k0n.net>.
 
 
 INVOCATION

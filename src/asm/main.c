@@ -53,6 +53,18 @@ void emit(const u8 *instr, int nbytes) {
 	pc += nbytes; 
 }
 
+void emit_words(const unsigned short *words, int nwords)
+{
+	/* this is endian safe, but slow.  but who cares. */
+	int i;
+	for(i=0;i<nwords;i++) {
+		u8 b = words[i] & 0xff;
+		emit(&b, 1);
+		b = words[i]>>8;
+		emit(&b, 1);
+	}
+}
+
 extern int yyparse(void);
 
 void emit_warning(const char *str, ...)

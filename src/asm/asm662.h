@@ -22,6 +22,7 @@ extern int  get_pc(void);
 /* note: does nothing but increment PC unless this is the final pass of
  * assembly */
 extern void emit(const u8 *instr, int nbytes);
+extern void emit_words(const unsigned short *words, int nwords);
 
 extern void emit_warning(const char *str, ...);
 extern void emit_error(const char *str, ...);
