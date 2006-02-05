@@ -7,7 +7,9 @@ extern "C" {
 static dasm_state *_D;
 static DASMQueue *_dqueue;
 static DASMOutput *_dout;
-static unsigned tbladdr_lo=0x5600,tbladdr_hi=0x7ff0;
+// these are appropriate for Honda OBD1 ROMs but will probably need to
+// be overridden at the commandline.
+static unsigned tbladdr_lo=0x5465,tbladdr_hi=0x7ff0;
 extern "C" const char *get_rom_label(unsigned addr)
 {
 	static char lbuf[64];
@@ -207,7 +209,12 @@ int main(int argc, char **argv)
 	FILE *fp;
 
 	if(argc < 3) {
-		printf("usage: %s <binfile> <outfile> [addr...]\n", argv[0]);
+		printf("usage: %s <binfile> <outfile> [min tableaddr] "
+				"[max tableaddr] [ignore tableaddr...]\n", argv[0]);
+		printf("\tmin/max tableaddr are the low and high addresses to\n"
+				"\t  consider as addresses when seen in the code\n"
+				"\tignore tableaddrs are the addresses inside that range\n"
+				"\t  that should be considered as numerical values instead.\n");
 		return 0;
 	}
 
