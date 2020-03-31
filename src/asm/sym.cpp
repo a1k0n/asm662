@@ -2,6 +2,7 @@ extern "C" {
 #include "asm662.h"
 }
 #include <map>
+#include <cstring>
 using namespace std;
 
 // for case-insensitive labels, change the strcmp to strcasecmp/stricmp
