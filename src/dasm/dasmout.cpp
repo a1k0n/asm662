@@ -5,6 +5,7 @@ extern "C" {
 #include "dasm.h"
 }
 #include "dasmout.h"
+#include <cstring>
 
 void DASMOutput::add_label(unsigned addr, const string &l) 
 {

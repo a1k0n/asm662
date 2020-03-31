@@ -3,6 +3,7 @@ extern "C" {
 }
 #include "dasmq.h"
 #include "dasmout.h"
+#include <cstring> 
 
 static dasm_state *_D;
 static DASMQueue *_dqueue;
